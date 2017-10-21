@@ -1,7 +1,9 @@
-package hr.foi.vodickulturnihdogadanja;
+package hr.foi.vodickulturnihdogadanja.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import hr.foi.vodickulturnihdogadanja.R;
 
 public class LoginActivity extends AppCompatActivity {
 
