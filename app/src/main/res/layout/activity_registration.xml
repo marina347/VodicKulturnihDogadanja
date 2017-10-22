@@ -1,9 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="hr.foi.vodickulturnihdogadanja.activity.RegistrationActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/reg_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/reg_name_et"
+        android:layout_marginTop="11dp"
+        android:text="Registracija"
+        android:textSize="58px" />
+
+    <EditText
+        android:id="@+id/reg_username_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/reg_username_tw"
+        android:layout_alignStart="@+id/reg_username_tw" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:text="REGISTRIRAJ SE" />
+
+    <TextView
+        android:id="@+id/reg_username_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Korisničko ime"
+        android:layout_below="@+id/reg_tw"
+        android:layout_alignStart="@+id/reg_tw" />
+
+    <TextView
+        android:id="@+id/reg_password_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lozinka"
+        android:layout_below="@+id/reg_username_et"
+        android:layout_alignStart="@+id/reg_username_et"
+        android:layout_marginTop="17dp" />
+
+    <EditText
+        android:id="@+id/reg_password_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:layout_below="@+id/reg_password_tw"
+        android:layout_alignStart="@+id/reg_password_tw" />
+
+    <TextView
+        android:id="@+id/reg_email_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/reg_password_et"
+        android:layout_below="@+id/reg_password_et"
+        android:layout_marginTop="20dp"
+        android:text="Email" />
+
+    <EditText
+        android:id="@+id/reg_email_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/reg_email_tw"
+        android:layout_alignStart="@+id/reg_email_tw" />
+
+    <TextView
+        android:id="@+id/reg_name_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Ime"
+        android:layout_below="@+id/reg_email_et"
+        android:layout_alignStart="@+id/reg_email_et" />
+
+    <EditText
+        android:id="@+id/reg_name_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/reg_name_tw"
+        android:layout_alignEnd="@+id/btnRegister" />
+
+    <TextView
+        android:id="@+id/reg_surname_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prezime"
+        android:layout_below="@+id/reg_name_et"
+        android:layout_alignStart="@+id/reg_name_et"
+        android:layout_marginTop="13dp" />
+
+    <EditText
+        android:id="@+id/reg_surname_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/reg_surname_tw"
+        android:layout_alignStart="@+id/reg_surname_tw" />
+
+</RelativeLayout>

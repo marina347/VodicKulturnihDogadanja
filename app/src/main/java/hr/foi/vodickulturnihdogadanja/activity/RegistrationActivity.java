@@ -4,9 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import android.os.Handler;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.interactor.UserInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
@@ -17,32 +24,59 @@ import hr.foi.vodickulturnihdogadanja.presenter.impl.RegistrationPresenterImpl;
 import hr.foi.vodickulturnihdogadanja.view.RegistrationView;
 
 public class RegistrationActivity extends AppCompatActivity implements RegistrationView{
+
+    @BindView(R.id.btnRegister)
+    Button button1;
+
+    @BindView(R.id.reg_username_et)
+    EditText usernameEditText;
+
+    @BindView(R.id.reg_password_et)
+    EditText passwordEditText;
+
+    @BindView(R.id.reg_email_et)
+    EditText emailEditText;
+
+    @BindView(R.id.reg_name_et)
+    EditText nameEditText;
+
+    @BindView(R.id.reg_surname_et)
+    EditText surnameEditText;
+
+
     RegistrationPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        ButterKnife.bind(this);
         RegistrationPresenter presenter = new RegistrationPresenterImpl(new UserInteractorImpl(), this);
         this.presenter = presenter;
     }
 
+    @OnClick(R.id.btnRegister)
+    public void login_click(View view) {
+        TryCreateUser();
+    }
+
     private void TryCreateUser(){
-        /*
+
         UserModel um = new UserModel();
-        um.setName("NAZIV_NEKI");
-        um.setPassword("asdddd");
-        um.setPicture("ddddd");
-        um.setSurname("surnejm");
-        um.setUsername("ffff");
-        um.setEmail("moj@ffff.com");
+        um.setUsername(usernameEditText.getText().toString());
+        um.setName(nameEditText.getText().toString());
+        um.setPassword(passwordEditText.getText().toString());
+        um.setPicture("");
+        um.setSurname(surnameEditText.getText().toString());
+        um.setUsername(usernameEditText.getText().toString());
+        um.setEmail(emailEditText.getText().toString());
 
         presenter.tryCreateUser(um);
-        */
+
     }
 
     public void onSuccess(UserModel userModel){
-        Toast.makeText(this,"Registration successful",Toast.LENGTH_SHORT);
+        Toast.makeText(this,"Registration successful",Toast.LENGTH_SHORT).show();
         final Context ctx= this;
         new Handler().postDelayed(new Runnable() {
             @Override
