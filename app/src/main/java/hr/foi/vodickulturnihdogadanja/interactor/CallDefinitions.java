@@ -11,7 +11,7 @@ import retrofit2.http.POST;
  */
 
 public interface CallDefinitions {
-    @POST("/user.php")
+    @POST("user.php")
     Call<UserModel> createUser(@Body UserModel data);
 
 }

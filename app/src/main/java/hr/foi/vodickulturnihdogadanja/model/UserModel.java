@@ -9,11 +9,18 @@ import com.google.gson.annotations.Expose;
 public class UserModel {
     @Expose(serialize =  false)
     private int userId;
-    
+
+    @Expose
     private String username;
+    @Expose
     private String password;
+    @Expose
     private String name;
+    @Expose
     private String surname;
+    @Expose
+    private String email;
+    @Expose
     private String picture;
 
     public int getUserId() {
@@ -62,5 +69,13 @@ public class UserModel {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

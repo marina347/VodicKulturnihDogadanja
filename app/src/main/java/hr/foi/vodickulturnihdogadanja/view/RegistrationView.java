@@ -1,4 +1,4 @@
-package hr.foi.vodickulturnihdogadanja.interactor.listener;
+package hr.foi.vodickulturnihdogadanja.view;
 
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
 
@@ -6,6 +6,6 @@ import hr.foi.vodickulturnihdogadanja.model.UserModel;
  * Created by marbulic on 10/22/2017.
  */
 
-public interface UserInteractorListener {
+public interface RegistrationView {
     void onSuccess(UserModel userModel);
 }

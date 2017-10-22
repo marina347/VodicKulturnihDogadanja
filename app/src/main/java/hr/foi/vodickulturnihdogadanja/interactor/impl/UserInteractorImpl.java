@@ -32,7 +32,7 @@ public class UserInteractorImpl implements UserInteractor {
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if(response.isSuccessful()){
                     UserModel user=response.body();
-                    listener.OnSuccess(user);
+                    listener.onSuccess(user);
                 }
                 else{
                     Log.d("Api", "fail createUser");
