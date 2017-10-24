@@ -9,7 +9,12 @@ import okhttp3.ResponseBody;
  */
 
 public class RESTErrorDecoderUtils {
+    public static final int SERVER_INTERNAL_EXCEPTION_ERRR  = 950;
+
     public static int decodeError(ResponseBody body){
-        return 0;
+        //decode
+        //switch return
+
+        return SERVER_INTERNAL_EXCEPTION_ERRR;
     }
 }

@@ -12,6 +12,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorLoginLis
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorRegistrationListener;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
+import hr.foi.vodickulturnihdogadanja.utils.RESTErrorDecoderUtils;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,10 +54,13 @@ public class UserInteractorImpl implements UserInteractor {
             public void onResponse(Call<TokenModel> call, Response<TokenModel> response) {
                 if(response.isSuccessful()){
                     TokenModel token=response.body();
+
                     listenerLogin.onLoginSuccedded(token);
                 }
                 else{
-
+                    //int errorNumber = RESTErrorDecoderUtils.decodeError(response.raw().body());
+                    //if(errorNumber == RESTErrorDecoderUtils.SERVER_INTERNAL_EXCEPTION_ERRR)
+                    //    listenerLogin."Wrong credentials"
                     Log.d("Api","fail login");
                     listenerLogin.onLoginFailed();
                 }

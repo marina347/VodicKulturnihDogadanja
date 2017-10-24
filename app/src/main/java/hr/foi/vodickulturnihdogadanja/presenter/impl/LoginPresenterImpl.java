@@ -4,6 +4,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.UserInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorLoginListener;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.presenter.LoginPresenter;
+import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.LoginView;
 
 /**
@@ -37,6 +38,8 @@ public class LoginPresenterImpl implements LoginPresenter,UserInteractorLoginLis
 
     @Override
     public void onLoginSuccedded(TokenModel token) {
+        LoggedUserData.getInstance().setTokenModel(token);
+        //LoggedUserData.getInstance().getTokenModel().getUserId();
         lv.onSuccess(token);
     }
 }
