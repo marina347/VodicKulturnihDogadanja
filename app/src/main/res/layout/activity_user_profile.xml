@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hr.foi.vodickulturnihdogadanja.activity.UserProfileActivity"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/user_profile_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="43dp" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/user_profile_photo"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp" />
+
+    <TextView
+        android:id="@+id/user_surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/user_profile_photo"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="72dp" />
+
+    <TextView
+        android:id="@+id/user_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/user_profile_photo"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="108dp" />
+
+    <TextView
+        android:id="@+id/user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/user_profile_photo"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="144dp" />
+
+</RelativeLayout>

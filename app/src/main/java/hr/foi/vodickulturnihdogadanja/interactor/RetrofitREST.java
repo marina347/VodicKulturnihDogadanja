@@ -13,7 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitREST {
     private static  Retrofit retrofit;
-    private final static String baseUrl = "http://192.168.137.1/air_vodic/";
+    //private final static String baseUrl = "http://192.168.43.7/air_vodic/";
+    private final static String baseUrl = "http://vodickulturnihdogadanja.1e29g6m.xip.io/";
 
     public static Retrofit getRetrofit() {
         if(retrofit == null)

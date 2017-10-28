@@ -10,6 +10,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.RetrofitREST;
 import hr.foi.vodickulturnihdogadanja.interactor.UserInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorLoginListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorRegistrationListener;
+import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorUserProfileListener;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
 import hr.foi.vodickulturnihdogadanja.utils.RESTErrorDecoderUtils;
@@ -25,6 +26,8 @@ import retrofit2.Response;
 public class UserInteractorImpl implements UserInteractor {
     UserInteractorRegistrationListener listener;
     UserInteractorLoginListener listenerLogin;
+    UserInteractorUserProfileListener listenerProfile;
+
     @Override
     public void setRegistrationListener(UserInteractorRegistrationListener listener){
         this.listener = listener;
@@ -32,6 +35,10 @@ public class UserInteractorImpl implements UserInteractor {
     @Override
     public void setLoginListener(UserInteractorLoginListener listener) {
         this.listenerLogin = listener;
+    }
+    @Override
+    public void setUserProfileListener(UserInteractorUserProfileListener listener) {
+        this.listenerProfile = listener;
     }
 
     @Override
@@ -99,6 +106,34 @@ public class UserInteractorImpl implements UserInteractor {
             }
         });
         //call.enqueue();
+
+    }
+
+    @Override
+    public void viewUserData(int userId) {
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        Call<UserModel> call = calls.viewUserData(userId);
+        call.enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                if(response.isSuccessful()){
+                    UserModel user=response.body();
+                    listenerProfile.onSuccess(user);
+                }
+                else{
+                    Log.d("Api", "fail viewUserData");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void editUserData(UserModel userDataEdit) {
 
     }
 }

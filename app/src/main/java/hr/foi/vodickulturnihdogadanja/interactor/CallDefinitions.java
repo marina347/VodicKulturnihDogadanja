@@ -7,7 +7,9 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by marbulic on 10/21/2017.
@@ -19,4 +21,7 @@ public interface CallDefinitions {
 
     @POST("userLogIn.php")
     Call<TokenModel> Login(@Body RequestBody data);
+
+    @GET("user.php")
+    Call<UserModel> viewUserData(@Query("userId") int userId);
 }
