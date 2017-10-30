@@ -29,6 +29,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     public void RegisterLinkClick(View view){
         NavigateToRegistration();
     }
+    @OnClick(R.id.guestlink_tv)
+    public void GuestLinkClick(View view){
+        NavigateToMainActivity();
+    }
+
+    private void NavigateToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

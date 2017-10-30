@@ -1,5 +1,8 @@
 package hr.foi.vodickulturnihdogadanja.interactor;
 
+import java.util.List;
+
+import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
 import okhttp3.RequestBody;
@@ -27,4 +30,7 @@ public interface CallDefinitions {
 
     @POST("userEdit.php")
     Call<UserModel> editUserData(@Body UserModel userData);
+
+    @GET("eventList.php")
+    Call<List<EventModel>> getEvents(@Query("begin") String date);
 }
