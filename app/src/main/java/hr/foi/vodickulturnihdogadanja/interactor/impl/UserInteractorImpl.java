@@ -13,7 +13,6 @@ import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorRegistra
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorUserProfileListener;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
-import hr.foi.vodickulturnihdogadanja.utils.RESTErrorDecoderUtils;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +26,7 @@ public class UserInteractorImpl implements UserInteractor {
     UserInteractorRegistrationListener listener;
     UserInteractorLoginListener listenerLogin;
     UserInteractorUserProfileListener listenerProfile;
+    //UserInteractorUserProfileEditListener listenerProfileEdit;
 
     @Override
     public void setRegistrationListener(UserInteractorRegistrationListener listener){
@@ -133,7 +133,25 @@ public class UserInteractorImpl implements UserInteractor {
     }
 
     @Override
-    public void editUserData(UserModel userDataEdit) {
+    public void editUserData(UserModel userData) {
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        Call<UserModel> call = calls.editUserData(userData);
+        call.enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                if(response.isSuccessful()){
+                    UserModel user=response.body();
+                    listenerProfile.onSuccess(user);
+                }
+                else{
+                    Log.d("Api", "fail editUserData");
+                }
+            }
 
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
     }
 }

@@ -27,6 +27,11 @@ public class UserProfilePresenterImpl implements UserProfilePresenter, UserInter
     }
 
     @Override
+    public void tryEditData (UserModel userData) {
+        userInteractor.editUserData(userData);
+    }
+
+    @Override
     public void onSuccess(UserModel userModel) {
         userProfileView.onSuccess(userModel);
     }

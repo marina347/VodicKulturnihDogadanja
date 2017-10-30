@@ -24,4 +24,7 @@ public interface CallDefinitions {
 
     @GET("user.php")
     Call<UserModel> viewUserData(@Query("userId") int userId);
+
+    @POST("userEdit.php")
+    Call<UserModel> editUserData(@Body UserModel userData);
 }

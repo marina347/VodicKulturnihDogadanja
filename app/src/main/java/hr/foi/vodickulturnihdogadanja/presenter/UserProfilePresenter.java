@@ -8,4 +8,5 @@ import hr.foi.vodickulturnihdogadanja.model.UserModel;
 
 public interface UserProfilePresenter {
     public void tryViewData(int userId);
+    public void tryEditData(UserModel userModel);
 }

@@ -16,5 +16,5 @@ public interface UserInteractor {
     void setLoginListener(UserInteractorLoginListener listener);
     void viewUserData(int userId);
     void setUserProfileListener(UserInteractorUserProfileListener listener);
-    void editUserData(UserModel userDataEdit);
+    void editUserData(UserModel userData);
 }
