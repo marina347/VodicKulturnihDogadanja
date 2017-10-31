@@ -32,5 +32,5 @@ public interface CallDefinitions {
     Call<UserModel> editUserData(@Body UserModel userData);
 
     @GET("eventList.php")
-    Call<List<EventModel>> getEvents(@Query("begin") String date);
+    Call<List<EventModel>> getEvents(@Query("begin") Long date);
 }

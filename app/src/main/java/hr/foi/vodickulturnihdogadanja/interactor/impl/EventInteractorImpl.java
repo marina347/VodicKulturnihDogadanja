@@ -30,7 +30,7 @@ public class EventInteractorImpl implements EventInteractor{
     public void getEvent() {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
         Date currentDate=new Date();
-        Call<List<EventModel>> call = calls.getEvents(currentDate.toString());
+        Call<List<EventModel>> call = calls.getEvents(currentDate.getTime());
         call.enqueue(new Callback<List<EventModel>>() {
             @Override
             public void onResponse(Call<List<EventModel>> call, Response<List<EventModel>> response) {
