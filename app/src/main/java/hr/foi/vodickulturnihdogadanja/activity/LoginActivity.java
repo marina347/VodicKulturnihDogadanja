@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     @Override
     public void onSuccess(final TokenModel model) {
         //showToastOnUI("Uspješna prijava");
-        Intent intent = new Intent(this, UserProfileActivity.class);
+        Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
     }
 

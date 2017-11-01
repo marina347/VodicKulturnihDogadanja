@@ -1,31 +1,30 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTouch;
 import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
 import hr.foi.vodickulturnihdogadanja.presenter.UserProfilePresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.UserProfilePresenterImpl;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
-import hr.foi.vodickulturnihdogadanja.view.LoginView;
 import hr.foi.vodickulturnihdogadanja.view.UserProfileView;
 
 public class UserProfileActivity extends AppCompatActivity implements UserProfileView {
+
+    @BindView(R.id.img_profile_photo)
+    ImageButton outputImage;
 
     @BindView(R.id.edit_name)
     EditText outputName;
@@ -44,6 +43,8 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
 
     UserProfilePresenter userProfilePresenter;
 
+    public static int RESULT_LOAD_IMAGE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,7 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
 
         TryGetData();
         EnableEdit();
-
+        TryAddPicture();
     }
 
     @OnClick(R.id.btn_save_profile_data)
@@ -79,9 +80,55 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
         userModel.setUsername(outputUsername.getText().toString());
         userModel.setEmail(outputEmail.getText().toString());
         userModel.setPassword(outputPassword.getText().toString());
-        userModel.setPicture("");
+        userModel.setPicture(outputImage.toString());
 
         userProfilePresenter.tryEditData(userModel);
+    }
+
+    private void TryAddPicture() {
+        outputImage = (ImageButton) findViewById(R.id.img_profile_photo);
+        outputImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent GaleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(GaleryIntent, RESULT_LOAD_IMAGE);
+            }
+        });
+    }
+
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri SelectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA };
+
+            Cursor selectedCursor = getContentResolver().query(SelectedImage, filePathColumn, null, null, null);
+            selectedCursor.moveToFirst();
+
+            int columnIndex = selectedCursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = selectedCursor.getString(columnIndex);
+            selectedCursor.close();
+
+            //  Drawable d = new BitmapDrawable(getResources(),BitmapFactory.decodeFile(picturePath));
+            // btnOpenGalery .setImageBitmap(d);
+            outputImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            Toast.makeText(getApplicationContext(), picturePath, Toast.LENGTH_SHORT).show();
+
+        }
+
+    }*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK){
+            Uri imageUri = data.getData();
+            outputImage.setImageURI(imageUri);
+            Toast.makeText(getApplicationContext(), imageUri.toString(), Toast.LENGTH_LONG).show();
+        }
     }
 
     public void onSuccess (UserModel userModel) {
@@ -92,7 +139,7 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
         outputPassword.setText(userModel.getPassword());
     }
 
-    //for edit data, enable on touch
+    //for edit data task, enable on touch
     private View.OnTouchListener handleTouch = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {

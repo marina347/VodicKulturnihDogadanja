@@ -26,7 +26,6 @@ public class UserInteractorImpl implements UserInteractor {
     UserInteractorRegistrationListener listener;
     UserInteractorLoginListener listenerLogin;
     UserInteractorUserProfileListener listenerProfile;
-    //UserInteractorUserProfileEditListener listenerProfileEdit;
 
     @Override
     public void setRegistrationListener(UserInteractorRegistrationListener listener){
