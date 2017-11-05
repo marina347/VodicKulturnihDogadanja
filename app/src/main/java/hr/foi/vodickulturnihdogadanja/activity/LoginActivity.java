@@ -25,14 +25,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @BindView(R.id.log_password_et)
     EditText passwordEditText;
-    @OnClick(R.id.registerlink_tv)
+    @OnClick(R.id.btnReg)
     public void RegisterLinkClick(View view){
         NavigateToRegistration();
     }
-    @OnClick(R.id.guestlink_tv)
-    public void GuestLinkClick(View view){
-        NavigateToMainActivity();
-    }
+
 
     private void NavigateToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);

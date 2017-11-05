@@ -10,7 +10,8 @@
         android:id="@+id/imgLogo"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-        app:srcCompat="@mipmap/logo" />
+        app:srcCompat="@mipmap/logo"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/logintv"
@@ -19,7 +20,7 @@
         android:layout_below="@id/imgLogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Login"
+        android:text="Prijava"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
@@ -29,6 +30,6 @@
         android:layout_below="@id/logintv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Nastavi kao gost"
+        android:text="Nastavi bez prijave"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 </RelativeLayout>

@@ -4,82 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hr.foi.vodickulturnihdogadanja.activity.LoginActivity">
 
-    <TextView
-        android:id="@+id/registerlink_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:text="Nemaš račun još?"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="289dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+    tools:context="hr.foi.vodickulturnihdogadanja.activity.LoginActivity">
+    <ImageView
+        android:alpha=".28"
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:srcCompat="@drawable/logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70sp"
+        />
+
+
 
     <TextView
         android:id="@+id/login_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/registerlink_tv"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="25sp"
+        android:text="Prijava"
         android:textSize="60px"
-        android:text="Prijava" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/log_username_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="35sp"
         android:text="Korisničko ime"
+        android:textStyle="bold"
         android:layout_below="@+id/login_tw"
-        android:layout_alignEnd="@+id/login_tw" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/log_username_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/log_username_tw"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_below="@+id/log_username_tw"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/log_password_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="30dp"
-        android:text="Lozinka"
         android:layout_below="@+id/log_username_et"
-        android:layout_alignStart="@+id/registerlink_tv" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34sp"
+        android:text="Lozinka"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/log_password_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/log_username_et"
-        android:layout_below="@+id/log_password_tw"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:layout_below="@+id/log_password_tw"
+        android:layout_alignStart="@+id/log_username_et"
+        android:layout_marginTop="22dp" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150sp"
+        android:layout_height="55sp"
         android:text="PRIJAVI SE"
-        android:layout_marginTop="43dp"
         android:layout_below="@+id/log_password_et"
-        android:layout_alignEnd="@+id/guestlink_tv" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
 
-    <TextView
-        android:id="@+id/guestlink_tv"
+    <Button
+        android:id="@+id/btnReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nastavi kao gost"
-        android:layout_marginBottom="13dp"
-        android:layout_above="@+id/registerlink_tv"
-        android:layout_alignStart="@+id/registerlink_tv" />
+        android:text="REGISTRACIJA"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14sp" />
+
 
 </RelativeLayout>

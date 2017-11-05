@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="hr.foi.vodickulturnihdogadanja.activity.RegistrationActivity">
 
-
     <TextView
         android:id="@+id/reg_tw"
         android:layout_width="wrap_content"
@@ -15,7 +14,7 @@
         android:layout_alignStart="@+id/reg_name_et"
         android:layout_marginTop="11dp"
         android:text="Registracija"
-        android:textSize="58px" />
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/reg_username_et"
@@ -26,20 +25,12 @@
         android:layout_below="@+id/reg_username_tw"
         android:layout_alignStart="@+id/reg_username_tw" />
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp"
-        android:text="REGISTRIRAJ SE" />
 
     <TextView
         android:id="@+id/reg_username_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="22dp"
         android:text="Korisničko ime"
         android:layout_below="@+id/reg_tw"
         android:layout_alignStart="@+id/reg_tw" />
@@ -96,7 +87,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:layout_below="@+id/reg_name_tw"
-        android:layout_alignEnd="@+id/btnRegister" />
+        android:layout_marginLeft="25dp"/>
 
     <TextView
         android:id="@+id/reg_surname_tw"
@@ -116,4 +107,13 @@
         android:layout_below="@+id/reg_surname_tw"
         android:layout_alignStart="@+id/reg_surname_tw" />
 
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="7dp"
+        android:text="REGISTRIRAJ SE"
+        android:layout_below="@+id/reg_surname_et"
+        android:layout_centerHorizontal="true"
+        />
 </RelativeLayout>
