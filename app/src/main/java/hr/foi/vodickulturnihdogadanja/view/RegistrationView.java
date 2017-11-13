@@ -8,4 +8,5 @@ import hr.foi.vodickulturnihdogadanja.model.UserModel;
 
 public interface RegistrationView {
     void onSuccess(UserModel userModel);
+    void onFailed(String text);
 }

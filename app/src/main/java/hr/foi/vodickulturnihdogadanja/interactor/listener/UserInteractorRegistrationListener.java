@@ -9,5 +9,6 @@ import hr.foi.vodickulturnihdogadanja.model.UserModel;
 
 public interface UserInteractorRegistrationListener {
     void onSuccess(UserModel userModel);
+    void onFailed(String text);
 
 }

@@ -102,6 +102,7 @@ public class UserInteractorImpl implements UserInteractor {
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
                 Log.d("Api", t.getMessage());
+                listener.onFailed("Neuspješna registracija! Pokušajte ponovno");
             }
         });
         //call.enqueue();

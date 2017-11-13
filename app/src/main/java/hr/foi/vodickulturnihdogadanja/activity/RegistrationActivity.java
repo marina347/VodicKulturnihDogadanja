@@ -74,7 +74,7 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
     }
 
     public void onSuccess(UserModel userModel){
-        Toast.makeText(this,"Registration successful",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Uspješna registracija",Toast.LENGTH_SHORT).show();
         final Context ctx= this;
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -83,5 +83,10 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
                 startActivity(intent);
             }
         },2000);
+    }
+
+    @Override
+    public void onFailed(String text) {
+        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
     }
 }

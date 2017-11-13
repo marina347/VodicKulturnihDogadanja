@@ -4,6 +4,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.UserInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorRegistrationListener;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
 import hr.foi.vodickulturnihdogadanja.presenter.RegistrationPresenter;
+import hr.foi.vodickulturnihdogadanja.utils.Utils;
 import hr.foi.vodickulturnihdogadanja.view.RegistrationView;
 
 /**
@@ -22,11 +23,33 @@ public class RegistrationPresenterImpl implements RegistrationPresenter, UserInt
 
     @Override
     public void tryCreateUser(UserModel userModel) {
-        ui.createUser(userModel);
+        if(userModel.getName().isEmpty()||userModel.getSurname().isEmpty() ||userModel.getUsername().isEmpty()
+                || userModel.getPassword().isEmpty() || userModel.getEmail().isEmpty()){
+            rv.onFailed("Unesite sva polja!");
+            return;
+        }
+        else if(userModel.getUsername().length()<6){
+            rv.onFailed("Korisničko ime mora imati najmanje 6 znakova!");
+        }
+        else if(userModel.getPassword().length()<6){
+            rv.onFailed("Lozinka mora imati najmanje 6 znakova!");
+        }
+        else if(!Utils.isValidEmail((userModel.getEmail()))){
+            rv.onFailed("Email adresa nije u dobrom formatu!");
+        }
+        else{
+            ui.createUser(userModel);
+        }
+
     }
 
     @Override
     public void onSuccess(UserModel userModel) {
         rv.onSuccess(userModel);
+    }
+
+    @Override
+    public void onFailed(String text) {
+        rv.onFailed(text);
     }
 }
