@@ -7,12 +7,11 @@
     tools:context="hr.foi.vodickulturnihdogadanja.activity.MainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
         android:id="@+id/recycler_view">
+        <!--tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp"-->
     </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

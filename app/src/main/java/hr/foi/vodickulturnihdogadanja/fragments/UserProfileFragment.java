@@ -1,11 +1,14 @@
-package hr.foi.vodickulturnihdogadanja.activity;
+package hr.foi.vodickulturnihdogadanja.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -21,7 +24,13 @@ import hr.foi.vodickulturnihdogadanja.presenter.impl.UserProfilePresenterImpl;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.UserProfileView;
 
-public class UserProfileActivity extends AppCompatActivity implements UserProfileView {
+import static android.app.Activity.RESULT_OK;
+
+/**
+ * Created by Mateja on 15-Nov-17.
+ */
+
+public class UserProfileFragment extends Fragment implements UserProfileView {
 
     @BindView(R.id.img_profile_photo)
     ImageButton outputImage;
@@ -42,14 +51,20 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
     EditText outputPassword;
 
     UserProfilePresenter userProfilePresenter;
-
     public static int RESULT_LOAD_IMAGE = 1;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
-        ButterKnife.bind(this);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //ButterKnife.bind(getActivity());
         UserProfilePresenter userProfilePresenter = new UserProfilePresenterImpl(new UserInteractorImpl(), this);
         this.userProfilePresenter = userProfilePresenter;
 
@@ -61,7 +76,7 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
     @OnClick(R.id.btn_save_profile_data)
     public void save_click (View view) {
         TryEditData();
-        Toast.makeText(this,"Edit data successful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"Edit data successful",Toast.LENGTH_SHORT).show();
     }
 
     private void TryGetData() {
@@ -86,7 +101,7 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
     }
 
     private void TryAddPicture() {
-        outputImage = (ImageButton) findViewById(R.id.img_profile_photo);
+        outputImage = (ImageButton) getView().findViewById(R.id.img_profile_photo);
         outputImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,38 +111,14 @@ public class UserProfileActivity extends AppCompatActivity implements UserProfil
         });
     }
 
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri SelectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA };
-
-            Cursor selectedCursor = getContentResolver().query(SelectedImage, filePathColumn, null, null, null);
-            selectedCursor.moveToFirst();
-
-            int columnIndex = selectedCursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = selectedCursor.getString(columnIndex);
-            selectedCursor.close();
-
-            // Drawable d = new BitmapDrawable(getResources(),BitmapFactory.decodeFile(picturePath));
-            // btnOpenGalery .setImageBitmap(d);
-            outputImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-            Toast.makeText(getApplicationContext(), picturePath, Toast.LENGTH_SHORT).show();
-
-        }
-
-    }*/
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK){
             Uri imageUri = data.getData();
             outputImage.setImageURI(imageUri);
-            Toast.makeText(getApplicationContext(), imageUri.toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), imageUri.toString(), Toast.LENGTH_LONG).show();
         }
     }
 
