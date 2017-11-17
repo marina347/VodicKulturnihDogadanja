@@ -1,6 +1,5 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import hr.foi.vodickulturnihdogadanja.R;
+import hr.foi.vodickulturnihdogadanja.fragments.EventFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.UserProfileFragment;
 
 
@@ -38,9 +38,7 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //TODO
-        //first open events
-        displaySelectedScreen(R.id.nav_profile);
+        displaySelectedScreen(R.id.nav_event);
     }
 
     @Override
@@ -80,10 +78,7 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
 
         switch (itemId) {
             case R.id.nav_event:
-                //TODO
-                //change in fragment
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                fragment = new EventFragment();
                 break;
             case R.id.nav_profile:
                 fragment = new UserProfileFragment();
