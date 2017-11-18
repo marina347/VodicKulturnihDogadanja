@@ -1,10 +1,14 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +57,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
     EditText outputPassword;
 
     UserProfilePresenter userProfilePresenter;
+    Bitmap bitmap;
     public static int RESULT_LOAD_IMAGE = 1;
 
     @Nullable
@@ -95,17 +102,28 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         userModel.setUsername(outputUsername.getText().toString());
         userModel.setEmail(outputEmail.getText().toString());
         userModel.setPassword(outputPassword.getText().toString());
-        userModel.setPicture(outputImage.toString());
+        userModel.setPicture(encodeToBase64(bitmap, Bitmap.CompressFormat.JPEG, 100));
 
         userProfilePresenter.tryEditData(userModel);
     }
 
+    public void onSuccess (UserModel userModel) {
+        outputName.setText(userModel.getName());
+        outputSurname.setText(userModel.getSurname());
+        outputUsername.setText(userModel.getUsername());
+        outputEmail.setText(userModel.getEmail());
+        outputPassword.setText(userModel.getPassword());
+        outputImage.setImageBitmap(decodeBase64(userModel.getPicture()));
+    }
+
+    //select image from gallery
     private void TryAddPicture() {
         outputImage = (ImageButton) getView().findViewById(R.id.img_profile_photo);
         outputImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent GaleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                //GaleryIntent.setType("image/*");
                 startActivityForResult(GaleryIntent, RESULT_LOAD_IMAGE);
             }
         });
@@ -115,19 +133,33 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK){
+        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             Uri imageUri = data.getData();
-            outputImage.setImageURI(imageUri);
-            //Toast.makeText(getApplicationContext(), imageUri.toString(), Toast.LENGTH_LONG).show();
+            try {
+                //getting image from gallery
+                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
+                //setting image to imageButton
+                outputImage.setImageBitmap(bitmap);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public void onSuccess (UserModel userModel) {
-        outputName.setText(userModel.getName());
-        outputSurname.setText(userModel.getSurname());
-        outputUsername.setText(userModel.getUsername());
-        outputEmail.setText(userModel.getEmail());
-        outputPassword.setText(userModel.getPassword());
+    public static String encodeToBase64(Bitmap image, Bitmap.CompressFormat compressFormat, int quality)
+    {
+        ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
+        image.compress(compressFormat, quality, byteArrayOS);
+        byte[] imageBytes = byteArrayOS.toByteArray();
+        return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+    }
+
+    public static Bitmap decodeBase64(String input)
+    {
+        //byte[] decodedBytes = Base64.decode(input, 0);
+        byte[] decodedBytes = Base64.decode(input, Base64.NO_WRAP);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 
     //for edit data task, enable on touch
