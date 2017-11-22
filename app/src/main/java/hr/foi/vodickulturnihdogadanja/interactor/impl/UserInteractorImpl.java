@@ -2,6 +2,8 @@ package hr.foi.vodickulturnihdogadanja.interactor.impl;
 
 import android.util.Log;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,6 +48,7 @@ public class UserInteractorImpl implements UserInteractor {
         try {
             jObj.put("username", username);
             jObj.put("password", password);
+            jObj.put("deviceId", FirebaseInstanceId.getInstance().getToken());
         } catch (JSONException e) {
             e.printStackTrace();
             listenerLogin.onLoginFailed();

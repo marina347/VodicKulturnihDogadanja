@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
