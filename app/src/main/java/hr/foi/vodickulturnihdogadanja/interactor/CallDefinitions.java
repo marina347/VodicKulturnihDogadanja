@@ -6,10 +6,8 @@ import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -33,4 +31,7 @@ public interface CallDefinitions {
 
     @GET("eventList.php")
     Call<List<EventModel>> getEvents(@Query("begin") Long date);
+
+    @GET("favoriteList.php")
+    Call<List<EventModel>> getFavorites(@Query("userId") int userId);
 }

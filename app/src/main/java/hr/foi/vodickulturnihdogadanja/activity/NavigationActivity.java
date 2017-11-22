@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.fragments.EventFragment;
+import hr.foi.vodickulturnihdogadanja.fragments.FavoriteFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.UserProfileFragment;
 
 
@@ -82,6 +83,9 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
                 break;
             case R.id.nav_profile:
                 fragment = new UserProfileFragment();
+                break;
+            case R.id.nav_favorite:
+                fragment = new FavoriteFragment();
                 break;
         }
 
