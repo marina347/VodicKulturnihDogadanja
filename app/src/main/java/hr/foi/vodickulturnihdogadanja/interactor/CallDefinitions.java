@@ -34,4 +34,7 @@ public interface CallDefinitions {
 
     @GET("favoriteList.php")
     Call<List<EventModel>> getFavorites(@Query("userId") int userId);
+
+    @GET("event.php")
+    Call<EventModel> getEventById(@Query("eventId") int eventId);
 }

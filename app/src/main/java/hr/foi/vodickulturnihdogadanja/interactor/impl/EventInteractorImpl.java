@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import hr.foi.vodickulturnihdogadanja.interactor.CallDefinitions;
+import hr.foi.vodickulturnihdogadanja.interactor.EventDetailsInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.EventInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.RetrofitREST;
+import hr.foi.vodickulturnihdogadanja.interactor.listener.EventDetailsInteractorListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.EventInteractorListener;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import retrofit2.Call;
@@ -19,11 +21,11 @@ import retrofit2.Response;
  */
 
 public class EventInteractorImpl implements EventInteractor{
-    EventInteractorListener listener;
+    EventInteractorListener eventInteractorListener;
 
     @Override
     public void setEventListener(EventInteractorListener listener) {
-        this.listener=listener;
+        this.eventInteractorListener=listener;
     }
 
     @Override
@@ -36,9 +38,9 @@ public class EventInteractorImpl implements EventInteractor{
             public void onResponse(Call<List<EventModel>> call, Response<List<EventModel>> response) {
                 List<EventModel> list=response.body();
                 if(list==null){
-                    listener.NoEvents();
+                    eventInteractorListener.NoEvents();
                 }else {
-                    listener.ArrivedEvents(list);
+                    eventInteractorListener.ArrivedEvents(list);
                 }
 
             }

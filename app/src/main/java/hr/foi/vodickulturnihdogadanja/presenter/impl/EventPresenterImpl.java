@@ -2,10 +2,14 @@ package hr.foi.vodickulturnihdogadanja.presenter.impl;
 
 import java.util.List;
 
+import hr.foi.vodickulturnihdogadanja.interactor.EventDetailsInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.EventInteractor;
+import hr.foi.vodickulturnihdogadanja.interactor.listener.EventDetailsInteractorListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.EventInteractorListener;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
+import hr.foi.vodickulturnihdogadanja.presenter.EventDetailsPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.EventPresenter;
+import hr.foi.vodickulturnihdogadanja.view.EventDetailsView;
 import hr.foi.vodickulturnihdogadanja.view.EventView;
 
 /**
@@ -21,7 +25,6 @@ public class EventPresenterImpl implements EventPresenter,EventInteractorListene
         ei.setEventListener(this);
         this.ev = ev;
     }
-
     @Override
     public void tryGetEvents() {
         ei.getEvent();
