@@ -7,10 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,12 +28,14 @@ import hr.foi.vodickulturnihdogadanja.model.EventModel;
  * Created by LEGION Y520 on 30.10.2017..
  */
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventViewHolder>{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventViewHolder> implements Filterable{
     List<EventModel> eventList;
+    List<EventModel> filtredEventList;
     Context context;
 
     public RecyclerAdapter(List<EventModel> eventList, Context context) {
         this.eventList = eventList;
+        this.filtredEventList = eventList;
         this.context = context;
     }
 
@@ -47,11 +52,50 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
         holder.eventBegin.setText(DateConverter(eventList.get(position).getBegin()));
         holder.eventEnd.setText(DateConverter(eventList.get(position).getEnd()));
         */
-        holder.bind(eventList.get(position));
+        holder.bind(filtredEventList.get(position));
     }
 
     @Override
-    public int getItemCount() { return eventList.size();
+    public int getItemCount() { return filtredEventList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+
+                    filtredEventList = eventList;
+                } else {
+
+                    ArrayList<EventModel> filteredList = new ArrayList<>();
+
+                    for (EventModel events : eventList) {
+
+                        if (events.getName().toLowerCase().contains(charString)) {
+
+                            filteredList.add(events);
+                        }
+                    }
+
+                    filtredEventList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values =filtredEventList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filtredEventList = (ArrayList<EventModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
