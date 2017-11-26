@@ -7,8 +7,10 @@ import java.util.List;
 import hr.foi.vodickulturnihdogadanja.interactor.CallDefinitions;
 import hr.foi.vodickulturnihdogadanja.interactor.FavoriteInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.RetrofitREST;
+import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteAddInteractorListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteInteractorListener;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,10 +21,16 @@ import retrofit2.Response;
 
 public class FavoriteInteractorImpl implements FavoriteInteractor {
     FavoriteInteractorListener listener;
+    FavoriteAddInteractorListener favoriteAddListener;
 
     @Override
     public void setFavoriteListener(FavoriteInteractorListener listener) {
         this.listener=listener;
+    }
+
+    @Override
+    public void setFavoriteAddListener(FavoriteAddInteractorListener favoriteAddListener) {
+        this.favoriteAddListener = favoriteAddListener;
     }
 
     @Override
@@ -51,6 +59,29 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
 
             @Override
             public void onFailure(Call<List<EventModel>> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void addFavorite(final int userId, final int eventId) {
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        Call<ResponseBody> call = calls.addFavorite(userId, eventId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    ResponseBody responseBody = response.body();
+                    favoriteAddListener.onSuccess(responseBody);
+                }
+                else {
+                    Log.d("Api", "fail viewUserData");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d("Api", t.getMessage());
             }
         });

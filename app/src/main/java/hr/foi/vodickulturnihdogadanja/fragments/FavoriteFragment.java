@@ -21,6 +21,7 @@ import hr.foi.vodickulturnihdogadanja.presenter.FavoritePresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.FavoritePresenterImpl;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.FavoriteView;
+import okhttp3.ResponseBody;
 
 /**
  * Created by Mateja on 22-Nov-17.
@@ -75,5 +76,10 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
                 Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onSuccess(ResponseBody responseBody) {
+
     }
 }

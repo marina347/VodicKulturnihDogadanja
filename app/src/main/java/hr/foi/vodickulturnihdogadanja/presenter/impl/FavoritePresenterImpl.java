@@ -3,16 +3,18 @@ package hr.foi.vodickulturnihdogadanja.presenter.impl;
 import java.util.List;
 
 import hr.foi.vodickulturnihdogadanja.interactor.FavoriteInteractor;
+import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteAddInteractorListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteInteractorListener;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.presenter.FavoritePresenter;
 import hr.foi.vodickulturnihdogadanja.view.FavoriteView;
+import okhttp3.ResponseBody;
 
 /**
  * Created by Mateja on 22-Nov-17.
  */
 
-public class FavoritePresenterImpl implements FavoritePresenter, FavoriteInteractorListener {
+public class FavoritePresenterImpl implements FavoritePresenter, FavoriteInteractorListener, FavoriteAddInteractorListener {
     FavoriteInteractor interactor;
     FavoriteView view;
 
@@ -28,6 +30,11 @@ public class FavoritePresenterImpl implements FavoritePresenter, FavoriteInterac
     }
 
     @Override
+    public void tryAddFavorite(int userId, int eventId) {
+        interactor.addFavorite(userId, eventId);
+    }
+
+    @Override
     public void onSuccess(List<EventModel> favoritesList) {
         view.onSuccess(favoritesList);
     }
@@ -35,5 +42,10 @@ public class FavoritePresenterImpl implements FavoritePresenter, FavoriteInterac
     @Override
     public void noFavorites() {
         view.noFavorites("Nemate događaja označenih kao favorit!");
+    }
+
+    @Override
+    public void onSuccess(ResponseBody responseBody) {
+        view.onSuccess(responseBody);
     }
 }

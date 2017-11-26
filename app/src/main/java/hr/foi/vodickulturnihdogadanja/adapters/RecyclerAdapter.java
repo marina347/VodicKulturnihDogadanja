@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -109,6 +110,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
         TextView eventEnd;
         @BindView(R.id.event_image)
         ImageView eventImage;
+        @BindView(R.id.star)
+        CheckBox favoriteStarButton;
 
         private EventModel mEvent;
         View view;
@@ -147,5 +150,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
                 return df.format(d);
             }
         };
+
+        private void favorite() {
+            if (favoriteStarButton.isChecked()) {
+                //dodaj u favorite
+            }
+            else {
+                //izbrisi iz favorita
+            }
+        }
     }
 }
