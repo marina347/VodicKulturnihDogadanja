@@ -87,6 +87,9 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
             case R.id.nav_favorite:
                 fragment = new FavoriteFragment();
                 break;
+            case R.id.nav_logout:
+                //TODO logout from profile
+                break;
         }
 
         if (fragment != null) {
