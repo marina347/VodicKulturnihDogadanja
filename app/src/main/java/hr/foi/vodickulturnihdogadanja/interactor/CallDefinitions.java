@@ -42,4 +42,7 @@ public interface CallDefinitions {
 
     @PUT("favorite.php")
     Call<ResponseBody> addFavorite(@Query("userId") int userId, @Query("eventId") int eventId);
+
+    @POST("userLogOut.php")
+    Call<String> logout(@Body RequestBody data);
 }

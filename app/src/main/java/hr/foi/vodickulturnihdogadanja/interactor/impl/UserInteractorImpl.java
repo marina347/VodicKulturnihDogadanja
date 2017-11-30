@@ -1,5 +1,7 @@
 package hr.foi.vodickulturnihdogadanja.interactor.impl;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -7,9 +9,11 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import hr.foi.vodickulturnihdogadanja.activity.LoginActivity;
 import hr.foi.vodickulturnihdogadanja.interactor.CallDefinitions;
 import hr.foi.vodickulturnihdogadanja.interactor.RetrofitREST;
 import hr.foi.vodickulturnihdogadanja.interactor.UserInteractor;
+import hr.foi.vodickulturnihdogadanja.interactor.listener.LogoutListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorLoginListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorRegistrationListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorUserProfileListener;
@@ -24,7 +28,7 @@ import retrofit2.Response;
  * Created by marbulic on 10/21/2017.
  */
 
-public class UserInteractorImpl implements UserInteractor {
+public class UserInteractorImpl implements UserInteractor,LogoutListener {
     UserInteractorRegistrationListener listener;
     UserInteractorLoginListener listenerLogin;
     UserInteractorUserProfileListener listenerProfile;
@@ -153,6 +157,37 @@ public class UserInteractorImpl implements UserInteractor {
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void logOut(final Activity ac, String token) {
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        JSONObject jObj= new JSONObject();
+        try {
+            jObj.put("tokenId", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+        String data = jObj.toString();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=UTF-8"),data);
+        Call<String> call = calls.logout(body);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()){
+
+                }
+                else{
+                    Log.d("Api", "fail logOut");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.d("Api", t.getMessage());
             }
         });

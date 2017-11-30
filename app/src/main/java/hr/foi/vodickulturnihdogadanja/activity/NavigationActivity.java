@@ -1,5 +1,6 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,9 @@ import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.fragments.EventFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.FavoriteFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.UserProfileFragment;
+import hr.foi.vodickulturnihdogadanja.interactor.UserInteractor;
+import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
+import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 
 
 public class NavigationActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
@@ -88,7 +92,10 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
                 fragment = new FavoriteFragment();
                 break;
             case R.id.nav_logout:
-                //TODO logout from profile
+                UserInteractorImpl inter=new UserInteractorImpl();
+                inter.logOut(this, LoggedUserData.getInstance().getTokenModel().getTokenId());
+                Intent intent = new Intent(this , LoginActivity.class);
+                startActivity(intent);
                 break;
         }
 
