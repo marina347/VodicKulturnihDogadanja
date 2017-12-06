@@ -27,6 +27,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
 import hr.foi.vodickulturnihdogadanja.presenter.UserProfilePresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.UserProfilePresenterImpl;
+import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.UserProfileView;
 
@@ -102,7 +103,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         userModel.setUsername(outputUsername.getText().toString());
         userModel.setEmail(outputEmail.getText().toString());
         userModel.setPassword(outputPassword.getText().toString());
-        userModel.setPicture(encodeToBase64(bitmap, Bitmap.CompressFormat.JPEG, 100));
+        userModel.setPicture(Base64Coding.encodeToBase64(bitmap, Bitmap.CompressFormat.JPEG, 100));
 
         userProfilePresenter.tryEditData(userModel);
     }
@@ -113,7 +114,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         outputUsername.setText(userModel.getUsername());
         outputEmail.setText(userModel.getEmail());
         outputPassword.setText(userModel.getPassword());
-        outputImage.setImageBitmap(decodeBase64(userModel.getPicture()));
+        outputImage.setImageBitmap(Base64Coding.decodeBase64(userModel.getPicture()));
     }
 
     //select image from gallery
@@ -147,20 +148,6 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         }
     }
 
-    public static String encodeToBase64(Bitmap image, Bitmap.CompressFormat compressFormat, int quality)
-    {
-        ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
-        image.compress(compressFormat, quality, byteArrayOS);
-        byte[] imageBytes = byteArrayOS.toByteArray();
-        return Base64.encodeToString(imageBytes, Base64.DEFAULT);
-    }
-
-    public static Bitmap decodeBase64(String input)
-    {
-        //byte[] decodedBytes = Base64.decode(input, 0);
-        byte[] decodedBytes = Base64.decode(input, Base64.NO_WRAP);
-        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
-    }
 
     //for edit data task, enable on touch
     private View.OnTouchListener handleTouch = new View.OnTouchListener() {

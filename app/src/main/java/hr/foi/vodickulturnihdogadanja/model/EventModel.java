@@ -24,6 +24,17 @@ public class EventModel {
     @Expose
     private float price;
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    @Expose
+    private String picture;
+
 
     public int getEventId() {
         return eventId;

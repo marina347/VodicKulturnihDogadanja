@@ -24,6 +24,7 @@ import butterknife.OnClick;
 import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.activity.EventDetailsActivity;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
+import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
 
 /**
  * Created by LEGION Y520 on 30.10.2017..
@@ -128,7 +129,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
             eventDescription.setText(eventModel.getDescription());
             eventBegin.setText(DateConverter(eventModel.getBegin()));
             eventEnd.setText(DateConverter(eventModel.getEnd()));
-
+            eventImage.setImageBitmap(Base64Coding.decodeBase64(eventModel.getPicture()));
         }
 
         @OnClick

@@ -3,6 +3,7 @@ package hr.foi.vodickulturnihdogadanja.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import hr.foi.vodickulturnihdogadanja.presenter.EventDetailsPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.EventPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.EventDetailsPresenterImpl;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.EventPresenterImpl;
+import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
 import hr.foi.vodickulturnihdogadanja.view.EventDetailsView;
 
 public class EventDetailsActivity extends AppCompatActivity implements EventDetailsView{
@@ -32,6 +34,8 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     TextView txtEventEnd;
     @BindView(R.id.event_details_link)
     TextView txtEventLink;
+    @BindView(R.id.event_details_img)
+    ImageView imgEvent;
 
     EventDetailsPresenter dp;
     @Override
@@ -63,6 +67,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         txtEventBegin.setText(DateConverter(event.getBegin()));
         txtEventEnd.setText(DateConverter(event.getEnd()));
         txtEventLink.setText(event.getLink());
+        imgEvent.setImageBitmap(Base64Coding.decodeBase64(event.getPicture()));
     }
     private String DateConverter(Long date) {
         if (date == 0) {
