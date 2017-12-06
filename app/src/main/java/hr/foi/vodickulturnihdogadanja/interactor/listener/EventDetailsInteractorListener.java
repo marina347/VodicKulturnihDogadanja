@@ -1,5 +1,6 @@
 package hr.foi.vodickulturnihdogadanja.interactor.listener;
 
+import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 
 /**
@@ -8,4 +9,6 @@ import hr.foi.vodickulturnihdogadanja.model.EventModel;
 
 public interface EventDetailsInteractorListener {
     void ArrivedEventById(EventModel event);
+    void onSuccessCreateNewComment(CommentModel comment);
+    void onFailedCreateNewComment(String s);
 }

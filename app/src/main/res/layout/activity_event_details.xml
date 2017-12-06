@@ -47,7 +47,7 @@
         android:layout_weight="1"
         android:text="Begin"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/event_details_end"
@@ -55,20 +55,55 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/event_details_description"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
         android:layout_toEndOf="@+id/event_details_begin"
         android:layout_weight="1"
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/event_details_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_details_begin"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Location"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/event_details_link"
-        android:layout_below="@+id/event_details_begin"
+        android:layout_below="@+id/event_details_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:text="Link" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btn_new_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Komentiraj"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/new_comment_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/btn_new_comment"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:textAlignment="viewStart"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
 </RelativeLayout>

@@ -2,6 +2,7 @@ package hr.foi.vodickulturnihdogadanja.interactor;
 
 import java.util.List;
 
+import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
@@ -45,4 +46,7 @@ public interface CallDefinitions {
 
     @POST("userLogOut.php")
     Call<String> logout(@Body RequestBody data);
+
+    @POST("comment.php")
+    Call<CommentModel> createNewComment(@Body CommentModel data);
 }
