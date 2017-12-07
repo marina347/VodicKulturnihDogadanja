@@ -84,7 +84,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:id="@+id/relativeLayout">
 
         <Button
             android:id="@+id/btn_new_comment"
@@ -105,5 +106,14 @@
             android:textAlignment="viewStart"
             android:visibility="invisible" />
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_alignEnd="@+id/event_details_img"
+        android:layout_marginEnd="9dp"
+        android:text="Podijeli" />
 
 </RelativeLayout>

@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,6 +20,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.vodickulturnihdogadanja.R;
+import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManager;
+import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManagerListener;
 import hr.foi.vodickulturnihdogadanja.interactor.EventInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventDetailsInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventInteractorImpl;
@@ -31,8 +35,9 @@ import hr.foi.vodickulturnihdogadanja.presenter.impl.EventPresenterImpl;
 import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.EventDetailsView;
+import hr.foi.voidckulturnihdogadanja.FacebookSharingManager;
 
-public class EventDetailsActivity extends AppCompatActivity implements EventDetailsView{
+public class EventDetailsActivity extends AppCompatActivity implements EventDetailsView,SocialNetworkSharingManagerListener {
     @BindView(R.id.event_details_name)
     TextView txtEventName;
     @BindView(R.id.event_details_description)
@@ -51,13 +56,18 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     Button btnNewComment;
     @BindView(R.id.event_details_img)
     ImageView imgEvent;
+    @BindView(R.id.btn_share)
+    Button btnShare;
 
     EventDetailsPresenter dp;
     int eventId=-1;
+    SocialNetworkSharingManager shareManager;
+    EventModel event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(this);
         setContentView(R.layout.activity_event_details);
         ButterKnife.bind(this);
 
@@ -69,6 +79,8 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
             txtNewComment.setVisibility(View.VISIBLE);
             btnNewComment.setVisibility(View.VISIBLE);
         }
+        shareManager = new FacebookSharingManager();
+        shareManager.setListener(this);
     }
 
     @Override
@@ -86,6 +98,12 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     @OnClick(R.id.btn_new_comment)
     public void NewCommentClick(View view){
         AddNewComment();
+    }
+
+    @OnClick(R.id.btn_share)
+    public void click(){
+        //get event id
+        shareManager.Share(this, event.getEventId());
     }
 
     private void AddNewComment() {
@@ -106,6 +124,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
 
     @Override
     public void ArrivedEvent(EventModel event) {
+        this.event=event;
         txtEventName.setText(event.getName());
         txtEventDescription.setText(event.getDescription());
         txtEventBegin.setText(DateConverter(event.getBegin()));
@@ -142,4 +161,14 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
             return df.format(d);
         }
     };
+
+    @Override
+    public void Shared() {
+        Toast.makeText(this,"Uspjesno podijeljeno", Toast.LENGTH_LONG);
+    }
+
+    @Override
+    public void Canceled() {
+        Toast.makeText(this,"Niste podijelili!", Toast.LENGTH_LONG);
+    }
 }

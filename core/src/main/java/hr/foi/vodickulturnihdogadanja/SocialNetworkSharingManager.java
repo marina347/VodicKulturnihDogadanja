@@ -8,5 +8,5 @@ import android.app.Activity;
 
 public interface SocialNetworkSharingManager {
     void setListener(SocialNetworkSharingManagerListener lis);
-    void Share(Activity activity);
+    void Share(Activity activity, int eventId);
 }
