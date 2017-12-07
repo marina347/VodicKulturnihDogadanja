@@ -9,7 +9,7 @@ import butterknife.OnClick;
 import hr.foi.vodickulturnihdogadanja.R;
 
 public class HomeActivity extends AppCompatActivity {
-    @OnClick(R.id.logintv)
+    @OnClick(R.id.btn_login)
     public void LoginLinkClick(){NavigateToLoginActivity();}
     @OnClick(R.id.guest_tv)
     public void GuestLinkClick(){NavigateToMainActivity();}
