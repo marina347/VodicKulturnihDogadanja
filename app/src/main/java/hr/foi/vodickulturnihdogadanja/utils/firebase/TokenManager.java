@@ -3,6 +3,7 @@ package hr.foi.vodickulturnihdogadanja.utils.firebase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
+import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -17,7 +18,7 @@ public class TokenManager extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
 
         String token = FirebaseInstanceId.getInstance().getToken();
-        //now update token on server
+        //new UserInteractorImpl().updateDeviceId(token,);
     }
 
 }
