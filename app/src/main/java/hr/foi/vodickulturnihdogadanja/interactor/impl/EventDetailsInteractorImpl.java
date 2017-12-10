@@ -2,6 +2,9 @@ package hr.foi.vodickulturnihdogadanja.interactor.impl;
 
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +14,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.RetrofitREST;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.EventDetailsInteractorListener;
 import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,4 +73,5 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
             }
         });
     }
+
 }

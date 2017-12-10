@@ -7,6 +7,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManagerListener;
 import hr.foi.vodickulturnihdogadanja.interactor.EventInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventDetailsInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventInteractorImpl;
+import hr.foi.vodickulturnihdogadanja.interactor.impl.FavoriteInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
@@ -58,6 +60,8 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     ImageView imgEvent;
     @BindView(R.id.btn_share)
     Button btnShare;
+    @BindView(R.id.favoriteCheckBox)
+    CheckBox favoriteCheckBox;
 
     EventDetailsPresenter dp;
     int eventId=-1;
@@ -73,7 +77,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         setContentView(R.layout.activity_event_details);
         ButterKnife.bind(this);
 
-        EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(), this);
+        EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
         this.dp=edp;
 
         TokenModel token = LoggedUserData.getInstance().getTokenModel();
@@ -169,6 +173,16 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         shareManager.onActivityResult(requestCode, resultCode, data);
     }
 
+
+    @OnClick(R.id.favoriteCheckBox)
+    public void favoriteCheckBoxClick(){
+        this.dp.tryAddFavorite(this.event.getEventId());
+    }
+
+    @Override
+    public void onSuccessAddedFavorite() {
+        Toast.makeText(this,"Dogadaj dodan u favorite!", Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public void shared() {

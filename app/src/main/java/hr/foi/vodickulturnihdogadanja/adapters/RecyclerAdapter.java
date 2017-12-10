@@ -111,8 +111,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
         TextView eventEnd;
         @BindView(R.id.event_image)
         ImageView eventImage;
-        @BindView(R.id.star)
-        CheckBox favoriteStarButton;
+
 
         private EventModel mEvent;
         View view;
@@ -152,13 +151,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
             }
         };
 
-        private void favorite() {
-            if (favoriteStarButton.isChecked()) {
-                //dodaj u favorite
-            }
-            else {
-                //izbrisi iz favorita
-            }
-        }
+
     }
 }

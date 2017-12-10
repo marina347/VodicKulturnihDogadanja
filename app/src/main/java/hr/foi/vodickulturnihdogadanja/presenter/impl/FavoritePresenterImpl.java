@@ -3,7 +3,6 @@ package hr.foi.vodickulturnihdogadanja.presenter.impl;
 import java.util.List;
 
 import hr.foi.vodickulturnihdogadanja.interactor.FavoriteInteractor;
-import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteAddInteractorListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteInteractorListener;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.presenter.FavoritePresenter;
@@ -14,7 +13,7 @@ import okhttp3.ResponseBody;
  * Created by Mateja on 22-Nov-17.
  */
 
-public class FavoritePresenterImpl implements FavoritePresenter, FavoriteInteractorListener, FavoriteAddInteractorListener {
+public class FavoritePresenterImpl implements FavoritePresenter, FavoriteInteractorListener {
     FavoriteInteractor interactor;
     FavoriteView view;
 
@@ -30,8 +29,8 @@ public class FavoritePresenterImpl implements FavoritePresenter, FavoriteInterac
     }
 
     @Override
-    public void tryAddFavorite(int userId, int eventId) {
-        interactor.addFavorite(userId, eventId);
+    public void tryDeleteFavorite(int userId, int eventId) {
+        interactor.deleteFavorite(userId, eventId);
     }
 
     @Override
@@ -45,7 +44,8 @@ public class FavoritePresenterImpl implements FavoritePresenter, FavoriteInterac
     }
 
     @Override
-    public void onSuccess(ResponseBody responseBody) {
-        view.onSuccess(responseBody);
+    public void onSuccessDelete() {
+        view.onSuccessDelete();
     }
+
 }

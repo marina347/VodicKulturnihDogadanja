@@ -71,15 +71,7 @@
             android:textIsSelectable="false"
             tools:text="Ends" />
 
-        <CheckBox
-            android:id="@+id/star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_alignBottom="@+id/event_name"
-            android:layout_alignParentEnd="true"
-            style="?android:attr/starStyle" />
-        <!--android:visibility="gone"-->
+
 
 
     </RelativeLayout>

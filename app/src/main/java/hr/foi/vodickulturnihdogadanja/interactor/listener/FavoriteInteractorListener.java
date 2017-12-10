@@ -11,4 +11,5 @@ import hr.foi.vodickulturnihdogadanja.model.EventModel;
 public interface FavoriteInteractorListener {
     void onSuccess(List<EventModel> listFavorites);
     void noFavorites();
+    void onSuccessDelete();
 }

@@ -41,8 +41,11 @@ public interface CallDefinitions {
     @GET("event.php")
     Call<EventModel> getEventById(@Query("eventId") int eventId);
 
-    @PUT("favorite.php")
-    Call<ResponseBody> addFavorite(@Query("userId") int userId, @Query("eventId") int eventId);
+    @POST("favoriteDelete.php")
+    Call<String> deleteFavorite(@Body RequestBody data);
+
+    @POST("favorite.php")
+    Call<String> addFavorite(@Body RequestBody data);
 
     @POST("userLogOut.php")
     Call<String> logout(@Body RequestBody data);

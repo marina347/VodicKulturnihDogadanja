@@ -1,6 +1,6 @@
 package hr.foi.vodickulturnihdogadanja.interactor;
 
-import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteAddInteractorListener;
+import hr.foi.vodickulturnihdogadanja.interactor.listener.AddFavoriteInteractorListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteInteractorListener;
 
 /**
@@ -9,7 +9,8 @@ import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteInteractorList
 
 public interface FavoriteInteractor {
     void setFavoriteListener(FavoriteInteractorListener listener);
+    void setAddFavoriteListener(AddFavoriteInteractorListener listener);
     void getFavorite(int userId);
-    void setFavoriteAddListener (FavoriteAddInteractorListener favoriteAddListener);
-    void addFavorite(int userId, int eventId);
+    void deleteFavorite(int userId, int eventId);
+    void addFavorite(int userId,int eventId);
 }

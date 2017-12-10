@@ -2,14 +2,18 @@ package hr.foi.vodickulturnihdogadanja.interactor.impl;
 
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import hr.foi.vodickulturnihdogadanja.interactor.CallDefinitions;
 import hr.foi.vodickulturnihdogadanja.interactor.FavoriteInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.RetrofitREST;
-import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteAddInteractorListener;
+import hr.foi.vodickulturnihdogadanja.interactor.listener.AddFavoriteInteractorListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.FavoriteInteractorListener;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,16 +25,48 @@ import retrofit2.Response;
 
 public class FavoriteInteractorImpl implements FavoriteInteractor {
     FavoriteInteractorListener listener;
-    FavoriteAddInteractorListener favoriteAddListener;
+    AddFavoriteInteractorListener addListener;
 
     @Override
-    public void setFavoriteListener(FavoriteInteractorListener listener) {
-        this.listener=listener;
+    public void setAddFavoriteListener(AddFavoriteInteractorListener listener) {
+        this.addListener = listener;
     }
 
     @Override
-    public void setFavoriteAddListener(FavoriteAddInteractorListener favoriteAddListener) {
-        this.favoriteAddListener = favoriteAddListener;
+    public void addFavorite(int userId, int eventId) {
+        JSONObject jObj = new JSONObject();
+        try {
+            jObj.put("userId", userId);
+            jObj.put("eventId", eventId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+        String data = jObj.toString();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=UTF-8"), data);
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        Call<String> call = calls.addFavorite(body);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body();
+                    addListener.onAddSuccess();
+                } else {
+                    Log.d("Api", "fail deletefavorite");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void setFavoriteListener(FavoriteInteractorListener listener) {
+        this.listener = listener;
     }
 
     @Override
@@ -41,10 +77,9 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
             @Override
             public void onResponse(Call<List<EventModel>> call, Response<List<EventModel>> response) {
                 List<EventModel> list = response.body();
-                if(list== null) {
+                if (list == null) {
                     listener.noFavorites();
-                }
-                else {
+                } else {
                     listener.onSuccess(list);
                 }
 
@@ -65,25 +100,37 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
     }
 
     @Override
-    public void addFavorite(final int userId, final int eventId) {
+    public void deleteFavorite(final int userId, final int eventId) {
+        JSONObject jObj = new JSONObject();
+        try {
+            jObj.put("userId", userId);
+            jObj.put("eventId", eventId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+        String data = jObj.toString();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=UTF-8"), data);
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
-        Call<ResponseBody> call = calls.addFavorite(userId, eventId);
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<String> call = calls.deleteFavorite(body);
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
-                    ResponseBody responseBody = response.body();
-                    favoriteAddListener.onSuccess(responseBody);
-                }
-                else {
-                    Log.d("Api", "fail viewUserData");
+                    String responseBody = response.body();
+                    listener.onSuccessDelete();
+                } else {
+                    Log.d("Api", "fail deletefavorite");
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.d("Api", t.getMessage());
             }
         });
     }
+
+
+
 }

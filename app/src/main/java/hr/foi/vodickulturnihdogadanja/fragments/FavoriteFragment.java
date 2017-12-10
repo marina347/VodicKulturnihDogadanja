@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import hr.foi.vodickulturnihdogadanja.R;
+import hr.foi.vodickulturnihdogadanja.adapters.FavoriteEventsAdapter;
 import hr.foi.vodickulturnihdogadanja.adapters.RecyclerAdapter;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.FavoriteInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
@@ -35,7 +36,9 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerAdapter recyclerAdapter;
+    private FavoriteEventsAdapter recyclerAdapter;
+    private List<EventModel> eventList;
+
 
 
     @Nullable
@@ -54,11 +57,12 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
 
     @Override
     public void onSuccess(List<EventModel> list) {
+        eventList = list;
         recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);
         layoutManager= new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        recyclerAdapter=new RecyclerAdapter(list, getActivity());
+        recyclerAdapter=new FavoriteEventsAdapter(list, getActivity(), this);
         //adapter=new RecyclerAdapter(list,MainActivity.this);
         recyclerView.setAdapter(recyclerAdapter);
     }
@@ -66,6 +70,11 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
     @Override
     public void noFavorites(final String error) {
         showToastOnUI(error);
+    }
+
+    @Override
+    public void onSuccessDelete() {
+
     }
 
     private void showToastOnUI(final String msg) {
@@ -78,8 +87,13 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
         });
     }
 
-    @Override
-    public void onSuccess(ResponseBody responseBody) {
 
+    public void onEventRemoveFavorite(EventModel eventModel, int clickedItemPosition){
+        int eventId = eventModel.getEventId();
+        recyclerView.removeViewAt(clickedItemPosition);
+        eventList.remove(clickedItemPosition);
+        recyclerView.getAdapter().notifyItemRemoved(clickedItemPosition);
+        recyclerView.getAdapter().notifyItemRangeChanged(clickedItemPosition, eventList.size());
+        favoritePresenter.tryDeleteFavorite(LoggedUserData.getInstance().getTokenModel().getUserId(), eventId);
     }
 }

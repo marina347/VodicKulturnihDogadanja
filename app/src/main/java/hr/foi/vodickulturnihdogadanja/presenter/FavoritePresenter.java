@@ -6,5 +6,5 @@ package hr.foi.vodickulturnihdogadanja.presenter;
 
 public interface FavoritePresenter {
     void tryGetFavorites(int userId);
-    void tryAddFavorite(int userId, int eventId);
+    void tryDeleteFavorite(int userId, int eventId);
 }

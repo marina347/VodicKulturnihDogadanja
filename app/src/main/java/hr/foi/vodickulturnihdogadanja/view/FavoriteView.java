@@ -13,5 +13,5 @@ public interface FavoriteView {
     void onSuccess(List<EventModel> list);
     void noFavorites(String error);
 
-    void onSuccess(ResponseBody responseBody);
+    void onSuccessDelete();
 }
