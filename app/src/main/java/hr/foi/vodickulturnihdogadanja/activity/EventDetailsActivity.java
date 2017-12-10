@@ -67,6 +67,8 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         FacebookSdk.sdkInitialize(this);
         setContentView(R.layout.activity_event_details);
         ButterKnife.bind(this);
@@ -103,7 +105,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     @OnClick(R.id.btn_share)
     public void click(){
         //get event id
-        shareManager.Share(this, event.getEventId());
+        shareManager.share(this, event.getEventId());
     }
 
     private void AddNewComment() {
@@ -161,14 +163,20 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
             return df.format(d);
         }
     };
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        shareManager.onActivityResult(requestCode, resultCode, data);
+    }
+
 
     @Override
-    public void Shared() {
-        Toast.makeText(this,"Uspjesno podijeljeno", Toast.LENGTH_LONG);
+    public void shared() {
+        Toast.makeText(this,"Uspjesno podijeljeno", Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void Canceled() {
-        Toast.makeText(this,"Niste podijelili!", Toast.LENGTH_LONG);
+    public void canceled() {
+        Toast.makeText(this,"Niste podijelili!", Toast.LENGTH_LONG).show();
     }
 }

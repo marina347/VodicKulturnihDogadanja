@@ -5,6 +5,6 @@ package hr.foi.vodickulturnihdogadanja;
  */
 
 public interface SocialNetworkSharingManagerListener {
-    void Shared();
-    void Canceled();
+    void shared();
+    void canceled();
 }
