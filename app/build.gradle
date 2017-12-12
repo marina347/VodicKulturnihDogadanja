@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "hr.foi.vodickulturnihdogadanja"
@@ -21,23 +21,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile group: 'com.jakewharton', name: 'butterknife', version: '8.8.1'
-
+    compile 'com.jakewharton:butterknife:8.8.1'
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
-    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.9.0'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
-    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.2'
+    compile 'com.google.code.gson:gson:2.8.2'
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
-    compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.3.0'
-
-
-
-
-
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -48,7 +42,6 @@ dependencies {
     compile 'com.google.firebase:firebase-core:9.0.2'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     compile project(path: ':core')
     compile project(path: ':facebook')
 }
