@@ -49,29 +49,4 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
         });
 
     }
-
-    @Override
-    public void createNewComment(CommentModel comment) {
-        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
-        Call<CommentModel> call = calls.createNewComment(comment);
-        call.enqueue(new Callback<CommentModel>() {
-            @Override
-            public void onResponse(Call<CommentModel> call, Response<CommentModel> response) {
-                if(response.isSuccessful()){
-                    CommentModel comment = response.body();
-                    eventDetailsInteractorListener.onSuccessCreateNewComment(comment);
-                }
-                else {
-                    Log.d("Api", "failed creeateNewComment");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CommentModel> call, Throwable t) {
-                Log.d("Api", t.getMessage());
-                eventDetailsInteractorListener.onFailedCreateNewComment("Komentar nije kreiran!");
-            }
-        });
-    }
-
 }

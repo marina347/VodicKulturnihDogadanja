@@ -52,10 +52,8 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     TextView txtEventLink;
     @BindView(R.id.event_details_location)
     TextView txtEventLocation;
-    @BindView(R.id.new_comment_text)
-    TextView txtNewComment;
-    @BindView(R.id.btn_new_comment)
-    Button btnNewComment;
+    @BindView(R.id.event_details_price)
+    TextView txtEventPrice;
     @BindView(R.id.event_details_img)
     ImageView imgEvent;
     @BindView(R.id.btn_share)
@@ -80,11 +78,6 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
         this.dp=edp;
 
-        TokenModel token = LoggedUserData.getInstance().getTokenModel();
-        if (token != null){
-            txtNewComment.setVisibility(View.VISIBLE);
-            btnNewComment.setVisibility(View.VISIBLE);
-        }
         shareManager = new FacebookSharingManager();
         shareManager.setListener(this);
     }
@@ -101,31 +94,10 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         }
     }
 
-    @OnClick(R.id.btn_new_comment)
-    public void NewCommentClick(View view){
-        AddNewComment();
-    }
-
     @OnClick(R.id.btn_share)
     public void click(){
         //get event id
         shareManager.share(this, event.getEventId());
-    }
-
-    private void AddNewComment() {
-        String newCommentText = txtNewComment.getText().toString();
-        int userId = LoggedUserData.getInstance().getTokenModel().getUserId();
-        if (!newCommentText.contentEquals("") && eventId!=-1 && userId!=-1){
-            CommentModel commentModel = new CommentModel();
-            commentModel.setText(newCommentText);
-            commentModel.setTime(new Date().getTime());
-            commentModel.setEventId(eventId);
-            commentModel.setUserId(userId);
-            dp.tryAddNewComment(commentModel);
-        }
-        else {
-            Toast.makeText(this, "Niste unijeli tekst", Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override
@@ -142,22 +114,10 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         }
 
         txtEventLocation.setText(event.getLocation());
+        txtEventPrice.setText(String.valueOf(event.getPrice()));
         txtEventLink.setText(event.getLink());
         imgEvent.setImageBitmap(Base64Coding.decodeBase64(event.getPicture()));
     }
-
-    @Override
-    public void onSuccessCreateNewComment(CommentModel comment) {
-        Toast.makeText(this,"Uspješno komentiranje",Toast.LENGTH_SHORT).show();
-        txtNewComment.setText("");
-    }
-
-    @Override
-    public void onFailedCreateNewComment(String s) {
-        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
-        txtNewComment.setText("");
-    }
-
     private String DateConverter(Long date) {
         if (date == 0) {
             return "";
