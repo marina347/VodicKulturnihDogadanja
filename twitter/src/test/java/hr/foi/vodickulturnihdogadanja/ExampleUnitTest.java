@@ -1,4 +1,4 @@
-package com.hfad.vodickulturnihdogadanja;
+package hr.foi.vodickulturnihdogadanja;
 
 import org.junit.Test;
 

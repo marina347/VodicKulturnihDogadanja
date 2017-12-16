@@ -1,4 +1,4 @@
-package com.hfad.vodickulturnihdogadanja;
+package hr.foi.vodickulturnihdogadanja;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.hfad.vodickulturnihdogadanja.test", appContext.getPackageName());
+        assertEquals("hr.foi.vodickulturnihdogadanja.test", appContext.getPackageName());
     }
 }
