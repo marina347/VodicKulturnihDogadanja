@@ -49,4 +49,38 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
         });
 
     }
+
+    @Override
+    public void addEvaluation(int mark, int userId, int eventId) {
+        JSONObject jObj = new JSONObject();
+        try {
+            jObj.put("mark",mark);
+            jObj.put("userId", userId);
+            jObj.put("eventId", eventId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+        String data = jObj.toString();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=UTF-8"), data);
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        Call<String> call = calls.addEvaluation(body);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body();
+                    eventDetailsInteractorListener.successAddedEvaluation();
+                } else {
+                    eventDetailsInteractorListener.failedAddedEvaluation();
+                    Log.d("Api", "fail addEvaluation");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
+    }
 }

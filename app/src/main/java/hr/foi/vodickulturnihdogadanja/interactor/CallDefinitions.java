@@ -55,4 +55,7 @@ public interface CallDefinitions {
 
     @GET("commentList.php")
     Call<List<CommentModel>> getComment(@Query("eventId") int eventId);
+
+    @POST("evaluation.php")
+    Call<String> addEvaluation(@Body RequestBody data);
 }

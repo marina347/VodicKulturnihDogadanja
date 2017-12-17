@@ -9,4 +9,5 @@ import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 public interface EventDetailsPresenter {
     void tryGetEventById(int eventId);
     void tryAddFavorite(int eventId);
+    void tryAddEvaluation(int mark,int userId, int eventId);
 }

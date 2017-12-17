@@ -10,4 +10,6 @@ import hr.foi.vodickulturnihdogadanja.model.EventModel;
 public interface EventDetailsView {
     void ArrivedEvent(EventModel event);
     void onSuccessAddedFavorite();
+    void onSuccessAddedEvaluation();
+    void onFailedAddedEvaluation();
 }

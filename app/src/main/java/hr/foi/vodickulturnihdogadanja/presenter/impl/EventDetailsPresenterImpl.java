@@ -37,6 +37,16 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     @Override
+    public void successAddedEvaluation() {
+        edv.onSuccessAddedEvaluation();
+    }
+
+    @Override
+    public void failedAddedEvaluation() {
+        edv.onFailedAddedEvaluation();
+    }
+
+    @Override
     public void onAddSuccess() {
         edv.onSuccessAddedFavorite();
     }
@@ -49,5 +59,10 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     @Override
     public void tryAddFavorite(int eventId) {
         fi.addFavorite(LoggedUserData.getInstance().getTokenModel().getUserId(),eventId);
+    }
+
+    @Override
+    public void tryAddEvaluation(int mark, int userId, int eventId) {
+        edi.addEvaluation(mark,userId,eventId);
     }
 }

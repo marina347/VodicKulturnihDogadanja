@@ -9,4 +9,6 @@ import hr.foi.vodickulturnihdogadanja.model.EventModel;
 
 public interface EventDetailsInteractorListener {
     void ArrivedEventById(EventModel event);
+    void successAddedEvaluation();
+    void failedAddedEvaluation();
 }

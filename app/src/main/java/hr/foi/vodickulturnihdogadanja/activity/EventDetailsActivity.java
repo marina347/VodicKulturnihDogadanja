@@ -60,6 +60,10 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     Button btnShare;
     @BindView(R.id.favoriteCheckBox)
     CheckBox favoriteCheckBox;
+    @BindView(R.id.img_like)
+    ImageView imgLike;
+    @BindView(R.id.img_dislike)
+    ImageView imgDislike;
 
     EventDetailsPresenter dp;
     int eventId=-1;
@@ -143,6 +147,26 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     public void onSuccessAddedFavorite() {
         Toast.makeText(this,"Dogadaj dodan u favorite!", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onSuccessAddedEvaluation() {
+        Toast.makeText(this,"Uspjesno ocijenjeno!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onFailedAddedEvaluation() {
+        Toast.makeText(this,"Neuspjesno ocijenjeno!", Toast.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.img_like)
+    public void clickLike(){
+        dp.tryAddEvaluation(1,LoggedUserData.getInstance().getTokenModel().getUserId(),event.getEventId());
+    }
+    @OnClick(R.id.img_dislike)
+    public void clickDislike(){
+        dp.tryAddEvaluation(0,LoggedUserData.getInstance().getTokenModel().getUserId(),event.getEventId());
+    }
+
 
     @Override
     public void shared() {

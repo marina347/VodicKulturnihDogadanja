@@ -100,10 +100,27 @@
 
     <CheckBox
         android:id="@+id/favoriteCheckBox"
+        style="?android:attr/starStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/event_details_img"
-        style="?android:attr/starStyle"/>
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/img_like"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/event_details_link"
+        android:layout_marginBottom="7dp"
+        app:srcCompat="@drawable/a_like" />
+
+    <ImageView
+        android:id="@+id/img_dislike"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/img_like"
+        android:layout_toEndOf="@+id/img_like"
+        app:srcCompat="@drawable/a_dislike" />
 
 </RelativeLayout>
