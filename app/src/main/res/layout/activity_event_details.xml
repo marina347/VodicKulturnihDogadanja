@@ -124,4 +124,12 @@
         android:layout_alignTop="@+id/event_details_img"
         style="?android:attr/starStyle"/>
 
+    <Button
+        android:id="@+id/btn_twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_share"
+        android:layout_alignStart="@+id/btn_share"
+        android:text="Twitter" />
+
 </RelativeLayout>

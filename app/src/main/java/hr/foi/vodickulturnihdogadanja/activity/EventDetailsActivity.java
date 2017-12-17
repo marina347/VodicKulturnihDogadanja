@@ -1,10 +1,11 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,17 +24,13 @@ import butterknife.OnClick;
 import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManager;
 import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManagerListener;
-import hr.foi.vodickulturnihdogadanja.interactor.EventInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventDetailsInteractorImpl;
-import hr.foi.vodickulturnihdogadanja.interactor.impl.EventInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.FavoriteInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.presenter.EventDetailsPresenter;
-import hr.foi.vodickulturnihdogadanja.presenter.EventPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.EventDetailsPresenterImpl;
-import hr.foi.vodickulturnihdogadanja.presenter.impl.EventPresenterImpl;
 import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.EventDetailsView;
@@ -87,6 +84,48 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         }
         shareManager = new FacebookSharingManager();
         shareManager.setListener(this);
+
+        Button b = (Button) findViewById(R.id.btn_twitter);
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+                //String urlEvent = ?
+                //String url = "https://twitter.com/intent/tweet?source=webclient&text=Pogledaj+ovo" + urlEvent "!";
+
+                Intent i;
+                if (isTwitterInstalled()) {
+                    String url = "https://twitter.com/intent/tweet?source=webclient&text=Pogledaj+ovo+https://developer.twitter.com/!";
+                    i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+                else
+                {
+                    String tweetUrl = "https://twitter.com/intent/tweet?text=Pogledaj+ovo+https://developer.twitter.com/!";
+                    Uri uri = Uri.parse(tweetUrl);
+                    i = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(i);
+                }
+            }
+        });
+    }
+
+    public boolean isTwitterInstalled() {
+        boolean twitterInstalled = false;
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo("com.twitter.android", 0);
+            String getPackageName = packageInfo.toString();
+            if (getPackageName.equals("com.twitter.android")) {
+                Toast.makeText(this, "Twitter App is installed on device!", Toast.LENGTH_LONG).show();
+                twitterInstalled = true;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Toast.makeText(this, "Twitter App not found on device!", Toast.LENGTH_LONG).show();
+            twitterInstalled = false;
+        }
+        return twitterInstalled;
     }
 
     @Override
