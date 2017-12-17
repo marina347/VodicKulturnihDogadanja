@@ -32,23 +32,18 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     @Override
-    public void tryAddNewComment(CommentModel comment) {
-        edi.createNewComment(comment);
-    }
-
-    @Override
     public void ArrivedEventById(EventModel event) {
         edv.ArrivedEvent(event);
     }
 
     @Override
-    public void onSuccessCreateNewComment(CommentModel comment) {
-        edv.onSuccessCreateNewComment(comment);
+    public void successAddedEvaluation() {
+        edv.onSuccessAddedEvaluation();
     }
 
     @Override
-    public void onFailedCreateNewComment(String s) {
-        edv.onFailedCreateNewComment(s);
+    public void failedAddedEvaluation() {
+        edv.onFailedAddedEvaluation();
     }
 
     @Override
@@ -64,5 +59,10 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     @Override
     public void tryAddFavorite(int eventId) {
         fi.addFavorite(LoggedUserData.getInstance().getTokenModel().getUserId(),eventId);
+    }
+
+    @Override
+    public void tryAddEvaluation(int mark, int userId, int eventId) {
+        edi.addEvaluation(mark,userId,eventId);
     }
 }

@@ -70,10 +70,18 @@
         android:layout_marginLeft="20dp"
         android:text="Location"
         android:textSize="20sp" />
-
+    <TextView
+        android:id="@+id/event_details_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_details_location"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Price"
+        android:textSize="20sp" />
     <TextView
         android:id="@+id/event_details_link"
-        android:layout_below="@+id/event_details_location"
+        android:layout_below="@+id/event_details_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -81,47 +89,38 @@
         android:layout_weight="1"
         android:text="Link" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/relativeLayout">
-
-        <Button
-            android:id="@+id/btn_new_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="Komentiraj"
-            android:visibility="invisible" />
-
-        <EditText
-            android:id="@+id/new_comment_text"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/btn_new_comment"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:singleLine="true"
-            android:textAlignment="viewStart"
-            android:visibility="invisible" />
-    </RelativeLayout>
-
     <Button
         android:id="@+id/btn_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/relativeLayout"
+        android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/event_details_img"
         android:layout_marginEnd="9dp"
         android:text="Podijeli" />
 
     <CheckBox
         android:id="@+id/favoriteCheckBox"
+        style="?android:attr/starStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/event_details_img"
-        style="?android:attr/starStyle"/>
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/img_like"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/event_details_link"
+        android:layout_marginBottom="7dp"
+        app:srcCompat="@drawable/a_like" />
+
+    <ImageView
+        android:id="@+id/img_dislike"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/img_like"
+        android:layout_toEndOf="@+id/img_like"
+        app:srcCompat="@drawable/a_dislike" />
 
 </RelativeLayout>
