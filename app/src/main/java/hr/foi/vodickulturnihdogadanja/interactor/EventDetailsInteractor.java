@@ -10,5 +10,5 @@ import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 public interface EventDetailsInteractor {
     void setEventDetailsListener(EventDetailsInteractorListener listener);
     void getEventById(int eventId);
-    void createNewComment(CommentModel comment);
+    void addEvaluation(int mark,int userId,int eventId);
 }

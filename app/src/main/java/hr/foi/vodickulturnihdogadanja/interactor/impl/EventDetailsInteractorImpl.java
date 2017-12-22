@@ -51,27 +51,36 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
     }
 
     @Override
-    public void createNewComment(CommentModel comment) {
+    public void addEvaluation(int mark, int userId, int eventId) {
+        JSONObject jObj = new JSONObject();
+        try {
+            jObj.put("mark",mark);
+            jObj.put("userId", userId);
+            jObj.put("eventId", eventId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+        String data = jObj.toString();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=UTF-8"), data);
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
-        Call<CommentModel> call = calls.createNewComment(comment);
-        call.enqueue(new Callback<CommentModel>() {
+        Call<String> call = calls.addEvaluation(body);
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<CommentModel> call, Response<CommentModel> response) {
-                if(response.isSuccessful()){
-                    CommentModel comment = response.body();
-                    eventDetailsInteractorListener.onSuccessCreateNewComment(comment);
-                }
-                else {
-                    Log.d("Api", "failed creeateNewComment");
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body();
+                    eventDetailsInteractorListener.successAddedEvaluation();
+                } else {
+                    eventDetailsInteractorListener.failedAddedEvaluation();
+                    Log.d("Api", "fail addEvaluation");
                 }
             }
 
             @Override
-            public void onFailure(Call<CommentModel> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.d("Api", t.getMessage());
-                eventDetailsInteractorListener.onFailedCreateNewComment("Komentar nije kreiran!");
             }
         });
     }
-
 }

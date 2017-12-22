@@ -9,7 +9,7 @@ import hr.foi.vodickulturnihdogadanja.model.EventModel;
 
 public interface EventDetailsView {
     void ArrivedEvent(EventModel event);
-    void onSuccessCreateNewComment(CommentModel comment);
-    void onFailedCreateNewComment(String s);
     void onSuccessAddedFavorite();
+    void onSuccessAddedEvaluation();
+    void onFailedAddedEvaluation();
 }
