@@ -107,15 +107,6 @@
             android:visibility="invisible" />
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/relativeLayout"
-        android:layout_alignEnd="@+id/event_details_img"
-        android:layout_marginEnd="9dp"
-        android:text="Podijeli" />
-
     <CheckBox
         android:id="@+id/favoriteCheckBox"
         android:layout_width="wrap_content"
@@ -125,6 +116,16 @@
         style="?android:attr/starStyle"/>
 
     <Button
+        android:id="@+id/btn_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_alignEnd="@+id/event_details_img"
+        android:layout_marginEnd="9dp"
+        android:text="Podijeli" />
+
+
+    <Button
         android:id="@+id/btn_twitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -132,4 +133,6 @@
         android:layout_alignStart="@+id/btn_share"
         android:text="Twitter" />
 
+
+    <include layout="@layout/content_navigation" />
 </RelativeLayout>

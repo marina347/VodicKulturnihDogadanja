@@ -9,6 +9,7 @@ import android.content.Intent;
 
 public interface SocialNetworkSharingManager {
     void setListener(SocialNetworkSharingManagerListener lis);
+    void setContainer(SocialNetworkSharingContainer container);
     void share(Activity activity, int eventId);
     void onActivityResult(int requestCode, int resultCode, Intent intent);
 }

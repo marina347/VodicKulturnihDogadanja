@@ -1,11 +1,11 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,6 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
+import com.twitter.sdk.android.core.DefaultLogger;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterConfig;
+import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,8 +27,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.vodickulturnihdogadanja.R;
+import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingContainer;
 import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManager;
 import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManagerListener;
+import hr.foi.vodickulturnihdogadanja.TwitterSharingManager;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventDetailsInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.FavoriteInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.CommentModel;
@@ -36,7 +43,8 @@ import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.EventDetailsView;
 import hr.foi.voidckulturnihdogadanja.FacebookSharingManager;
 
-public class EventDetailsActivity extends AppCompatActivity implements EventDetailsView,SocialNetworkSharingManagerListener {
+
+public class EventDetailsActivity extends AppCompatActivity implements EventDetailsView,SocialNetworkSharingManagerListener, SocialNetworkSharingContainer {
     @BindView(R.id.event_details_name)
     TextView txtEventName;
     @BindView(R.id.event_details_description)
@@ -59,11 +67,14 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     Button btnShare;
     @BindView(R.id.favoriteCheckBox)
     CheckBox favoriteCheckBox;
+    @BindView(R.id.btn_twitter)
+    Button btnTwitter;
 
     EventDetailsPresenter dp;
     int eventId=-1;
     SocialNetworkSharingManager shareManager;
     EventModel event;
+    TwitterAuthClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,50 +93,16 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
             txtNewComment.setVisibility(View.VISIBLE);
             btnNewComment.setVisibility(View.VISIBLE);
         }
-        shareManager = new FacebookSharingManager();
-        shareManager.setListener(this);
+        TwitterConfig config = new TwitterConfig.Builder(this)
+                .logger(new DefaultLogger(Log.DEBUG))
+                .twitterAuthConfig(new TwitterAuthConfig("v0POVP7nGnIkhBZIs3YAjt8Lr", "AakBcoLnYc4WMzEFyYihwvRZwGynP2R5PP0diMw62L4yP0nEkf"))
+                .debug(true)
+                .build();
+        Twitter.initialize(config);
 
-        Button b = (Button) findViewById(R.id.btn_twitter);
+        client = new TwitterAuthClient();
+        //make the call to login
 
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO
-                //String urlEvent = ?
-                //String url = "https://twitter.com/intent/tweet?source=webclient&text=Pogledaj+ovo" + urlEvent "!";
-
-                Intent i;
-                if (isTwitterInstalled()) {
-                    String url = "https://twitter.com/intent/tweet?source=webclient&text=Pogledaj+ovo+https://developer.twitter.com/!";
-                    i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-                else
-                {
-                    String tweetUrl = "https://twitter.com/intent/tweet?text=Pogledaj+ovo+https://developer.twitter.com/!";
-                    Uri uri = Uri.parse(tweetUrl);
-                    i = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(i);
-                }
-            }
-        });
-    }
-
-    public boolean isTwitterInstalled() {
-        boolean twitterInstalled = false;
-        try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo("com.twitter.android", 0);
-            String getPackageName = packageInfo.toString();
-            if (getPackageName.equals("com.twitter.android")) {
-                Toast.makeText(this, "Twitter App is installed on device!", Toast.LENGTH_LONG).show();
-                twitterInstalled = true;
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            Toast.makeText(this, "Twitter App not found on device!", Toast.LENGTH_LONG).show();
-            twitterInstalled = false;
-        }
-        return twitterInstalled;
     }
 
     @Override
@@ -147,8 +124,20 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
 
     @OnClick(R.id.btn_share)
     public void click(){
-        //get event id
+        shareManager = new FacebookSharingManager();
+        initSharing(shareManager);
+    }
+
+    private void initSharing(SocialNetworkSharingManager shareManager){
+        shareManager.setListener(this);
+        shareManager.setContainer(this);
         shareManager.share(this, event.getEventId());
+    }
+
+    @OnClick(R.id.btn_twitter)
+    public void clickTwitter(){
+        shareManager = new TwitterSharingManager();
+        initSharing(shareManager);
     }
 
     private void AddNewComment() {
@@ -209,6 +198,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //client.onActivityResult(requestCode, resultCode, data);
         shareManager.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -231,5 +221,23 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     @Override
     public void canceled() {
         Toast.makeText(this,"Niste podijelili!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
+        btnTwitter.setVisibility(View.GONE);
+        btnShare.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.remove(fragment);
+        transaction.commit();
+        btnTwitter.setVisibility(View.VISIBLE);
+        btnShare.setVisibility(View.VISIBLE);
     }
 }
