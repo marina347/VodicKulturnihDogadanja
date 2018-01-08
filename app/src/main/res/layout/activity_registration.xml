@@ -4,54 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/vz1"
     tools:context="hr.foi.vodickulturnihdogadanja.activity.RegistrationActivity">
 
     <TextView
         android:id="@+id/reg_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/reg_name_et"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="79dp"
         android:text="Registracija"
-        android:textSize="24sp" />
+        android:textColor="@android:color/background_dark"
+        android:textSize="30dp" />
 
     <EditText
         android:id="@+id/reg_username_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/reg_username_tw"
+        android:layout_below="@+id/reg_username_tw"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_below="@+id/reg_username_tw"
-        android:layout_alignStart="@+id/reg_username_tw" />
+        android:textColor="@color/cardview_dark_background"
+        android:textColorLink="@color/colorPrimary" />
 
 
     <TextView
         android:id="@+id/reg_username_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/reg_tw"
+        android:layout_below="@+id/reg_tw"
         android:layout_marginTop="22dp"
         android:text="Korisničko ime"
-        android:layout_below="@+id/reg_tw"
-        android:layout_alignStart="@+id/reg_tw" />
+        android:textColor="@android:color/background_dark" />
 
     <TextView
         android:id="@+id/reg_password_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lozinka"
-        android:layout_below="@+id/reg_username_et"
         android:layout_alignStart="@+id/reg_username_et"
-        android:layout_marginTop="17dp" />
+        android:layout_below="@+id/reg_username_et"
+        android:layout_marginTop="17dp"
+        android:text="Lozinka"
+        android:textColor="@android:color/background_dark" />
 
     <EditText
         android:id="@+id/reg_password_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/reg_password_tw"
+        android:layout_below="@+id/reg_password_tw"
         android:ems="10"
         android:inputType="textPassword"
-        android:layout_below="@+id/reg_password_tw"
-        android:layout_alignStart="@+id/reg_password_tw" />
+        android:textColorLink="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/reg_email_tw"
@@ -60,60 +67,66 @@
         android:layout_alignStart="@+id/reg_password_et"
         android:layout_below="@+id/reg_password_et"
         android:layout_marginTop="20dp"
-        android:text="Email" />
+        android:text="Email"
+        android:textColor="@android:color/background_dark" />
 
     <EditText
         android:id="@+id/reg_email_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/reg_email_tw"
+        android:layout_below="@+id/reg_email_tw"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_below="@+id/reg_email_tw"
-        android:layout_alignStart="@+id/reg_email_tw" />
+        android:textColorLink="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/reg_name_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/reg_email_et"
+        android:layout_below="@+id/reg_email_et"
         android:layout_marginTop="12dp"
         android:text="Ime"
-        android:layout_below="@+id/reg_email_et"
-        android:layout_alignStart="@+id/reg_email_et" />
+        android:textColor="@android:color/background_dark" />
 
     <EditText
         android:id="@+id/reg_name_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/reg_name_tw"
+        android:layout_below="@+id/reg_name_tw"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_below="@+id/reg_name_tw"
-        android:layout_marginLeft="25dp"/>
+        android:textColorLink="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/reg_surname_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prezime"
-        android:layout_below="@+id/reg_name_et"
         android:layout_alignStart="@+id/reg_name_et"
-        android:layout_marginTop="13dp" />
+        android:layout_below="@+id/reg_name_et"
+        android:layout_marginTop="13dp"
+        android:text="Prezime"
+        android:textColor="@android:color/background_dark" />
 
     <EditText
         android:id="@+id/reg_surname_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/reg_surname_tw"
+        android:layout_below="@+id/reg_surname_tw"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_below="@+id/reg_surname_tw"
-        android:layout_alignStart="@+id/reg_surname_tw" />
+        android:textColorLink="@color/colorPrimary" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="7dp"
-        android:text="REGISTRIRAJ SE"
+        android:layout_height="45dp"
         android:layout_below="@+id/reg_surname_et"
         android:layout_centerHorizontal="true"
-        />
+        android:background="@color/colorPrimary"
+        android:text="REGISTRIRAJ SE"
+        android:textColor="@color/cardview_light_background" />
 </RelativeLayout>

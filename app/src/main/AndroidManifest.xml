@@ -44,10 +44,9 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".activity.EventDetailsActivity"></activity>
+        <activity android:name=".activity.EventDetailsActivity" />
 
-
-        <provider android:authorities="com.facebook.app.FacebookContentProvider1225517157549740"
+        <provider
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
@@ -60,6 +59,15 @@
                 <action android:name="com.twitter.sdk.android.tweetcomposer.TWEET_COMPOSE_CANCEL"/>
             </intent-filter>
         </receiver>
+      
+            android:authorities="com.facebook.app.FacebookContentProvider1225517157549740"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".activity.CommentActivity"></activity>
 
     </application>
 

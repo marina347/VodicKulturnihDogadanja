@@ -8,6 +8,6 @@ import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 
 public interface EventDetailsPresenter {
     void tryGetEventById(int eventId);
-    void tryAddNewComment(CommentModel comment);
     void tryAddFavorite(int eventId);
+    void tryAddEvaluation(int mark,int userId, int eventId);
 }

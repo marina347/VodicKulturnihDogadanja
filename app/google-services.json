@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1012177415818",
-    "firebase_url": "https://vodickulturnihdogadanja.firebaseio.com",
-    "project_id": "vodickulturnihdogadanja",
-    "storage_bucket": "vodickulturnihdogadanja.appspot.com"
+    "project_number": "771006316378",
+    "firebase_url": "https://vodic-kulturnih-dogadanj-c9326.firebaseio.com",
+    "project_id": "vodic-kulturnih-dogadanj-c9326",
+    "storage_bucket": "vodic-kulturnih-dogadanj-c9326.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1012177415818:android:565cd3b5f88799ca",
+        "mobilesdk_app_id": "1:771006316378:android:565cd3b5f88799ca",
         "android_client_info": {
           "package_name": "hr.foi.vodickulturnihdogadanja"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1012177415818-o8952skmcpv6sc9fi6gc5lpds6p1qt8a.apps.googleusercontent.com",
+          "client_id": "771006316378-crr74knifkg3puudcbmju4dmfk8e2fp3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDW5wQZo5TgazH2-iOxbnUhWbfIvyJcRcM"
+          "current_key": "AIzaSyB2EHbGxnxULsw0jQS2WL5uCAwSNvFlPnw"
         }
       ],
       "services": {

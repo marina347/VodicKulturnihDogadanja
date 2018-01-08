@@ -114,7 +114,8 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         outputUsername.setText(userModel.getUsername());
         outputEmail.setText(userModel.getEmail());
         outputPassword.setText(userModel.getPassword());
-        outputImage.setImageBitmap(Base64Coding.decodeBase64(userModel.getPicture()));
+        bitmap=Base64Coding.decodeBase64(userModel.getPicture());
+        outputImage.setImageBitmap(bitmap);
     }
 
     //select image from gallery

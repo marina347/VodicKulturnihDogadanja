@@ -57,10 +57,8 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     TextView txtEventLink;
     @BindView(R.id.event_details_location)
     TextView txtEventLocation;
-    @BindView(R.id.new_comment_text)
-    TextView txtNewComment;
-    @BindView(R.id.btn_new_comment)
-    Button btnNewComment;
+    @BindView(R.id.event_details_price)
+    TextView txtEventPrice;
     @BindView(R.id.event_details_img)
     ImageView imgEvent;
     @BindView(R.id.btn_share)
@@ -69,6 +67,10 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     CheckBox favoriteCheckBox;
     @BindView(R.id.btn_twitter)
     Button btnTwitter;
+    @BindView(R.id.img_like)
+    ImageView imgLike;
+    @BindView(R.id.img_dislike)
+    ImageView imgDislike;
 
     EventDetailsPresenter dp;
     int eventId=-1;
@@ -88,6 +90,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
         this.dp=edp;
 
+
         TokenModel token = LoggedUserData.getInstance().getTokenModel();
         if (token != null){
             txtNewComment.setVisibility(View.VISIBLE);
@@ -103,6 +106,9 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         client = new TwitterAuthClient();
         //make the call to login
 
+        shareManager = new FacebookSharingManager();
+        shareManager.setListener(this);
+
     }
 
     @Override
@@ -117,11 +123,6 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         }
     }
 
-    @OnClick(R.id.btn_new_comment)
-    public void NewCommentClick(View view){
-        AddNewComment();
-    }
-
     @OnClick(R.id.btn_share)
     public void click(){
         shareManager = new FacebookSharingManager();
@@ -133,6 +134,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         shareManager.setContainer(this);
         shareManager.share(this, event.getEventId());
     }
+
 
     @OnClick(R.id.btn_twitter)
     public void clickTwitter(){
@@ -156,6 +158,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         }
     }
 
+
     @Override
     public void ArrivedEvent(EventModel event) {
         this.event=event;
@@ -170,22 +173,10 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         }
 
         txtEventLocation.setText(event.getLocation());
+        txtEventPrice.setText(String.valueOf(event.getPrice()));
         txtEventLink.setText(event.getLink());
         imgEvent.setImageBitmap(Base64Coding.decodeBase64(event.getPicture()));
     }
-
-    @Override
-    public void onSuccessCreateNewComment(CommentModel comment) {
-        Toast.makeText(this,"Uspješno komentiranje",Toast.LENGTH_SHORT).show();
-        txtNewComment.setText("");
-    }
-
-    @Override
-    public void onFailedCreateNewComment(String s) {
-        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
-        txtNewComment.setText("");
-    }
-
     private String DateConverter(Long date) {
         if (date == 0) {
             return "";
@@ -212,6 +203,26 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     public void onSuccessAddedFavorite() {
         Toast.makeText(this,"Dogadaj dodan u favorite!", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onSuccessAddedEvaluation() {
+        Toast.makeText(this,"Uspjesno ocijenjeno!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onFailedAddedEvaluation() {
+        Toast.makeText(this,"Neuspjesno ocijenjeno!", Toast.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.img_like)
+    public void clickLike(){
+        dp.tryAddEvaluation(1,LoggedUserData.getInstance().getTokenModel().getUserId(),event.getEventId());
+    }
+    @OnClick(R.id.img_dislike)
+    public void clickDislike(){
+        dp.tryAddEvaluation(0,LoggedUserData.getInstance().getTokenModel().getUserId(),event.getEventId());
+    }
+
 
     @Override
     public void shared() {
