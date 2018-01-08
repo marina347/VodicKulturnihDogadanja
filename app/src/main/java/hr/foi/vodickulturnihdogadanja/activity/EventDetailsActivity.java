@@ -1,9 +1,10 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
+import com.twitter.sdk.android.core.DefaultLogger;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterConfig;
+import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,25 +27,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.vodickulturnihdogadanja.R;
+import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingContainer;
 import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManager;
 import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManagerListener;
-import hr.foi.vodickulturnihdogadanja.interactor.EventInteractor;
+import hr.foi.vodickulturnihdogadanja.TwitterSharingManager;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventDetailsInteractorImpl;
-import hr.foi.vodickulturnihdogadanja.interactor.impl.EventInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.FavoriteInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.presenter.EventDetailsPresenter;
-import hr.foi.vodickulturnihdogadanja.presenter.EventPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.EventDetailsPresenterImpl;
-import hr.foi.vodickulturnihdogadanja.presenter.impl.EventPresenterImpl;
 import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.EventDetailsView;
 import hr.foi.voidckulturnihdogadanja.FacebookSharingManager;
 
-public class EventDetailsActivity extends AppCompatActivity implements EventDetailsView,SocialNetworkSharingManagerListener {
+
+public class EventDetailsActivity extends AppCompatActivity implements EventDetailsView,SocialNetworkSharingManagerListener, SocialNetworkSharingContainer {
     @BindView(R.id.event_details_name)
     TextView txtEventName;
     @BindView(R.id.event_details_description)
@@ -60,6 +65,8 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     Button btnShare;
     @BindView(R.id.favoriteCheckBox)
     CheckBox favoriteCheckBox;
+    @BindView(R.id.btn_twitter)
+    Button btnTwitter;
     @BindView(R.id.img_like)
     ImageView imgLike;
     @BindView(R.id.img_dislike)
@@ -69,6 +76,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     int eventId=-1;
     SocialNetworkSharingManager shareManager;
     EventModel event;
+    TwitterAuthClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +90,25 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
         EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
         this.dp=edp;
 
+
+        TokenModel token = LoggedUserData.getInstance().getTokenModel();
+        if (token != null){
+            txtNewComment.setVisibility(View.VISIBLE);
+            btnNewComment.setVisibility(View.VISIBLE);
+        }
+        TwitterConfig config = new TwitterConfig.Builder(this)
+                .logger(new DefaultLogger(Log.DEBUG))
+                .twitterAuthConfig(new TwitterAuthConfig("v0POVP7nGnIkhBZIs3YAjt8Lr", "AakBcoLnYc4WMzEFyYihwvRZwGynP2R5PP0diMw62L4yP0nEkf"))
+                .debug(true)
+                .build();
+        Twitter.initialize(config);
+
+        client = new TwitterAuthClient();
+        //make the call to login
+
         shareManager = new FacebookSharingManager();
         shareManager.setListener(this);
+
     }
 
     @Override
@@ -100,9 +125,39 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
 
     @OnClick(R.id.btn_share)
     public void click(){
-        //get event id
+        shareManager = new FacebookSharingManager();
+        initSharing(shareManager);
+    }
+
+    private void initSharing(SocialNetworkSharingManager shareManager){
+        shareManager.setListener(this);
+        shareManager.setContainer(this);
         shareManager.share(this, event.getEventId());
     }
+
+
+    @OnClick(R.id.btn_twitter)
+    public void clickTwitter(){
+        shareManager = new TwitterSharingManager();
+        initSharing(shareManager);
+    }
+
+    private void AddNewComment() {
+        String newCommentText = txtNewComment.getText().toString();
+        int userId = LoggedUserData.getInstance().getTokenModel().getUserId();
+        if (!newCommentText.contentEquals("") && eventId!=-1 && userId!=-1){
+            CommentModel commentModel = new CommentModel();
+            commentModel.setText(newCommentText);
+            commentModel.setTime(new Date().getTime());
+            commentModel.setEventId(eventId);
+            commentModel.setUserId(userId);
+            dp.tryAddNewComment(commentModel);
+        }
+        else {
+            Toast.makeText(this, "Niste unijeli tekst", Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     @Override
     public void ArrivedEvent(EventModel event) {
@@ -134,6 +189,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //client.onActivityResult(requestCode, resultCode, data);
         shareManager.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -176,5 +232,23 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     @Override
     public void canceled() {
         Toast.makeText(this,"Niste podijelili!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
+        btnTwitter.setVisibility(View.GONE);
+        btnShare.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.remove(fragment);
+        transaction.commit();
+        btnTwitter.setVisibility(View.VISIBLE);
+        btnShare.setVisibility(View.VISIBLE);
     }
 }

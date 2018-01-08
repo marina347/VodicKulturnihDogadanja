@@ -48,6 +48,18 @@
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <receiver
+            android:name="hr.foi.vodickulturnihdogadanja.TwitterSharingManager"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.twitter.sdk.android.tweetcomposer.UPLOAD_SUCCESS"/>
+                <action android:name="com.twitter.sdk.android.tweetcomposer.UPLOAD_FAILURE"/>
+                <action android:name="com.twitter.sdk.android.tweetcomposer.TWEET_COMPOSE_CANCEL"/>
+            </intent-filter>
+        </receiver>
+      
             android:authorities="com.facebook.app.FacebookContentProvider1225517157549740"
             android:exported="true" />
 
@@ -56,6 +68,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".activity.CommentActivity"></activity>
+
     </application>
 
 </manifest>
