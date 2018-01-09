@@ -36,6 +36,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.impl.FavoriteInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
+import hr.foi.vodickulturnihdogadanja.presenter.CommentPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.EventDetailsPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.EventDetailsPresenterImpl;
 import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
@@ -67,16 +68,18 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     CheckBox favoriteCheckBox;
     @BindView(R.id.btn_twitter)
     Button btnTwitter;
-    @BindView(R.id.img_like)
+   @BindView(R.id.img_like)
     ImageView imgLike;
     @BindView(R.id.img_dislike)
     ImageView imgDislike;
+
 
     EventDetailsPresenter dp;
     int eventId=-1;
     SocialNetworkSharingManager shareManager;
     EventModel event;
     TwitterAuthClient client;
+    CommentPresenter cp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,10 +95,7 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
 
 
         TokenModel token = LoggedUserData.getInstance().getTokenModel();
-        if (token != null){
-            txtNewComment.setVisibility(View.VISIBLE);
-            btnNewComment.setVisibility(View.VISIBLE);
-        }
+
         TwitterConfig config = new TwitterConfig.Builder(this)
                 .logger(new DefaultLogger(Log.DEBUG))
                 .twitterAuthConfig(new TwitterAuthConfig("v0POVP7nGnIkhBZIs3YAjt8Lr", "AakBcoLnYc4WMzEFyYihwvRZwGynP2R5PP0diMw62L4yP0nEkf"))
@@ -140,22 +140,6 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
     public void clickTwitter(){
         shareManager = new TwitterSharingManager();
         initSharing(shareManager);
-    }
-
-    private void AddNewComment() {
-        String newCommentText = txtNewComment.getText().toString();
-        int userId = LoggedUserData.getInstance().getTokenModel().getUserId();
-        if (!newCommentText.contentEquals("") && eventId!=-1 && userId!=-1){
-            CommentModel commentModel = new CommentModel();
-            commentModel.setText(newCommentText);
-            commentModel.setTime(new Date().getTime());
-            commentModel.setEventId(eventId);
-            commentModel.setUserId(userId);
-            dp.tryAddNewComment(commentModel);
-        }
-        else {
-            Toast.makeText(this, "Niste unijeli tekst", Toast.LENGTH_LONG).show();
-        }
     }
 
 
