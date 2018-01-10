@@ -1,164 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="hr.foi.vodickulturnihdogadanja.activity.EventDetailsActivity">
 
 
-    <ImageView
-        android:id="@+id/event_details_img"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="10dp"
-        app:srcCompat="@drawable/ic_menu_gallery" />
-
-    <TextView
-        android:id="@+id/event_details_name"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/event_details_img"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_weight="1"
-        android:text="Name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/event_details_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/event_details_name"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_weight="1"
-        android:text="Description"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/event_details_begin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/event_details_description"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_weight="1"
-        android:text="Begin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/event_details_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/event_details_description"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/event_details_begin"
-        android:layout_weight="1"
-        android:text="End"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/event_details_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_details_begin"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:text="Location"
-        android:textSize="20sp" />
-    <TextView
-        android:id="@+id/event_details_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_details_location"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:text="Price"
-        android:textSize="20sp" />
-    <TextView
-        android:id="@+id/event_details_link"
-        android:layout_below="@+id/event_details_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:text="Link" />
-
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/relativeLayout">
-
-        <Button
-            android:id="@+id/btn_new_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="Komentiraj"
-            android:visibility="invisible" />
-
-        <EditText
-            android:id="@+id/new_comment_text"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/btn_new_comment"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:singleLine="true"
-            android:textAlignment="viewStart"
-            android:visibility="invisible" />
-    </RelativeLayout>
-
-    <CheckBox
-        android:id="@+id/favoriteCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/event_details_img"
-        style="?android:attr/starStyle"/>
-    <ImageView
-           android:id="@+id/img_like"
-           android:layout_width="70dp"
-          android:layout_height="50dp"
-           android:layout_alignParentBottom="true"
-           android:layout_alignStart="@+id/event_details_link"
-           android:layout_marginBottom="7dp"
-           app:srcCompat="@drawable/a_like" />
-
-       <ImageView
-           android:id="@+id/img_dislike"
-           android:layout_width="70dp"
-           android:layout_height="50dp"
-           android:layout_alignTop="@+id/img_like"
-           android:layout_toEndOf="@+id/img_like"
-           app:srcCompat="@drawable/a_dislike" />
-
-
-    <Button
-        android:id="@+id/btn_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/event_details_img"
-        android:layout_marginEnd="9dp"
-        android:text="Podijeli" />
-
-
-    <Button
-        android:id="@+id/btn_twitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_share"
-        android:layout_alignStart="@+id/btn_share"
-        android:text="Twitter" />
-
-
-    <include layout="@layout/content_navigation" />
-</RelativeLayout>
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        />
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
