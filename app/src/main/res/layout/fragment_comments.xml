@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="Komentiraj"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/new_comment_text"
@@ -39,6 +39,6 @@
             android:inputType="textMultiLine"
             android:singleLine="true"
             android:textAlignment="viewStart"
-            android:visibility="visible" />
+            android:visibility="gone" />
     </RelativeLayout>
 </RelativeLayout>

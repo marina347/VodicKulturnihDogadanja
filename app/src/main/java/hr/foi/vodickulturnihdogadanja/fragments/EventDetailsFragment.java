@@ -75,13 +75,12 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     ImageView imgLike;
     @BindView(R.id.img_dislike)
     ImageView imgDislike;
-    
+
     EventDetailsPresenter dp;
     int eventId=-1;
     SocialNetworkSharingManager shareManager;
     EventModel event;
     TwitterAuthClient client;
-    CommentPresenter cp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -93,9 +92,6 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
 
         EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
         this.dp=edp;
-
-
-        TokenModel token = LoggedUserData.getInstance().getTokenModel();
 
         TwitterConfig config = new TwitterConfig.Builder(getActivity())
                 .logger(new DefaultLogger(Log.DEBUG))
