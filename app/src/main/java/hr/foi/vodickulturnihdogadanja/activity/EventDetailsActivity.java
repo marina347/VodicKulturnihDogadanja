@@ -56,6 +56,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     private EventDetailsFragment fragmentDetails;
     private MapFragment fragmentMap;
     private TabLayout allTabs;
+    private Fragment lastFragment;
     public int eventId=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,5 +120,12 @@ public class EventDetailsActivity extends AppCompatActivity {
         ft.replace(R.id.frame_container, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
+        lastFragment = fragment;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(lastFragment!=null&&lastFragment instanceof EventDetailsFragment){
+            lastFragment.onActivityResult(requestCode,resultCode,data);
+        }
     }
 }

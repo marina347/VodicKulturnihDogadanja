@@ -71,7 +71,7 @@ public class TwitterSharingManager extends BroadcastReceiver implements SocialNe
             final Intent intent = new ComposerActivity.Builder(activity)
                     .session(session)
                     .text("http://vodickulturnihdogadanja.1e29g6m.xip.io/webPage/events.php?eventId="+eventId)
-                    .hashtags("#twitter")
+                    .hashtags("#VodicKulturnihDogadanja")
                     .createIntent();
             activity.startActivity(intent);
         //}

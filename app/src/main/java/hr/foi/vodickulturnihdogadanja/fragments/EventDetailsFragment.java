@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,9 +73,9 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     @BindView(R.id.btn_twitter)
     Button btnTwitter;
     @BindView(R.id.img_like)
-    ImageView imgLike;
+    ImageButton imgLike;
     @BindView(R.id.img_dislike)
-    ImageView imgDislike;
+    ImageButton imgDislike;
 
     EventDetailsPresenter dp;
     int eventId=-1;
@@ -89,6 +90,11 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         FacebookSdk.sdkInitialize(this.getActivity());
         //getActivity().setContentView(R.layout.fragment_details); DA LI OVO TREBA?
         ButterKnife.bind(this, rootView);
+        LoggedUserData.getInstance();
+        if(LoggedUserData.getInstance().getTokenModel()==null){
+          imgLike.setVisibility(View.INVISIBLE);
+          imgDislike.setVisibility(View.INVISIBLE);
+        }
 
         EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
         this.dp=edp;
