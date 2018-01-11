@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import hr.foi.vodickulturnihdogadanja.R;
-import hr.foi.vodickulturnihdogadanja.fragments.EventsFragment;
+import hr.foi.vodickulturnihdogadanja.fragments.EventFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.FavoriteFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.UserProfileFragment;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
@@ -82,7 +82,7 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
 
         switch (itemId) {
             case R.id.nav_event:
-                fragment = new EventsFragment();
+                fragment = new EventFragment();
                 break;
             case R.id.nav_profile:
                 fragment = new UserProfileFragment();

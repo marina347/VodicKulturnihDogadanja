@@ -1,111 +1,99 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
-import android.content.Context;
+//import android.app.Fragment;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import java.util.List;
-import java.util.zip.Inflater;
 
 import hr.foi.vodickulturnihdogadanja.R;
-import hr.foi.vodickulturnihdogadanja.adapters.RecyclerAdapter;
-import hr.foi.vodickulturnihdogadanja.interactor.impl.EventInteractorImpl;
-import hr.foi.vodickulturnihdogadanja.model.EventModel;
-import hr.foi.vodickulturnihdogadanja.presenter.EventPresenter;
-import hr.foi.vodickulturnihdogadanja.presenter.impl.EventPresenterImpl;
-import hr.foi.vodickulturnihdogadanja.view.EventView;
 
 /**
- * Created by Mateja on 17-Nov-17.
+ * Created by Mateja on 11-Jan-18.
  */
 
-public class EventFragment extends Fragment implements EventView {
-
-    EventPresenter ep;
-    private RecyclerView rv;
-    private RecyclerView.LayoutManager lm;
-    private List<EventModel> listOfEvents;
-    private RecyclerAdapter adapter;
+public class EventFragment extends Fragment {
+    public static EventFragment instance;
+    private ActiveEventFragment activeEventFragment;
+    private AllEventFragment allEventFragment;
+    private TabLayout allTabs;
+    public int eventId = -1;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_list_event, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_events, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        EventPresenter p=new EventPresenterImpl(new EventInteractorImpl(),this);
-        this.ep=p;
-        ep.tryGetEvents();
+        super.onViewCreated(view, savedInstanceState);
+        instance = this;
+        getAllWidgets();
+        bindWidgetsWithAnEvent();
+        setupTabLayout();
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        MenuItem search = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
-        search(searchView);
+    private void getAllWidgets() {
+        allTabs = (TabLayout) getActivity().findViewById(R.id.tabs_event);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        return super.onOptionsItemSelected(item);
+    private void setupTabLayout() {
+        Intent intent = this.getActivity().getIntent();
+        eventId = intent.getIntExtra("id", -1);
+        Bundle bundle = new Bundle();
+        bundle.putInt("eventId", eventId);
+        activeEventFragment = new ActiveEventFragment();
+        allEventFragment = new AllEventFragment();
+        activeEventFragment.setArguments(bundle);
+        allEventFragment.setArguments(bundle);
+        allTabs.addTab(allTabs.newTab().setText("TRENUTNI DOGAĐAJI"), true);
+        allTabs.addTab(allTabs.newTab().setText("SVI DOGAĐAJI"));
     }
 
-    private void search(SearchView searchView) {
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_container_event, fragment);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.commit();
+    }
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+    private void setCurrentTabFragment (int tabPosition) {
+        switch (tabPosition)
+        {
+            case 0 :
+                replaceFragment(activeEventFragment);
+                break;
+            case 1 :
+                replaceFragment(allEventFragment);
+                break;
+        }
+    }
+
+    private void bindWidgetsWithAnEvent() {
+        allTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                return false;
+            public void onTabSelected(TabLayout.Tab tab) {
+                setCurrentTabFragment(tab.getPosition());
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-                adapter.getFilter().filter(newText);
-                return true;
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-    }
-
-    @Override
-    public void Arrived(List<EventModel> list) {
-        rv = (RecyclerView) getView().findViewById(R.id.recycler_view);
-        lm= new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(lm);
-        rv.setHasFixedSize(true);
-        adapter=new RecyclerAdapter(list, getActivity());
-        //adapter=new RecyclerAdapter(list,MainActivity.this);
-        rv.setAdapter(adapter);
-    }
-    private void showToastOnUI(final String msg){
-        final Context ctx = getActivity();
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(ctx,msg,Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    @Override
-    public void NoEvents(final String error) {
-        showToastOnUI(error);
     }
 }
