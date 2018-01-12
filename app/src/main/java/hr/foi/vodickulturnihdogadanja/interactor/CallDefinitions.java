@@ -58,4 +58,8 @@ public interface CallDefinitions {
 
     @POST("evaluation.php")
     Call<String> addEvaluation(@Body RequestBody data);
+
+    @POST("refreshToken.php")
+    Call<String> updateDeviceID (@Body RequestBody data);
+
 }

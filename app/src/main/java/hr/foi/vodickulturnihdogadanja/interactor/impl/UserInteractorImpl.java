@@ -163,6 +163,38 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     @Override
+    public void updateDeviceId(String deviceId, int userId) {
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        JSONObject jObj= new JSONObject();
+        try {
+            jObj.put("deviceId", deviceId);
+            jObj.put("userId", userId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+        String data = jObj.toString();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=UTF-8"),data);
+        Call<String> call = calls.updateDeviceID(body);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()){
+
+                }
+                else{
+                    Log.d("Api", "fail updateDeviceId");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
+    }
+
+    @Override
     public void logOut(final Activity ac, String token) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
         JSONObject jObj= new JSONObject();
