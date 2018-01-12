@@ -23,6 +23,7 @@ import com.twitter.sdk.android.core.TwitterConfig;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -91,10 +92,6 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         //getActivity().setContentView(R.layout.fragment_details); DA LI OVO TREBA?
         ButterKnife.bind(this, rootView);
         LoggedUserData.getInstance();
-        if(LoggedUserData.getInstance().getTokenModel()==null){
-          imgLike.setVisibility(View.INVISIBLE);
-          imgDislike.setVisibility(View.INVISIBLE);
-        }
 
         EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
         this.dp=edp;
@@ -160,6 +157,10 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         txtEventPrice.setText(String.valueOf(event.getPrice()));
         txtEventLink.setText(event.getLink());
         imgEvent.setImageBitmap(Base64Coding.decodeBase64(event.getPicture()));
+        if(LoggedUserData.getInstance().getTokenModel()==null || event.getBegin()>=System.currentTimeMillis() || event.getEnd()>=System.currentTimeMillis()){
+            imgLike.setVisibility(View.INVISIBLE);
+            imgDislike.setVisibility(View.INVISIBLE);
+        }
     }
 
     private String DateConverter(Long date) {

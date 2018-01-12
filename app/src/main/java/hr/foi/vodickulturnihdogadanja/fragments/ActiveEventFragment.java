@@ -1,6 +1,7 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -40,6 +41,14 @@ public class ActiveEventFragment extends Fragment implements EventView {
     private List<EventModel> listOfEvents;
     private RecyclerAdapter adapter;
 
+    public void setDataArrived(boolean dataArrived) {
+        this.dataArrived = dataArrived;
+    }
+
+    public boolean dataArrived;
+    List<EventModel> eventsList;
+    ProgressDialog nDialog;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,9 +58,14 @@ public class ActiveEventFragment extends Fragment implements EventView {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        EventPresenter p=new EventPresenterImpl(new EventInteractorImpl(),this);
-        this.ep=p;
-        ep.tryGetEvents();
+        if(dataArrived){
+            setView(eventsList);
+        }
+        else{
+            spinnerLoad();
+            ep=new EventPresenterImpl(new EventInteractorImpl(),this);
+            ep.tryGetEvents();
+        }
     }
 
     @Override
@@ -86,8 +100,7 @@ public class ActiveEventFragment extends Fragment implements EventView {
         });
     }
 
-    @Override
-    public void Arrived(List<EventModel> list) {
+    public void setView(List<EventModel> list){
         rv = (RecyclerView) getView().findViewById(R.id.recycler_view);
         lm= new LinearLayoutManager(getActivity());
         rv.setLayoutManager(lm);
@@ -95,6 +108,22 @@ public class ActiveEventFragment extends Fragment implements EventView {
         adapter=new RecyclerAdapter(list, getActivity());
         //adapter=new RecyclerAdapter(list,MainActivity.this);
         rv.setAdapter(adapter);
+    }
+    private void spinnerLoad(){
+        nDialog = new ProgressDialog( getActivity());
+        nDialog.setMessage("Učitavam događaje...");
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(true);
+        nDialog.show();
+    }
+
+    @Override
+    public void Arrived(List<EventModel> list) {
+        nDialog.dismiss();
+        this.eventsList= list;
+        setView(this.eventsList);
+        dataArrived = true;
+
     }
     private void showToastOnUI(final String msg){
         final Context ctx = getActivity();

@@ -10,12 +10,16 @@ import android.view.WindowManager;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.vodickulturnihdogadanja.R;
+import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 
 public class HomeActivity extends AppCompatActivity {
     @OnClick(R.id.btn_login)
     public void LoginLinkClick(){NavigateToLoginActivity();}
     @OnClick(R.id.guest_tv)
-    public void GuestLinkClick(){NavigateToMainActivity();}
+    public void GuestLinkClick(){
+        LoggedUserData.setInstanceToNull();
+        NavigateToMainActivity();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

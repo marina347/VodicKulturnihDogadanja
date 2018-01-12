@@ -21,8 +21,8 @@ import hr.foi.vodickulturnihdogadanja.R;
 
 public class EventFragment extends Fragment {
     public static EventFragment instance;
-    private ActiveEventFragment activeEventFragment;
-    private AllEventFragment allEventFragment;
+    private static ActiveEventFragment activeEventFragment;
+    private static AllEventFragment allEventFragment;
     private TabLayout allTabs;
     public int eventId = -1;
 
@@ -36,6 +36,8 @@ public class EventFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         instance = this;
+        activeEventFragment=null;
+        allEventFragment=null;
         getAllWidgets();
         bindWidgetsWithAnEvent();
         setupTabLayout();
@@ -44,14 +46,20 @@ public class EventFragment extends Fragment {
     private void getAllWidgets() {
         allTabs = (TabLayout) getActivity().findViewById(R.id.tabs_event);
     }
-
+    public void setBundle(final Bundle bundle) {
+        final Bundle arguments = getArguments();
+        arguments.clear();
+        arguments.putAll(bundle);
+    }
     private void setupTabLayout() {
         Intent intent = this.getActivity().getIntent();
         eventId = intent.getIntExtra("id", -1);
         Bundle bundle = new Bundle();
         bundle.putInt("eventId", eventId);
-        activeEventFragment = new ActiveEventFragment();
-        allEventFragment = new AllEventFragment();
+        if(activeEventFragment==null)activeEventFragment = new ActiveEventFragment();
+        if(allEventFragment==null) {
+            allEventFragment = new AllEventFragment();
+        }
         activeEventFragment.setArguments(bundle);
         allEventFragment.setArguments(bundle);
         allTabs.addTab(allTabs.newTab().setText("TRENUTNI DOGAĐAJI"), true);
@@ -74,6 +82,8 @@ public class EventFragment extends Fragment {
                 break;
             case 1 :
                 replaceFragment(allEventFragment);
+                break;
+            default:
                 break;
         }
     }

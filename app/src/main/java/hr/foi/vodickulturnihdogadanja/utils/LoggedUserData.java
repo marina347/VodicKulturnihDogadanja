@@ -20,6 +20,9 @@ public class LoggedUserData {
         }
         return instance;
     }
+    public static void setInstanceToNull(){
+        instance=null;
+    }
 
     public TokenModel getTokenModel() {
         return tokenModel;

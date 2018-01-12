@@ -1,6 +1,7 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,11 +16,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.List;
 
 import hr.foi.vodickulturnihdogadanja.R;
+import hr.foi.vodickulturnihdogadanja.activity.NavigationActivity;
 import hr.foi.vodickulturnihdogadanja.adapters.RecyclerAdapter;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
@@ -37,18 +40,33 @@ public class AllEventFragment extends Fragment implements AllEventView {
     private RecyclerView.LayoutManager lm;
     private RecyclerAdapter adapter;
 
+    public void setDataArrived(boolean dataArrived) {
+        this.dataArrived = dataArrived;
+    }
+
+    public boolean dataArrived;
+    List<EventModel> eventsList;
+    ProgressDialog nDialog;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_list_event, container, false);
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        EventPresenter p=new EventPresenterImpl(new EventInteractorImpl(),this);
-        this.ep=p;
-        ep.tryGetAllEvents();
+        if(dataArrived){
+            setView(eventsList);
+        }
+        else{
+            spinnerLoad();
+            ep=new EventPresenterImpl(new EventInteractorImpl(),this);
+            ep.tryGetAllEvents();
+        }
+
     }
 
     @Override
@@ -85,6 +103,13 @@ public class AllEventFragment extends Fragment implements AllEventView {
 
     @Override
     public void ArrivedAllEvents(List<EventModel> list) {
+        this.eventsList= list;
+        setView(this.eventsList);
+        dataArrived = true;
+        nDialog.dismiss();
+
+    }
+    public void setView(List<EventModel> list){
         rv = (RecyclerView) getView().findViewById(R.id.recycler_view);
         lm= new LinearLayoutManager(getActivity());
         rv.setLayoutManager(lm);
@@ -92,6 +117,8 @@ public class AllEventFragment extends Fragment implements AllEventView {
         adapter=new RecyclerAdapter(list, getActivity());
         //adapter=new RecyclerAdapter(list,MainActivity.this);
         rv.setAdapter(adapter);
+        dataArrived=true;
+
     }
     private void showToastOnUI(final String msg){
         final Context ctx = getActivity();
@@ -101,6 +128,13 @@ public class AllEventFragment extends Fragment implements AllEventView {
                 Toast.makeText(ctx,msg,Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void spinnerLoad(){
+        nDialog = new ProgressDialog( getActivity());
+        nDialog.setMessage("Učitavam događaje...");
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(true);
+        nDialog.show();
     }
     @Override
     public void NoAllEvents(final String error) {
