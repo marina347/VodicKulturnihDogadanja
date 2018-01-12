@@ -17,7 +17,6 @@ import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.fragments.EventFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.FavoriteFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.UserProfileFragment;
-import hr.foi.vodickulturnihdogadanja.interactor.UserInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 

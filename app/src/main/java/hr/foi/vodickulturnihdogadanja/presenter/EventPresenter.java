@@ -5,5 +5,6 @@ package hr.foi.vodickulturnihdogadanja.presenter;
  */
 
 public interface EventPresenter {
-    public void tryGetEvents();
+    void tryGetEvents();
+    void tryGetAllEvents();
 }

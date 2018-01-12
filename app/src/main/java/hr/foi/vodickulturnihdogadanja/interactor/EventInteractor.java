@@ -9,4 +9,6 @@ import hr.foi.vodickulturnihdogadanja.interactor.listener.EventInteractorListene
 public interface EventInteractor {
     void setEventListener(EventInteractorListener listener);
     void getEvent();
+    void setAllEventListener(EventInteractorListener listener);
+    void getAllEvents();
 }
