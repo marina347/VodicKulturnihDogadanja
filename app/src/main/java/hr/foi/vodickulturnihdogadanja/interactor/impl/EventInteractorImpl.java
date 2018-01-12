@@ -6,10 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import hr.foi.vodickulturnihdogadanja.interactor.CallDefinitions;
-import hr.foi.vodickulturnihdogadanja.interactor.EventDetailsInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.EventInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.RetrofitREST;
-import hr.foi.vodickulturnihdogadanja.interactor.listener.EventDetailsInteractorListener;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.EventInteractorListener;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import retrofit2.Call;
@@ -25,6 +23,11 @@ public class EventInteractorImpl implements EventInteractor{
 
     @Override
     public void setEventListener(EventInteractorListener listener) {
+        this.eventInteractorListener=listener;
+    }
+
+    @Override
+    public void setAllEventListener(EventInteractorListener listener) {
         this.eventInteractorListener=listener;
     }
 
@@ -50,6 +53,29 @@ public class EventInteractorImpl implements EventInteractor{
                 Log.d("Api", t.getMessage());
             }
         });
+    }
 
+    @Override
+    public void getAllEvents() {
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        Date currentDate=new Date();
+        Call<List<EventModel>> call = calls.getAllEvents();
+        call.enqueue(new Callback<List<EventModel>>() {
+            @Override
+            public void onResponse(Call<List<EventModel>> call, Response<List<EventModel>> response) {
+                List<EventModel> list=response.body();
+                if(list==null){
+                    eventInteractorListener.NoAllEvents();
+                }else {
+                    eventInteractorListener.ArrivedAllEvents(list);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<EventModel>> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
     }
 }

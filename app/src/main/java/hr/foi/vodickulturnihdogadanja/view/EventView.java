@@ -11,4 +11,7 @@ import hr.foi.vodickulturnihdogadanja.model.EventModel;
 public interface EventView {
     void Arrived(List<EventModel> list);
     void NoEvents(String error);
+    //void ArrivedAllEvents(List<EventModel> list);
+    //void NoAllEvents(String error);
+
 }

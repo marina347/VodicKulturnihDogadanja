@@ -11,4 +11,6 @@ import hr.foi.vodickulturnihdogadanja.model.EventModel;
 public interface EventInteractorListener {
     void ArrivedEvents(List<EventModel> eventList);
     void NoEvents();
+    void ArrivedAllEvents(List<EventModel> allEventList);
+    void NoAllEvents();
 }
