@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.fragments.EventFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.FavoriteFragment;
+import hr.foi.vodickulturnihdogadanja.fragments.SettingsFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.UserProfileFragment;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
@@ -89,6 +90,9 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
                 break;
             case R.id.nav_favorite:
                 fragment = new FavoriteFragment();
+                break;
+            case R.id.nav_settings:
+                fragment = new SettingsFragment();
                 break;
             case R.id.nav_logout:
                 UserInteractorImpl inter=new UserInteractorImpl();
