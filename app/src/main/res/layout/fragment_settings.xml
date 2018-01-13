@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/language"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/switch_notification"
         android:layout_below="@+id/switch_notification"
+        android:clickable="true"
+        android:onClick="onClick"
         android:layout_marginTop="34dp"
         android:textColor="#000000"
         android:text="Odabir jezika" />
@@ -25,5 +27,34 @@
         android:layout_marginEnd="24dp"
         android:textColor="#000000"
         android:text="Dolazne obavijesti"
-        android:checked="true"/>
+        />
+
+    <RadioGroup
+        android:id="@+id/language_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart = "@+id/language"
+        android:layout_below="@+id/language"
+        android:layout_marginLeft="25dp">
+
+        <RadioButton
+            android:id="@+id/language_hr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/language"
+            android:layout_below="@+id/language"
+            android:layout_marginTop="15dp"
+            android:text="Hrvatski" />
+
+        <RadioButton
+            android:id="@+id/language_eng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/language_hr"
+            android:layout_below="@+id/language_hr"
+            android:layout_marginTop="17dp"
+            android:text="Engleski" />
+
+    </RadioGroup>
+    
 </RelativeLayout>

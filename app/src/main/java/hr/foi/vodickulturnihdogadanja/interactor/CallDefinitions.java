@@ -4,6 +4,7 @@ import java.util.List;
 
 import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
+import hr.foi.vodickulturnihdogadanja.model.SettingsModel;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
 import okhttp3.RequestBody;
@@ -62,5 +63,8 @@ public interface CallDefinitions {
 
     @POST("refreshToken.php")
     Call<String> updateDeviceID (@Body RequestBody data);
+
+    @GET("settings.php")
+    Call<SettingsModel> getSettings (@Query("userId") int userId);
 
 }
