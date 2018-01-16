@@ -27,6 +27,11 @@ public class SettingsPresenterImpl implements SettingsPresenter, SettingsInterac
     }
 
     @Override
+    public void tryEditSettings(SettingsModel settingsModel) {
+        interactor.editSettings(settingsModel);
+    }
+
+    @Override
     public void onSuccess(SettingsModel settingsModel) {
         view.onSuccess(settingsModel);
     }

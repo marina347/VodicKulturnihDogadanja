@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.SettingsInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.SettingsModel;
@@ -31,22 +33,31 @@ public class SettingsFragment extends Fragment implements SettingsView {
 
     @BindView(R.id.switch_notification)
     Switch switchNotification;
-    @BindView(R.id.language_group)
-    RadioGroup languageGroup;
     @BindView(R.id.language_hr)
     RadioButton languageHr;
     @BindView(R.id.language_eng)
     RadioButton languageEng;
 
-    SettingsPresenter settingsPresenter;
     int userId = LoggedUserData.getInstance().getTokenModel().getUserId();
+    int notification;
+    int language;
+    private Unbinder unbinder;
+
+    SettingsPresenter settingsPresenter;
+    SettingsModel settingsModel = new SettingsModel();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override
@@ -55,7 +66,6 @@ public class SettingsFragment extends Fragment implements SettingsView {
         SettingsPresenter settingsPresenter = new SettingsPresenterImpl(new SettingsInteractorImpl(), this);
         this.settingsPresenter = settingsPresenter;
         settingsPresenter.tryGetSettings(userId);
-        SwitchNotification();
     }
 
     @Override
@@ -63,23 +73,11 @@ public class SettingsFragment extends Fragment implements SettingsView {
         int state = settings.getPushUpNotification();
         int stateLanguage = settings.getLanguageId();
 
-        if (state == 1) {
-            switchNotification.setChecked(true);
-        }
-        else if (state == 0) {
-            switchNotification.setChecked(false);
-        }
+        if (state == 1) {switchNotification.setChecked(true);}
+        else if (state == 0) {switchNotification.setChecked(false);}
 
-
-        if (stateLanguage == 1) {
-            //eng
-            languageEng.setChecked(true);
-        }
-        else if (stateLanguage == 2) {
-            //hr
-            languageHr.setChecked(true);
-
-        }
+        if (stateLanguage == 1) {languageEng.setChecked(true);}
+        else if (stateLanguage == 2) {languageHr.setChecked(true);}
     }
 
     @Override
@@ -97,20 +95,43 @@ public class SettingsFragment extends Fragment implements SettingsView {
         });
     }
 
-    private void SwitchNotification() {
-        Switch switchNotification = (Switch) getActivity().findViewById(R.id.switch_notification);
-        switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    //TODO If the switch button is on
-                    Toast.makeText(getActivity(),"Switch is on",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    // TODO If the switch button is off
-                    Toast.makeText(getActivity(),"Switch is off",Toast.LENGTH_SHORT).show();
-                }
+    @OnClick(R.id.save_settings)
+    public void save() {
+        TryEditSettings();
+        Toast.makeText(getActivity(),"Postavke su promjenjene",Toast.LENGTH_SHORT).show();
+    }
+
+    @OnCheckedChanged(R.id.switch_notification)
+    void onGenderSelected(CompoundButton button, boolean isChecked){
+        if (isChecked) {
+            notification = 1;
+            //Toast.makeText(getActivity(),"Switch is on",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            notification = 0;
+            //Toast.makeText(getActivity(),"Switch is off",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @OnCheckedChanged({R.id.language_eng, R.id.language_hr})
+    public void onRadioButtonCheckChanged(CompoundButton button, boolean checked) {
+        if(checked) {
+            switch (button.getId()) {
+                case R.id.language_eng:
+                    language = 1;
+                    break;
+                case R.id.language_hr:
+                    language = 2;
+                    break;
             }
-        });
+        }
+    }
+
+    private void TryEditSettings() {
+        settingsModel.setUserId(userId);
+        settingsModel.setPushUpNotification(notification);
+        settingsModel.setLanguageId(language);
+
+        settingsPresenter.tryEditSettings(settingsModel);
     }
 }

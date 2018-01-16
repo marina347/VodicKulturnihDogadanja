@@ -47,4 +47,28 @@ public class SettingsInteractorImpl implements SettingsInteractor{
             }
         });
     }
+
+    @Override
+    public void editSettings(SettingsModel settings) {
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        Call<SettingsModel> call = calls.editSettings(settings);
+        call.enqueue(new Callback<SettingsModel>() {
+            @Override
+            public void onResponse(Call<SettingsModel> call, Response<SettingsModel> response) {
+                if(response.isSuccessful()){
+                    SettingsModel settings=response.body();
+                    listener.onSuccess(settings);
+                }
+                else{
+                    Log.d("Api", "fail editSettings");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SettingsModel> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+                listener.onFailed("Postavke nisu promjenjene");
+            }
+        });
+    }
 }

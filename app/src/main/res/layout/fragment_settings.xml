@@ -56,5 +56,14 @@
             android:text="Engleski" />
 
     </RadioGroup>
-    
+
+    <Button
+        android:id="@+id/save_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/switch_notification"
+        android:layout_below="@+id/language_group"
+        android:layout_marginTop="46dp"
+        android:text="Spremi" />
+
 </RelativeLayout>

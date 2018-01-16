@@ -67,4 +67,7 @@ public interface CallDefinitions {
     @GET("settings.php")
     Call<SettingsModel> getSettings (@Query("userId") int userId);
 
+    @POST("settings.php")
+    Call<SettingsModel> editSettings (@Body SettingsModel data);
+
 }

@@ -7,22 +7,12 @@ import com.google.gson.annotations.Expose;
  */
 
 public class SettingsModel {
-    @Expose(serialize = false)
-    private int settingsId;
+    @Expose
+    private int userId;
     @Expose
     private int pushUpNotification;
     @Expose
-    private int sound;
-    @Expose
     private int languageId;
-
-    public int getSettingsId() {
-        return settingsId;
-    }
-
-    public void setSettingsId(int settingsId) {
-        this.settingsId = settingsId;
-    }
 
     public int getPushUpNotification() {
         return pushUpNotification;
@@ -32,19 +22,19 @@ public class SettingsModel {
         this.pushUpNotification = pushUpNotification;
     }
 
-    public int getSound() {
-        return sound;
-    }
-
-    public void setSound(int sound) {
-        this.sound = sound;
-    }
-
     public int getLanguageId() {
         return languageId;
     }
 
     public void setLanguageId(int languageId) {
         this.languageId = languageId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
