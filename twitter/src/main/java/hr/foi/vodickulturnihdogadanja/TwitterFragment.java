@@ -15,6 +15,8 @@ import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
+import hr.foi.vodickulturnihdogadanja.twitter.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
