@@ -47,6 +47,9 @@
         <activity android:name=".activity.EventDetailsActivity" />
 
         <activity android:name=".activity.CommentActivity"></activity>
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyA5XUC1KaP6VnPR3Z9SvCIazHNYlj5uVtQ" />
 
     </application>
 
