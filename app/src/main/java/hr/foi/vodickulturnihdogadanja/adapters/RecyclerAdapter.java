@@ -130,7 +130,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
         public void selectedEvent() {
             Bundle args = new Bundle();
             args.putInt("id", mEvent.getEventId());
-
+            args.putString("location", mEvent.getLocation());
             Intent intent = new Intent(view.getContext(), EventDetailsActivity.class);
             intent.putExtras(args);
             view.getContext().startActivity(intent);

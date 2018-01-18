@@ -75,11 +75,13 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventId=intent.getIntExtra("id", -1);
         Bundle bundle = new Bundle();
         bundle.putInt("eventId", eventId);
+        bundle.putString("location", intent.getStringExtra("location"));
         fragmentDetails = new EventDetailsFragment();
         fragmentComments = new CommentsFragment();
         fragmentMap = new MapFragment();
         fragmentComments.setArguments(bundle);
         fragmentDetails.setArguments(bundle);
+        fragmentMap.setArguments(bundle);
         allTabs.addTab(allTabs.newTab().setText("DETALJI"),true);
         allTabs.addTab(allTabs.newTab().setText("KOMENTARI"));
         allTabs.addTab(allTabs.newTab().setText("MAPA"));
