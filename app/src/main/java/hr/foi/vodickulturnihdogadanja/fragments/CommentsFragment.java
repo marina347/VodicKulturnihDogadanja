@@ -1,6 +1,5 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -87,7 +86,7 @@ public class CommentsFragment extends Fragment implements CommentView {
     @Override
     public void onSuccessCreateNewComment(CommentModel comment) {
         commentPresenter.tryGetComments(eventId);
-        Toast.makeText(getActivity(),"Uspješno komentiranje",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),R.string.successful_commenting,Toast.LENGTH_SHORT).show();
         txtNewComment.setText("");
     }
 
@@ -113,7 +112,7 @@ public class CommentsFragment extends Fragment implements CommentView {
             commentPresenter.tryAddNewComment(commentModel);
         }
         else {
-            Toast.makeText(getActivity(), "Niste unijeli tekst", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.no_text, Toast.LENGTH_LONG).show();
         }
     }
 }

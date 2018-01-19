@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.adapters.RecyclerAdapter;
@@ -111,7 +110,7 @@ public class ActiveEventFragment extends Fragment implements EventView {
     }
     private void spinnerLoad(){
         nDialog = new ProgressDialog( getActivity());
-        nDialog.setMessage("Učitavam događaje...");
+        nDialog.setMessage(getContext().getResources().getString(R.string.loading_events));
         nDialog.setIndeterminate(false);
         nDialog.setCancelable(true);
         nDialog.show();

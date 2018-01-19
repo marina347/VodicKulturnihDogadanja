@@ -62,8 +62,8 @@ public class EventFragment extends Fragment {
         }
         activeEventFragment.setArguments(bundle);
         allEventFragment.setArguments(bundle);
-        allTabs.addTab(allTabs.newTab().setText("TRENUTNI DOGAĐAJI"), true);
-        allTabs.addTab(allTabs.newTab().setText("SVI DOGAĐAJI"));
+        allTabs.addTab(allTabs.newTab().setText(R.string.active_event), true);
+        allTabs.addTab(allTabs.newTab().setText(R.string.all_event));
     }
 
     public void replaceFragment(Fragment fragment) {

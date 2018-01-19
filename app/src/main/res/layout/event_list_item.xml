@@ -36,7 +36,7 @@
             android:layout_toEndOf="@+id/event_image"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textIsSelectable="false"
-            tools:text="Event NAME" />
+            tools:text="@string/event_name" />
 
         <TextView
             android:id="@+id/event_description"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
             android:textIsSelectable="false"
-            tools:text="Event description..."
+            tools:text="@string/event_description"
             android:layout_marginTop="2dp"
             android:layout_below="@id/event_name"
             android:layout_alignStart="@+id/event_name" />
@@ -58,7 +58,7 @@
             android:layout_below="@id/event_description"
             android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
             android:textIsSelectable="false"
-            tools:text="Begin" />
+            tools:text="@string/begin" />
         <TextView
             android:id="@+id/event_end"
             android:layout_width="wrap_content"
@@ -69,10 +69,7 @@
             android:layout_marginLeft="5dp"
             android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
             android:textIsSelectable="false"
-            tools:text="Ends" />
-
-
-
+            tools:text="@string/end" />
 
     </RelativeLayout>
 

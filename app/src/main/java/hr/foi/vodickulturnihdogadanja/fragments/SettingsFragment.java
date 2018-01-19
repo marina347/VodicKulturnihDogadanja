@@ -1,15 +1,21 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -18,10 +24,12 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import hr.foi.vodickulturnihdogadanja.R;
+import hr.foi.vodickulturnihdogadanja.activity.NavigationActivity;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.SettingsInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.SettingsModel;
 import hr.foi.vodickulturnihdogadanja.presenter.SettingsPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.SettingsPresenterImpl;
+import hr.foi.vodickulturnihdogadanja.utils.LocalHelper;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.SettingsView;
 
@@ -96,9 +104,17 @@ public class SettingsFragment extends Fragment implements SettingsView {
     }
 
     @OnClick(R.id.save_settings)
-    public void save() {
+    public void save(TextView textView) {
         TryEditSettings();
-        Toast.makeText(getActivity(),"Postavke su promjenjene",Toast.LENGTH_SHORT).show();
+        refresh();
+        //Toast.makeText(getActivity(),"Postavke su promjenjene",Toast.LENGTH_SHORT).show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                clearActivityStack();
+                clearFragmentStack();
+            }
+        }, 1000); //1sec
     }
 
     @OnCheckedChanged(R.id.switch_notification)
@@ -119,9 +135,11 @@ public class SettingsFragment extends Fragment implements SettingsView {
             switch (button.getId()) {
                 case R.id.language_eng:
                     language = 1;
+                    updateViews("en");
                     break;
                 case R.id.language_hr:
                     language = 2;
+                    updateViews("hr");
                     break;
             }
         }
@@ -133,5 +151,29 @@ public class SettingsFragment extends Fragment implements SettingsView {
         settingsModel.setLanguageId(language);
 
         settingsPresenter.tryEditSettings(settingsModel);
+    }
+
+    private void updateViews(String lang) {
+        Context context = LocalHelper.setLocale(getActivity(), lang);
+        Resources resources = context.getResources();
+    }
+
+    //refresh current fragment
+    private void refresh() {
+        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (currentFragment instanceof SettingsFragment) {
+            FragmentTransaction fragTransaction =  (getActivity()).getSupportFragmentManager().beginTransaction();
+            fragTransaction.detach(currentFragment);
+            fragTransaction.attach(currentFragment);
+            fragTransaction.commit();}
+    }
+
+    private void clearFragmentStack() {
+        getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+    private void clearActivityStack() {
+        Intent intent = new Intent(getActivity(), NavigationActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

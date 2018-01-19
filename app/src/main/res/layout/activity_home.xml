@@ -15,7 +15,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="147dp"
-        android:text="Nastavi bez prijave"
+        android:text="@string/without_login"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/cardview_light_background"
         android:textSize="20sp" />
@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:background="@color/colorPrimary"
-        android:text="Prijavi se"
+        android:text="@string/login"
         android:textColor="@color/cardview_light_background" />
 
     <ImageView

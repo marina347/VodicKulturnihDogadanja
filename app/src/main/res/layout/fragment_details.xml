@@ -20,7 +20,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_weight="1"
-        android:text="Name"
+        android:text="@string/name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="30sp" />
 
@@ -32,7 +32,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_weight="1"
-        android:text="Description"
+        android:text="@string/description"
         android:textSize="18sp" />
 
     <TextView
@@ -43,7 +43,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_weight="1"
-        android:text="Begin"
+        android:text="@string/begin"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="20sp" />
 
@@ -55,7 +55,7 @@
         android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/event_details_begin"
         android:layout_weight="1"
-        android:text="End"
+        android:text="@string/end"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="20sp" />
 
@@ -66,8 +66,9 @@
         android:layout_below="@id/event_details_begin"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
-        android:text="Location"
+        android:text="@string/location"
         android:textSize="20sp" />
+
     <TextView
         android:id="@+id/event_details_price"
         android:layout_width="wrap_content"
@@ -75,8 +76,9 @@
         android:layout_below="@id/event_details_location"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
-        android:text="Price"
+        android:text="@string/price"
         android:textSize="20sp" />
+
     <TextView
         android:id="@+id/event_details_link"
         android:layout_below="@+id/event_details_price"
@@ -85,8 +87,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
-        android:text="Link" />
-
+        android:text="@string/link" />
 
     <CheckBox
         android:id="@+id/favoriteCheckBox"
@@ -104,8 +105,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/event_details_img"
         android:layout_marginEnd="9dp"
-        android:text="Podijeli" />
-
+        android:text="@string/facebook" />
 
     <Button
         android:id="@+id/btn_twitter"
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_share"
         android:layout_alignStart="@+id/btn_share"
-        android:text="Twitter" />
+        android:text="@string/twitter" />
 
     <ImageButton
         android:id="@+id/img_dislike"

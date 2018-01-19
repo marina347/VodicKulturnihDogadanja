@@ -23,7 +23,6 @@ import com.twitter.sdk.android.core.TwitterConfig;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -37,8 +36,6 @@ import hr.foi.vodickulturnihdogadanja.TwitterSharingManager;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventDetailsInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.FavoriteInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
-import hr.foi.vodickulturnihdogadanja.model.TokenModel;
-import hr.foi.vodickulturnihdogadanja.presenter.CommentPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.EventDetailsPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.EventDetailsPresenterImpl;
 import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
@@ -187,17 +184,17 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
 
     @Override
     public void onSuccessAddedFavorite() {
-        Toast.makeText(getActivity(),"Dogadaj dodan u favorite!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),R.string.event_added_in_favorite, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onSuccessAddedEvaluation() {
-        Toast.makeText(getActivity(),"Uspjesno ocijenjeno!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),R.string.successfully_rated, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onFailedAddedEvaluation() {
-        Toast.makeText(getActivity(),"Neuspjesno ocijenjeno!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),R.string.unsuccessfully_rated, Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.img_like)
@@ -211,12 +208,12 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
 
     @Override
     public void shared() {
-        Toast.makeText(getActivity(),"Uspjesno podijeljeno", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),R.string.successfully_shared, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void canceled() {
-        Toast.makeText(getActivity(),"Niste podijelili!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),R.string.unsuccessfully_shared, Toast.LENGTH_LONG).show();
     }
 
     @Override
