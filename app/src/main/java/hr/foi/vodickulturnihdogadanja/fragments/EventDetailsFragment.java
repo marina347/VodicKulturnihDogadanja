@@ -56,7 +56,6 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     TextView txtEventBegin;
     @BindView(R.id.event_details_end)
     TextView txtEventEnd;
-    @BindView(R.id.event_details_link)
     TextView txtEventLink;
     @BindView(R.id.event_details_location)
     TextView txtEventLocation;
@@ -74,6 +73,8 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     ImageButton imgLike;
     @BindView(R.id.img_dislike)
     ImageButton imgDislike;
+    @BindView(R.id.btn_link)
+    Button btnLink;
 
     EventDetailsPresenter dp;
     int eventId=-1;
@@ -141,18 +142,19 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     public void ArrivedEvent(EventModel event) {
         this.event=event;
         txtEventName.setText(event.getName());
-        txtEventDescription.setText(event.getDescription());
-        txtEventBegin.setText(DateConverter(event.getBegin()));
+        txtEventDescription.setText(getResources().getString(R.string.description) + " " + event.getDescription());
+        txtEventBegin.setText(getResources().getString(R.string.begin_end) + " " + DateConverter(event.getBegin()));
         if(event.getEnd()>0){
             txtEventEnd.setText("-"+DateConverter(event.getEnd()));
         }
         else {
             txtEventEnd.setText("");
         }
-
-        txtEventLocation.setText(event.getLocation());
-        txtEventPrice.setText(String.valueOf(event.getPrice()));
-        txtEventLink.setText(event.getLink());
+        if(event.getLink().isEmpty()){
+            btnLink.setVisibility(View.INVISIBLE);
+        }
+        txtEventLocation.setText(getResources().getString(R.string.location) + " " + event.getLocation());
+        txtEventPrice.setText(getResources().getString(R.string.price) + " " + String.valueOf(event.getPrice()) + " " + getResources().getString(R.string.valute));
         imgEvent.setImageBitmap(Base64Coding.decodeBase64(event.getPicture()));
         if(LoggedUserData.getInstance().getTokenModel()==null || event.getBegin()>=System.currentTimeMillis() || event.getEnd()>=System.currentTimeMillis()){
             imgLike.setVisibility(View.INVISIBLE);

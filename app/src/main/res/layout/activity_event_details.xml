@@ -12,9 +12,9 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         app:tabGravity="fill"
-        app:tabMode="fixed"
-        />
+        app:tabMode="fixed" />
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"

@@ -52,10 +52,12 @@
     <string name="end">Kraj</string>
 
     <!-- fragment_details.xml -->
-    <string name="description">Opis</string>
-    <string name="location">Lokacija</string>
-    <string name="price">Cijena</string>
-    <string name="link">Poveznica</string>
+    <string name="description">Opis: </string>
+    <string name="location">Lokacija: </string>
+    <string name="price">Cijena: </string>
+    <string name="valute"> kn</string>
+    <string name="link">Ulaznica</string>
+    <string name="begin_end">Datum:</string>
     <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
 

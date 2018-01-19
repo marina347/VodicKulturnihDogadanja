@@ -50,10 +50,12 @@
     <string name="end">End</string>
 
     <!-- fragment_details.xml -->
-    <string name="description">Description</string>
-    <string name="location">Location</string>
-    <string name="price">Price</string>
-    <string name="link">Link</string>
+    <string name="description">Description: </string>
+    <string name="location">Location: </string>
+    <string name="price">Price: </string>
+    <string name="valute"> kn</string>
+    <string name="begin_end">Date: </string>
+    <string name="link">Ticket</string>
     <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
 

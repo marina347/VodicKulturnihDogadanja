@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/vz1"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbarAlwaysDrawVerticalTrack="false">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/event_details_img"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="10dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_alignParentTop="true"
         app:srcCompat="@drawable/ic_menu_gallery" />
 
     <TextView
         android:id="@+id/event_details_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/event_details_img"
+        android:layout_below="@+id/favoriteCheckBox"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_weight="1"
         android:text="@string/name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="30sp" />
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/event_details_description"
@@ -33,31 +45,32 @@
         android:layout_marginLeft="20dp"
         android:layout_weight="1"
         android:text="@string/description"
+        android:textColor="@android:color/black"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/event_details_begin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/event_details_description"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_weight="1"
-        android:text="@string/begin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/event_details_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/event_details_description"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="@string/begin"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/event_details_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/event_details_description"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/event_details_begin"
-        android:layout_weight="1"
-        android:text="@string/end"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/event_details_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/event_details_description"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/event_details_begin"
+            android:layout_weight="1"
+            android:text="@string/end"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
     <TextView
         android:id="@+id/event_details_location"
@@ -67,7 +80,8 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:text="@string/location"
-        android:textSize="20sp" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/event_details_price"
@@ -77,26 +91,24 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:text="@string/price"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/event_details_link"
-        android:layout_below="@+id/event_details_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:text="@string/link" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
     <CheckBox
         android:id="@+id/favoriteCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/event_details_img"
+        android:layout_below="@id/event_details_img"
         style="?android:attr/starStyle"/>
 
+    <Button
+        android:id="@+id/btn_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_details_price"
+        android:layout_marginLeft="15dp"
+        android:text="@string/link" />
 
     <ImageButton
         android:id="@+id/btn_share"
@@ -121,8 +133,10 @@
         android:id="@+id/img_dislike"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/event_details_img"
+        android:layout_below="@id/btn_link"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/dislike_icon" />
 
@@ -131,7 +145,9 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
+        android:layout_below="@id/btn_link"
         android:layout_toEndOf="@+id/img_dislike"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/like_icon" />
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
