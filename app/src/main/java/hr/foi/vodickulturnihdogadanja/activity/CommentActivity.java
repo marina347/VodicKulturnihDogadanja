@@ -22,10 +22,9 @@ import hr.foi.vodickulturnihdogadanja.interactor.impl.CommentInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.presenter.CommentPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.CommentPresenterImpl;
-import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import hr.foi.vodickulturnihdogadanja.view.CommentView;
 
-public class CommentActivity extends AppCompatActivity  implements CommentView {
+public class CommentActivity extends AppCompatActivity implements CommentView {
     @BindView(R.id.new_comment_text)
     TextView txtNewComment;
     @BindView(R.id.btn_new_comment)
@@ -73,7 +72,7 @@ public class CommentActivity extends AppCompatActivity  implements CommentView {
     @Override
     public void onSuccessCreateNewComment(CommentModel comment) {
         commentPresenter.tryGetComments(eventId);
-        Toast.makeText(this,"Uspješno komentiranje",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,R.string.successful_commenting,Toast.LENGTH_SHORT).show();
         txtNewComment.setText("");
     }
 
@@ -99,7 +98,7 @@ public class CommentActivity extends AppCompatActivity  implements CommentView {
             commentPresenter.tryAddNewComment(commentModel);
         }
         else {
-            Toast.makeText(this, "Niste unijeli tekst", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.no_text, Toast.LENGTH_LONG).show();
         }
     }
 }

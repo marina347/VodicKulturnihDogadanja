@@ -2,13 +2,11 @@ package hr.foi.vodickulturnihdogadanja.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,8 +14,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
-import java.io.ByteArrayOutputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,7 +80,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
     @OnClick(R.id.btn_save_profile_data)
     public void save_click (View view) {
         TryEditData();
-        Toast.makeText(getActivity(),"Edit data successful",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),R.string.succesfully_editing_data,Toast.LENGTH_SHORT).show();
     }
 
     private void TryGetData() {

@@ -2,14 +2,13 @@ package hr.foi.vodickulturnihdogadanja.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import android.os.Handler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,7 +73,7 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
     }
 
     public void onSuccess(UserModel userModel){
-        Toast.makeText(this,"Uspješna registracija",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,R.string.succesful_registration,Toast.LENGTH_SHORT).show();
         final Context ctx= this;
         new Handler().postDelayed(new Runnable() {
             @Override

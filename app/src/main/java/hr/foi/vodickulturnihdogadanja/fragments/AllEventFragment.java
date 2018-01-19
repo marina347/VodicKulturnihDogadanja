@@ -16,13 +16,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.List;
 
 import hr.foi.vodickulturnihdogadanja.R;
-import hr.foi.vodickulturnihdogadanja.activity.NavigationActivity;
 import hr.foi.vodickulturnihdogadanja.adapters.RecyclerAdapter;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.EventInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
@@ -131,7 +129,7 @@ public class AllEventFragment extends Fragment implements AllEventView {
     }
     private void spinnerLoad(){
         nDialog = new ProgressDialog( getActivity());
-        nDialog.setMessage("Učitavam događaje...");
+        nDialog.setMessage(getContext().getResources().getString(R.string.loading_events));
         nDialog.setIndeterminate(false);
         nDialog.setCancelable(true);
         nDialog.show();

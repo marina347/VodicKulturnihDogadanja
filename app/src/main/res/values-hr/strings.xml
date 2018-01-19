@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Vodic Kulturnih Dogadanja</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- activity_navigation_drawer.xml -->
+    <string name="menu_event">Događaji</string>
+    <string name="menu_profile">Profil</string>
+    <string name="menu_favorite">Favoriti</string>
+    <string name="menu_settings">Postavke</string>
+    <string name="logout">Odjava</string>
+
+    <!-- main_menu -->
+    <string name="search">Pretraživanje</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">1225517157549740</string>
+
+    <!-- activity_comment.xml -->
+    <string name="comment">Komentiraj</string>
+
+    <!-- activity_home.xml -->
+    <string name="without_login">Nastavi bez prijave</string>
+    <string name="login">Prijavi se</string>
+
+    <!--activity_login.xml -->
+    <string name="text_login">Prijava</string>
+    <string name="username">Korisničko ime</string>
+    <string name="password">Lozinka</string>
+    <string name="text_registration">Registracija</string>
+
+    <!-- activity_registration.xml -->
+    <string name="email">Email</string>
+    <string name="name">Ime</string>
+    <string name="surname">Prezime</string>
+    <string name="registration">Registriraj se</string>
+
+    <!-- comment_list_item.xml -->
+    <string name="user">Korisnik</string>
+    <string name="date">dd.mm.yyyy hh:mm</string>
+    <string name="text">Ovo je tekst</string>
+
+    <!-- event_list.xml -->
+    <string name="event_name">Naziv događaja</string>
+    <string name="event_description">Opis događaja...</string>
+    <string name="begin">Početak</string>
+    <string name="end">Kraj</string>
+
+    <!-- fragment_details.xml -->
+    <string name="description">Opis</string>
+    <string name="location">Lokacija</string>
+    <string name="price">Cijena</string>
+    <string name="link">Poveznica</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+
+    <!-- fragment_settings.xml -->
+    <string name="text_language">Odabir jezika</string>
+    <string name="text_notification">Dolazne obavijesti</string>
+    <string name="croatian">Hrvatski</string>
+    <string name="english">Engleski</string>
+    <string name="save">Spremi</string>
+
+    <!-- nav_header_navigation.xml -->
+    <string name="name_and_surname">Ime i prezime</string>
+
+    <!-- EventDetailsActivity.java -->
+    <string name="details">Detalji</string>
+    <string name="comments">Komentari</string>
+    <string name="map">Mapa</string>
+
+    <!-- EventFrament.java -->
+    <string name="active_event">Aktivni događaji</string>
+    <string name="all_event">Svi događaji</string>
+
+    <!-- CommentActivity.java -->
+    <string name="successful_commenting">Uspješno komentiranje!</string>
+    <string name="no_text">Niste unijeli tekst!</string>
+
+    <!-- RegistrationActivity.java -->
+    <string name="succesfull_registration">Uspješno ste se registrirali!</string>
+
+    <!-- ActiveEventFragment.java -->
+    <string name="loading_events">Učitavanje događaja...</string>
+
+    <!-- EventDetailsFragment -->
+    <string name="event_added_in_favorite">Događaj je dodan u favorite!</string>
+    <string name="successfully_rated">Uspješno ocjenjeno!</string>
+    <string name="unsuccessfully_rated">Neuspješno ocjenjeno!</string>
+    <string name="successfully_shared">Uspješno podjeljeno!</string>
+    <string name="unsuccessfully_shared">Neuspješno podjeljeno!</string>
+
+    <!-- UserProfileFragment.java -->
+    <string name="succesfully_editing_data">Uspješno uređivanja podataka!</string>
+
+</resources>

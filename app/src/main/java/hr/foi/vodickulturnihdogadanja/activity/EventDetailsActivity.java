@@ -7,47 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.facebook.FacebookSdk;
-import com.twitter.sdk.android.core.DefaultLogger;
-import com.twitter.sdk.android.core.Twitter;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
-import com.twitter.sdk.android.core.TwitterConfig;
-import com.twitter.sdk.android.core.identity.TwitterAuthClient;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import hr.foi.vodickulturnihdogadanja.R;
-import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingContainer;
-import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManager;
-import hr.foi.vodickulturnihdogadanja.SocialNetworkSharingManagerListener;
-import hr.foi.vodickulturnihdogadanja.TwitterSharingManager;
 import hr.foi.vodickulturnihdogadanja.fragments.CommentsFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.EventDetailsFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.MapFragment;
-import hr.foi.vodickulturnihdogadanja.interactor.impl.EventDetailsInteractorImpl;
-import hr.foi.vodickulturnihdogadanja.interactor.impl.FavoriteInteractorImpl;
-import hr.foi.vodickulturnihdogadanja.model.CommentModel;
-import hr.foi.vodickulturnihdogadanja.model.EventModel;
-import hr.foi.vodickulturnihdogadanja.model.TokenModel;
-import hr.foi.vodickulturnihdogadanja.presenter.CommentPresenter;
-import hr.foi.vodickulturnihdogadanja.presenter.EventDetailsPresenter;
-import hr.foi.vodickulturnihdogadanja.presenter.impl.EventDetailsPresenterImpl;
-import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
-import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
-import hr.foi.vodickulturnihdogadanja.view.EventDetailsView;
-import hr.foi.voidckulturnihdogadanja.FacebookSharingManager;
 
 
 public class EventDetailsActivity extends AppCompatActivity {
@@ -80,10 +44,11 @@ public class EventDetailsActivity extends AppCompatActivity {
         fragmentMap = new MapFragment();
         fragmentComments.setArguments(bundle);
         fragmentDetails.setArguments(bundle);
-        allTabs.addTab(allTabs.newTab().setText("DETALJI"),true);
-        allTabs.addTab(allTabs.newTab().setText("KOMENTARI"));
-        allTabs.addTab(allTabs.newTab().setText("MAPA"));
+        allTabs.addTab(allTabs.newTab().setText(R.string.details),true);
+        allTabs.addTab(allTabs.newTab().setText(R.string.comments));
+        allTabs.addTab(allTabs.newTab().setText(R.string.map));
     }
+
     private void bindWidgetsWithAnEvent()
     {
         allTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

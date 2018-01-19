@@ -10,11 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/switch_notification"
         android:layout_below="@+id/switch_notification"
-        android:clickable="true"
-        android:onClick="onClick"
         android:layout_marginTop="34dp"
         android:textColor="#000000"
-        android:text="Odabir jezika" />
+        android:text="@string/text_language" />
 
     <Switch
         android:id="@+id/switch_notification"
@@ -26,7 +24,7 @@
         android:layout_marginTop="33dp"
         android:layout_marginEnd="24dp"
         android:textColor="#000000"
-        android:text="Dolazne obavijesti"
+        android:text="@string/text_notification"
         />
 
     <RadioGroup
@@ -44,7 +42,7 @@
             android:layout_alignStart="@+id/language"
             android:layout_below="@+id/language"
             android:layout_marginTop="15dp"
-            android:text="Hrvatski" />
+            android:text="@string/croatian" />
 
         <RadioButton
             android:id="@+id/language_eng"
@@ -53,7 +51,7 @@
             android:layout_alignStart="@+id/language_hr"
             android:layout_below="@+id/language_hr"
             android:layout_marginTop="17dp"
-            android:text="Engleski" />
+            android:text="@string/english" />
 
     </RadioGroup>
 
@@ -64,6 +62,6 @@
         android:layout_alignEnd="@+id/switch_notification"
         android:layout_below="@+id/language_group"
         android:layout_marginTop="46dp"
-        android:text="Spremi" />
+        android:text="@string/save" />
 
 </RelativeLayout>

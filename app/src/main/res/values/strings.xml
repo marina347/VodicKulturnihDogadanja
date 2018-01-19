@@ -5,14 +5,94 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- navigation bar strings -->
-    <string name="menu_event">Događaji</string>
-    <string name="menu_profile">Profil</string>
-    <string name="menu_favorite">Favoriti</string>
-    <string name="menu_settings">Postavke</string>
+    <!-- activity_navigation_drawer.xml -->
+    <string name="menu_event">Events</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_favorite">Favorites</string>
+    <string name="menu_settings">Settings</string>
+    <string name="logout">Log out</string>
+
+    <!-- main_menu -->
+    <string name="search">Search</string>
 
     <string name="action_settings">Settings</string>
     <string name="facebook_app_id">1225517157549740</string>
 
+    <!-- activity_comment.xml -->
+    <string name="comment">Add comment</string>
+
+    <!-- activity_home.xml -->
+    <string name="without_login">Continue without sign in</string>
+    <string name="login">Sign in</string>
+
+    <!--activity_login.xml -->
+    <string name="text_login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="text_registration">Sign up</string>
+
+    <!-- activity_registration.xml -->
+    <string name="email">E-mail</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="registration">Sign up</string>
+
+    <!-- comment_list_item.xml -->
+    <string name="user">User</string>
+    <string name="date">dd.mm.yyyy hh:mm</string>
+    <string name="text">This is text</string>
+
+    <!-- event_list.xml -->
+    <string name="event_name">Event name</string>
+    <string name="event_description">Event description...</string>
+    <string name="begin">Begin</string>
+    <string name="end">End</string>
+
+    <!-- fragment_details.xml -->
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="price">Price</string>
+    <string name="link">Link</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+
+    <!-- fragment_settings.xml -->
+    <string name="text_language">Language</string>
+    <string name="text_notification">Push up notification</string>
+    <string name="croatian">Croatian</string>
+    <string name="english">English</string>
+    <string name="save">Save</string>
+
+    <!-- nav_header_navigation.xml -->
+    <string name="name_and_surname">Name and surname</string>
+
+    <!-- EventDetailsActivity.java -->
+    <string name="details">Details</string>
+    <string name="comments">Comments</string>
+    <string name="map">Map</string>
+
+    <!-- EventFragment.java -->
+    <string name="active_event">Active event</string>
+    <string name="all_event">All event</string>
+
+    <!-- CommentActivity.java -->
+    <string name="successful_commenting">Successful commenting!</string>
+    <string name="no_text">You didn't type text!</string>
+
+    <!-- RegistrationActivity.java -->
+    <string name="succesful_registration">Succesful registration!</string>
+
+    <!-- ActiveEventFragment.java -->
+    <string name="loading_events">Loading events...</string>
+    
+    <!-- EventDetailsFragment -->
+    <string name="event_added_in_favorite">Event added in favorite!</string>
+    <string name="successfully_rated">Successfully rated!</string>
+    <string name="unsuccessfully_rated">Unsuccessfully rated!</string>
+    <string name="successfully_shared">Successfully shared!</string>
+    <string name="unsuccessfully_shared">Unsuccessfully shared!</string>
+
+    <!-- UserProfileFragment.java -->
+    <string name="succesfully_editing_data">Succesfully editing data</string>
 
 </resources>
