@@ -1,9 +1,9 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -19,6 +19,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.impl.EventInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
 import hr.foi.vodickulturnihdogadanja.presenter.EventPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.EventPresenterImpl;
+import hr.foi.vodickulturnihdogadanja.utils.LocalHelper;
 import hr.foi.vodickulturnihdogadanja.view.EventView;
 
 public class MainActivity extends AppCompatActivity implements EventView {
@@ -89,5 +90,10 @@ public class MainActivity extends AppCompatActivity implements EventView {
     @Override
     public void NoEvents(final String error) {
         showToastOnUI(error);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocalHelper.onAttach(base));
     }
 }

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,6 +16,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.presenter.LoginPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.LoginPresenterImpl;
+import hr.foi.vodickulturnihdogadanja.utils.LocalHelper;
 import hr.foi.vodickulturnihdogadanja.view.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements LoginView{
@@ -77,5 +77,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     @Override
     public void onLoginFailed(final String error) {
         showToastOnUI(error);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocalHelper.onAttach(base));
     }
 }

@@ -18,6 +18,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
 import hr.foi.vodickulturnihdogadanja.presenter.RegistrationPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.RegistrationPresenterImpl;
+import hr.foi.vodickulturnihdogadanja.utils.LocalHelper;
 import hr.foi.vodickulturnihdogadanja.view.RegistrationView;
 
 public class RegistrationActivity extends AppCompatActivity implements RegistrationView{
@@ -88,5 +89,10 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
     @Override
     public void onFailed(String text) {
         Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocalHelper.onAttach(base));
     }
 }

@@ -75,8 +75,8 @@
     <string name="map">Map</string>
 
     <!-- EventFragment.java -->
-    <string name="active_event">Active event</string>
-    <string name="all_event">All event</string>
+    <string name="active_event">Active events</string>
+    <string name="all_event">All events</string>
 
     <!-- CommentActivity.java -->
     <string name="successful_commenting">Successful commenting!</string>

@@ -1,5 +1,6 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import hr.foi.vodickulturnihdogadanja.fragments.FavoriteFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.SettingsFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.UserProfileFragment;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
+import hr.foi.vodickulturnihdogadanja.utils.LocalHelper;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 
 
@@ -106,6 +108,11 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         int id = item.getItemId();
         displaySelectedScreen(id);
         return true;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocalHelper.onAttach(base));
     }
 
 }

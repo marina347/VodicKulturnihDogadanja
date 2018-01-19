@@ -1,5 +1,6 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -12,6 +13,7 @@ import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.fragments.CommentsFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.EventDetailsFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.MapFragment;
+import hr.foi.vodickulturnihdogadanja.utils.LocalHelper;
 
 
 public class EventDetailsActivity extends AppCompatActivity {
@@ -95,5 +97,10 @@ public class EventDetailsActivity extends AppCompatActivity {
         if(lastFragment!=null&&lastFragment instanceof EventDetailsFragment){
             lastFragment.onActivityResult(requestCode,resultCode,data);
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocalHelper.onAttach(base));
     }
 }
