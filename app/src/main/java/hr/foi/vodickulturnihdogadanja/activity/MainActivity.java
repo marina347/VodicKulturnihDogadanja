@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity implements EventView {
     EventPresenter ep;
     private RecyclerView rv;
     private RecyclerView.LayoutManager lm;
-    private List<EventModel> listOfEvents;
     private RecyclerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle(R.string.no_title);
         setContentView(R.layout.activity_main);
         EventPresenter p=new EventPresenterImpl(new EventInteractorImpl(),this);
         this.ep=p;
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements EventView {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-
         MenuItem search = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
         search(searchView);
