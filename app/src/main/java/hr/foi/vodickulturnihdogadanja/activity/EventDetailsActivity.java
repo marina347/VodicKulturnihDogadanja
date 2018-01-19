@@ -39,6 +39,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventId=intent.getIntExtra("id", -1);
         Bundle bundle = new Bundle();
         bundle.putInt("eventId", eventId);
+        bundle.putString("location", intent.getStringExtra("location"));
         fragmentDetails = new EventDetailsFragment();
         fragmentComments = new CommentsFragment();
         fragmentMap = new MapFragment();
@@ -47,6 +48,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         allTabs.addTab(allTabs.newTab().setText(R.string.details),true);
         allTabs.addTab(allTabs.newTab().setText(R.string.comments));
         allTabs.addTab(allTabs.newTab().setText(R.string.map));
+        fragmentMap.setArguments(bundle);
     }
 
     private void bindWidgetsWithAnEvent()
