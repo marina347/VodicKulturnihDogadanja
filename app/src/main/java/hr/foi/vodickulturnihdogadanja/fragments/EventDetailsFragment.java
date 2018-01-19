@@ -65,11 +65,11 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     @BindView(R.id.event_details_img)
     ImageView imgEvent;
     @BindView(R.id.btn_share)
-    Button btnShare;
+    ImageButton btnShare;
     @BindView(R.id.favoriteCheckBox)
     CheckBox favoriteCheckBox;
     @BindView(R.id.btn_twitter)
-    Button btnTwitter;
+    ImageButton btnTwitter;
     @BindView(R.id.img_like)
     ImageButton imgLike;
     @BindView(R.id.img_dislike)

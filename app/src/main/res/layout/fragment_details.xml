@@ -98,22 +98,24 @@
         style="?android:attr/starStyle"/>
 
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignEnd="@+id/event_details_img"
+        android:layout_alignParentBottom="true"
         android:layout_marginEnd="9dp"
-        android:text="@string/facebook" />
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/facebook_icon" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_twitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_share"
-        android:layout_alignStart="@+id/btn_share"
-        android:text="@string/twitter" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/btn_share"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/twitter_icon" />
 
     <ImageButton
         android:id="@+id/img_dislike"
