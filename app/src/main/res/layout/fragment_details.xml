@@ -121,7 +121,8 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/event_details_img"
-        app:srcCompat="@drawable/dislike_t" />
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/dislike_icon" />
 
     <ImageButton
         android:id="@+id/img_like"
@@ -129,13 +130,6 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/img_dislike"
-        app:srcCompat="@drawable/like_t" />
-
-    <include
-        layout="@layout/content_navigation"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/event_details_img" />
-
-
-
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/like_icon" />
 </RelativeLayout>
