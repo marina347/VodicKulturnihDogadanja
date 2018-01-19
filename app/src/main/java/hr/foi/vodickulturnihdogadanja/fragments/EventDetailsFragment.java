@@ -1,6 +1,7 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -234,5 +235,11 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         transaction.commit();
         btnTwitter.setVisibility(View.VISIBLE);
         btnShare.setVisibility(View.VISIBLE);
+    }
+    
+    @OnClick(R.id.btn_link)
+    public void openLink(){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getLink()));
+        startActivity(intent);
     }
 }
