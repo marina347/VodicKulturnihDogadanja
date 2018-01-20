@@ -16,8 +16,7 @@
         android:layout_marginTop="43dp"
         android:padding="0dp"
         android:scaleType="fitXY"
-        android:layout_centerHorizontal="true"
-        android:clickable="true"/>
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/txt_name"
@@ -26,7 +25,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
         android:textColor="@color/text_black"
-        android:textSize="@dimen/view_text"
         android:textStyle="bold"
         android:text="@string/name" />
 
@@ -49,7 +47,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="270dp"
         android:textColor="@color/text_black"
-        android:textSize="@dimen/view_text"
         android:textStyle="bold"
         android:text="@string/surname" />
 
@@ -66,18 +63,17 @@
         android:textAlignment="center" />
 
     <TextView
-        android:id="@+id/txt_email"
+        android:id="@+id/txt_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="340dp"
         android:textColor="@color/text_black"
-        android:textSize="@dimen/view_text"
         android:textStyle="bold"
-        android:text="@string/email" />
+        android:text="@string/username" />
 
     <EditText
-        android:id="@+id/edit_email"
+        android:id="@+id/edit_username"
         android:layout_width="@dimen/layout_width_edit_text"
         android:layout_height="@dimen/layout_height_edit_text"
         android:layout_centerHorizontal="true"
@@ -89,18 +85,17 @@
         android:gravity="center"/>
 
     <TextView
-        android:id="@+id/txt_username"
+        android:id="@+id/txt_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="410dp"
         android:textColor="@color/text_black"
-        android:textSize="@dimen/view_text"
         android:textStyle="bold"
-        android:text="@string/username" />
+        android:text="@string/password" />
 
     <EditText
-        android:id="@+id/edit_username"
+        android:id="@+id/edit_password"
         android:layout_width="@dimen/layout_width_edit_text"
         android:layout_height="@dimen/layout_height_edit_text"
         android:layout_centerHorizontal="true"
@@ -109,37 +104,17 @@
         android:textColor="@color/text_black"
         android:background="@drawable/edit_text_style"
         android:textSize="@dimen/edit_text"
-        android:gravity="center"/>
+        android:gravity="center" />
 
     <Button
-        android:id="@+id/btn_edit_profile_data"
+        android:id="@+id/btn_save_profile_data"
         android:layout_width="@dimen/layout_width_edit_text"
         android:layout_height="@dimen/layout_height_edit_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="500dp"
         android:background="@drawable/edit_button_style"
         android:textColor="@color/button_text_white"
         android:textAllCaps="false"
-        android:textSize="@dimen/edit_text"
-        android:text="@string/edit"/>
-
-    <!--<TextView
-        android:id="@+id/txt_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/password"
-        android:layout_alignBaseline="@+id/edit_password"
-        android:layout_alignBottom="@+id/edit_password"
-        android:layout_alignStart="@+id/txt_email" />
-
-    <EditText
-        android:id="@+id/edit_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="5"
-        android:inputType="textPassword"
-        android:focusable="false"
-        android:layout_below="@+id/edit_email"
-        android:layout_toEndOf="@+id/txt_surname" />-->
+        android:text="@string/save"/>
 
 </RelativeLayout>

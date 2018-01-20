@@ -62,6 +62,9 @@
     <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
 
+    <!-- fragment_user_profile_edit -->
+    <string name="edit">Uredi profil</string>
+
     <!-- fragment_settings.xml -->
     <string name="text_language">Odabir jezika</string>
     <string name="text_notification">Dolazne obavijesti</string>

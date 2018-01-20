@@ -60,6 +60,9 @@
     <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
 
+    <!-- fragment_user_profile_edit -->
+    <string name="edit">Edit profile</string>
+
     <!-- fragment_settings.xml -->
     <string name="text_language">Language</string>
     <string name="text_notification">Push up notification</string>
