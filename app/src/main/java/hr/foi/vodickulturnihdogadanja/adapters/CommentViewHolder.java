@@ -36,6 +36,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder {
         Date d = new Date(comment.getTime());
         commentDatetime.setText(df.format(d));
         commentText.setText(comment.getText());
+        commentUser.setText(comment.getUsername());
         //commentUser.setText(comment.getUserId());
     }
 }

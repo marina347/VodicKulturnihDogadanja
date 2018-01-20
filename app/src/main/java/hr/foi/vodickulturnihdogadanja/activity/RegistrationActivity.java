@@ -83,6 +83,7 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
             public void run() {
                 Intent intent = new Intent(ctx, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         },2000);
     }

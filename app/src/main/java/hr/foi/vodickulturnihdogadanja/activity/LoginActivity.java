@@ -42,6 +42,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         this.presenter = presenter;
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
+
     private void NavigateToRegistration(){
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
@@ -73,6 +78,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         //showToastOnUI("Uspješna prijava");
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

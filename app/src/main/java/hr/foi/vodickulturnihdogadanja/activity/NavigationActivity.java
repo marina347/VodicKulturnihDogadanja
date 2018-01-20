@@ -51,12 +51,14 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
 
     @Override
     public void onBackPressed() {
+        /*
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
+        */
     }
 
     @Override
@@ -87,7 +89,8 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
                 inter.logOut(this, LoggedUserData.getInstance().getTokenModel().getTokenId());
                 Intent intent = new Intent(this , LoginActivity.class);
                 startActivity(intent);
-                break;
+                finish();
+                return;
         }
 
         if (fragment != null) {

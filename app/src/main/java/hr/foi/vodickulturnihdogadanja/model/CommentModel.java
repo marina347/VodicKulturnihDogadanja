@@ -16,6 +16,8 @@ public class CommentModel {
     @Expose
     private int userId;
     @Expose
+    private String username;
+    @Expose
     private int eventId;
 
     public int getCommentId() {
@@ -56,5 +58,13 @@ public class CommentModel {
 
     public void setEventId(int eventId) {
         this.eventId = eventId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

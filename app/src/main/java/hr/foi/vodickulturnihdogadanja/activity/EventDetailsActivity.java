@@ -94,7 +94,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(lastFragment!=null&&lastFragment instanceof EventDetailsFragment){
+        if(lastFragment!=null&&lastFragment instanceof EventDetailsFragment && data!=null){
             lastFragment.onActivityResult(requestCode,resultCode,data);
         }
     }
