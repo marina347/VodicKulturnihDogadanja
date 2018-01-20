@@ -50,8 +50,8 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
     @BindView(R.id.edit_email)
     EditText outputEmail;
 
-    @BindView(R.id.edit_password)
-    EditText outputPassword;
+    /*@BindView(R.id.edit_password)
+    EditText outputPassword;*/
 
     UserProfilePresenter userProfilePresenter;
     Bitmap bitmap;
@@ -98,7 +98,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         userModel.setSurname(outputSurname.getText().toString());
         userModel.setUsername(outputUsername.getText().toString());
         userModel.setEmail(outputEmail.getText().toString());
-        userModel.setPassword(outputPassword.getText().toString());
+        //userModel.setPassword(outputPassword.getText().toString());
         userModel.setPicture(Base64Coding.encodeToBase64(bitmap, Bitmap.CompressFormat.JPEG, 100));
 
         userProfilePresenter.tryEditData(userModel);
@@ -109,7 +109,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         outputSurname.setText(userModel.getSurname());
         outputUsername.setText(userModel.getUsername());
         outputEmail.setText(userModel.getEmail());
-        outputPassword.setText(userModel.getPassword());
+        //outputPassword.setText(userModel.getPassword());
         bitmap=Base64Coding.decodeBase64(userModel.getPicture());
         outputImage.setImageBitmap(bitmap);
     }
@@ -162,6 +162,6 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         outputSurname.setOnTouchListener(handleTouch);
         outputUsername.setOnTouchListener(handleTouch);
         outputEmail.setOnTouchListener(handleTouch);
-        outputPassword.setOnTouchListener(handleTouch);
+        //outputPassword.setOnTouchListener(handleTouch);
     }
 }
