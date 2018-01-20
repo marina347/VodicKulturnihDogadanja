@@ -11,123 +11,124 @@
         android:id="@+id/reg_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="79dp"
-        android:layout_marginTop="25dp"
-        android:text="@string/text_registration"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:textColor="@android:color/background_dark"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/reg_username_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_username_tw"
-        android:layout_below="@+id/reg_username_tw"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/cardview_dark_background"
-        android:textColorLink="@color/colorPrimary" />
-
-
-    <TextView
-        android:id="@+id/reg_username_tw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_tw"
-        android:layout_below="@+id/reg_tw"
-        android:layout_marginTop="22dp"
-        android:text="@string/username"
-        android:textColor="@android:color/background_dark" />
-
-    <TextView
-        android:id="@+id/reg_password_tw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_username_et"
-        android:layout_below="@+id/reg_username_et"
-        android:layout_marginTop="17dp"
-        android:text="@string/password"
-        android:textColor="@android:color/background_dark" />
-
-    <EditText
-        android:id="@+id/reg_password_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_password_tw"
-        android:layout_below="@+id/reg_password_tw"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:textColorLink="@color/colorPrimary" />
-
-    <TextView
-        android:id="@+id/reg_email_tw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_password_et"
-        android:layout_below="@+id/reg_password_et"
-        android:layout_marginTop="20dp"
-        android:text="@string/email"
-        android:textColor="@android:color/background_dark" />
-
-    <EditText
-        android:id="@+id/reg_email_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_email_tw"
-        android:layout_below="@+id/reg_email_tw"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColorLink="@color/colorPrimary" />
+        android:textSize="30sp"
+        android:text="@string/registration"/>
 
     <TextView
         android:id="@+id/reg_name_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_email_et"
-        android:layout_below="@+id/reg_email_et"
-        android:layout_marginTop="12dp"
-        android:text="@string/name"
-        android:textColor="@android:color/background_dark" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:textColor="@color/text_black"
+        android:textStyle="bold"
+        android:text="@string/name"/>
 
     <EditText
         android:id="@+id/reg_name_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_name_tw"
-        android:layout_below="@+id/reg_name_tw"
-        android:ems="10"
+        android:layout_width="@dimen/layout_width_edit_text"
+        android:layout_height="@dimen/layout_height_edit_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp"
         android:inputType="textPersonName"
-        android:textColorLink="@color/colorPrimary" />
+        android:textColor="@color/text_black"
+        android:textAlignment="center"
+        android:background="@drawable/edit_text2_style"/>
 
     <TextView
         android:id="@+id/reg_surname_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_name_et"
-        android:layout_below="@+id/reg_name_et"
-        android:layout_marginTop="13dp"
-        android:text="@string/surname"
-        android:textColor="@android:color/background_dark" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="190dp"
+        android:textColor="@color/text_black"
+        android:textStyle="bold"
+        android:text="@string/surname"/>
 
     <EditText
         android:id="@+id/reg_surname_et"
+        android:layout_width="@dimen/layout_width_edit_text"
+        android:layout_height="@dimen/layout_height_edit_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="215dp"
+        android:inputType="textPersonName"
+        android:textColor="@color/text_black"
+        android:textAlignment="center"
+        android:background="@drawable/edit_text2_style"/>
+
+    <TextView
+        android:id="@+id/reg_email_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reg_surname_tw"
-        android:layout_below="@+id/reg_surname_tw"
-        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="260dp"
+        android:textColor="@color/text_black"
+        android:textStyle="bold"
+        android:text="@string/email" />
+
+    <EditText
+        android:id="@+id/reg_email_et"
+        android:layout_width="@dimen/layout_width_edit_text"
+        android:layout_height="@dimen/layout_height_edit_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="285dp"
         android:inputType="textPersonName"
-        android:textColorLink="@color/colorPrimary" />
+        android:textColor="@color/text_black"
+        android:textAlignment="center"
+        android:background="@drawable/edit_text2_style"/>
+
+    <TextView
+        android:id="@+id/reg_username_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="330dp"
+        android:textColor="@color/text_black"
+        android:textStyle="bold"
+        android:text="@string/username" />
+
+    <EditText
+        android:id="@+id/reg_username_et"
+        android:layout_width="@dimen/layout_width_edit_text"
+        android:layout_height="@dimen/layout_height_edit_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="355dp"
+        android:inputType="textPersonName"
+        android:textColor="@color/text_black"
+        android:textAlignment="center"
+        android:background="@drawable/edit_text2_style"/>
+
+    <TextView
+        android:id="@+id/reg_password_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:textColor="@color/text_black"
+        android:textStyle="bold"
+        android:text="@string/password"/>
+
+    <EditText
+        android:id="@+id/reg_password_et"
+        android:layout_width="@dimen/layout_width_edit_text"
+        android:layout_height="@dimen/layout_height_edit_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="425dp"
+        android:inputType="textPassword"
+        android:textColor="@color/text_black"
+        android:textAlignment="center"
+        android:background="@drawable/edit_text2_style"/>
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="150dp"
-        android:layout_height="45dp"
-        android:layout_below="@+id/reg_surname_et"
+        android:layout_width="@dimen/layout_width_edit_text"
+        android:layout_height="@dimen/layout_height_edit_text"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimary"
-        android:text="@string/registration"
-        android:textColor="@color/cardview_light_background" />
+        android:layout_marginTop="495dp"
+        android:background="@drawable/edit_button2_style"
+        android:text="@string/signup"
+        android:textColor="@color/button_text_white" />
 </RelativeLayout>

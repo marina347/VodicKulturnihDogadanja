@@ -14,7 +14,7 @@
 
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="147dp"
+        android:layout_marginBottom="97dp"
         android:text="@string/without_login"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/cardview_light_background"
@@ -27,17 +27,17 @@
         android:layout_above="@+id/guest_tv"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/login"
-        android:textColor="@color/cardview_light_background" />
+        android:background="@color/button_blue"
+        android:textColor="@color/button_text_white"
+        android:text="@string/login" />
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imageView3"
         android:layout_width="240dp"
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="107dp"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo" /> -->
 
 </RelativeLayout>

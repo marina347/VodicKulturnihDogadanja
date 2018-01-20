@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="@color/com_facebook_button_login_silver_background_color_pressed"
+    android:background="@drawable/vz1"
     tools:context="hr.foi.vodickulturnihdogadanja.activity.LoginActivity">
+    <!--android:background="@color/com_facebook_button_login_silver_background_color_pressed"-->
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imageView"
         android:layout_width="250dp"
         android:layout_height="250dp"
@@ -16,10 +16,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70sp"
         android:alpha="0.42"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo" />-->
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/login_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,30 +28,30 @@
         android:layout_marginTop="28dp"
         android:text="@string/text_login"
         android:textColor="@color/cardview_dark_background"
-        android:textSize="30dp" />
+        android:textSize="30dp" />-->
 
     <TextView
         android:id="@+id/log_username_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-        android:text="@string/username"
-        android:textColor="@color/cardview_dark_background"
-        android:textStyle="bold" />
+        android:layout_marginTop="200dp"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/view_text"
+        android:textStyle="bold"
+        android:text="@string/username"/>
 
     <EditText
         android:id="@+id/log_username_et"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@+id/log_username_tw"
-        android:text="marina"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:background="@drawable/edit_text2_style"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:textColorLink="@color/colorPrimary" />
+        android:textAlignment="center"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/log_password_tw"
@@ -60,43 +60,51 @@
         android:layout_below="@+id/log_username_et"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34sp"
-        android:text="@string/password"
-        android:textColor="@color/cardview_dark_background"
-        android:textStyle="bold" />
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/view_text"
+        android:textStyle="bold"
+        android:text="@string/password"/>
 
     <EditText
         android:id="@+id/log_password_et"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/log_username_et"
         android:layout_below="@+id/log_password_tw"
-        android:layout_marginTop="22dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/edit_text2_style"
         android:ems="10"
-        android:text="marina2"
-
-        android:inputType="textPassword"
-        android:textColorLink="@color/colorPrimary" />
+        android:textAlignment="center"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="150sp"
-        android:layout_height="55sp"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
         android:layout_below="@+id/log_password_et"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="30dp"
+        android:background="@color/button_blue"
         android:text="@string/login"
-        android:textColor="@color/cardview_light_background" />
+        android:textColor="@color/button_text_white" />
+
+    <TextView
+        android:id="@+id/not_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnReg"
+        android:layout_centerHorizontal="true"
+        android:text="@string/sign_up_now" />
 
     <Button
         android:id="@+id/btnReg"
-        android:layout_width="130sp"
-        android:layout_height="45sp"
+        android:layout_width="@dimen/button_size_width"
+        android:layout_height="@dimen/button_size_height"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/registration"
-        android:textColor="@color/cardview_light_background" />
+        android:layout_marginBottom="17dp"
+        android:background="@color/button_blue"
+        android:text="@string/signup"
+        android:textColor="@color/button_text_white" />
 
 </RelativeLayout>
