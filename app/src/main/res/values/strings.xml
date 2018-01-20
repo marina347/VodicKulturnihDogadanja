@@ -23,20 +23,21 @@
     <string name="comment">Add comment</string>
 
     <!-- activity_home.xml -->
-    <string name="without_login">Continue without sign in</string>
+    <string name="without_login">Continue without sign in.</string>
     <string name="login">Sign in</string>
 
     <!--activity_login.xml -->
     <string name="text_login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="text_registration">Sign up</string>
+    <string name="sign_up_now">Not a member? Sign up now.</string>
 
     <!-- activity_registration.xml -->
+    <string name="registration">Registration</string>
     <string name="email">E-mail</string>
     <string name="name">Name</string>
     <string name="surname">Surname</string>
-    <string name="registration">Sign up</string>
+    <string name="signup">Sign up</string>
 
     <!-- comment_list_item.xml -->
     <string name="user">User</string>

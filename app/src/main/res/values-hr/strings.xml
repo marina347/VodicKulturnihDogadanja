@@ -32,13 +32,14 @@
     <string name="text_login">Prijava</string>
     <string name="username">Korisničko ime</string>
     <string name="password">Lozinka</string>
-    <string name="text_registration">Registracija</string>
+    <string name="sign_up_now">Nemate račun? Registrirajte se.</string>
 
     <!-- activity_registration.xml -->
+    <string name="registration">Registracija</string>
     <string name="email">Email</string>
     <string name="name">Ime</string>
     <string name="surname">Prezime</string>
-    <string name="registration">Registriraj se</string>
+    <string name="signup">Registriraj se</string>
 
     <!-- comment_list_item.xml -->
     <string name="user">Korisnik</string>
