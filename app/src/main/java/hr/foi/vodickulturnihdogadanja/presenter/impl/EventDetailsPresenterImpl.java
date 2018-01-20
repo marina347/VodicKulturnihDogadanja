@@ -47,6 +47,16 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     @Override
+    public void onSuccessDeletedEvaluation() {
+        edv.onSuccessDeletedEvaluation();
+    }
+
+    @Override
+    public void onFailedDeletedEvaluation() {
+        edv.onFailedAddedEvaluation();
+    }
+
+    @Override
     public void onAddSuccess() {
         edv.onSuccessAddedFavorite();
     }
@@ -64,5 +74,10 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     @Override
     public void tryAddEvaluation(int mark, int userId, int eventId) {
         edi.addEvaluation(mark,userId,eventId);
+    }
+
+    @Override
+    public void tryDeleteEvaluation(int userId, int eventId) {
+        edi.deleteEvaluation(userId, eventId);
     }
 }

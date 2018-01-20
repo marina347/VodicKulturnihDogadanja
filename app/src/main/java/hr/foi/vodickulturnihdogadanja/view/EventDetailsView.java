@@ -12,4 +12,6 @@ public interface EventDetailsView {
     void onSuccessAddedFavorite();
     void onSuccessAddedEvaluation();
     void onFailedAddedEvaluation();
+    void onSuccessDeletedEvaluation();
+    void onFailedDeletedEvaluation();
 }

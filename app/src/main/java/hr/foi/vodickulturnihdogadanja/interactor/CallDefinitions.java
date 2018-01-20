@@ -31,6 +31,9 @@ public interface CallDefinitions {
     @POST("userEdit.php")
     Call<UserModel> editUserData(@Body UserModel userData);
 
+    @GET("userEdit.php")
+    Call<UserModel> getDataForDrawer(@Query("userId") int userId);
+
     @GET("eventList.php")
     Call<List<EventModel>> getEvents(@Query("begin") Long date);
 
@@ -42,6 +45,9 @@ public interface CallDefinitions {
 
     @GET("event.php")
     Call<EventModel> getEventById(@Query("eventId") int eventId);
+
+    @GET("eventLoggedUser.php")
+    Call<EventModel> getEventById(@Query("eventId") int eventId, @Query("userId") int userId);
 
     @POST("favoriteDelete.php")
     Call<String> deleteFavorite(@Body RequestBody data);
@@ -60,6 +66,9 @@ public interface CallDefinitions {
 
     @POST("evaluation.php")
     Call<String> addEvaluation(@Body RequestBody data);
+
+    @POST("evaluationDelete.php")
+    Call<String> deleteEvaluation(@Body RequestBody data);
 
     @POST("refreshToken.php")
     Call<String> updateDeviceID (@Body RequestBody data);

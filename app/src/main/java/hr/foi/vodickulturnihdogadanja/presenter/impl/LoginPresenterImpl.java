@@ -1,5 +1,7 @@
 package hr.foi.vodickulturnihdogadanja.presenter.impl;
 
+import android.media.session.MediaSession;
+
 import hr.foi.vodickulturnihdogadanja.interactor.UserInteractor;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorLoginListener;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
@@ -14,7 +16,7 @@ import hr.foi.vodickulturnihdogadanja.view.LoginView;
 public class LoginPresenterImpl implements LoginPresenter,UserInteractorLoginListener {
     UserInteractor ui;
     LoginView lv;
-
+    TokenModel tokenModel;
     public LoginPresenterImpl(UserInteractor ui, LoginView lv) {
         this.ui = ui;
         ui.setLoginListener(this);
@@ -39,7 +41,13 @@ public class LoginPresenterImpl implements LoginPresenter,UserInteractorLoginLis
     @Override
     public void onLoginSuccedded(TokenModel token) {
         LoggedUserData.getInstance().setTokenModel(token);
+        tokenModel = token;
+        ui.getDataForDrawer(token.getUserId());
         //LoggedUserData.getInstance().getTokenModel().getUserId();
-        lv.onSuccess(token);
+    }
+
+    @Override
+    public void onUserDataArrived() {
+        lv.onSuccess(tokenModel);
     }
 }

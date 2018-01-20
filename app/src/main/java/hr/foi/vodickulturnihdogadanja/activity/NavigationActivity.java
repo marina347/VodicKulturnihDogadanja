@@ -13,25 +13,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.fragments.EventFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.FavoriteFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.SettingsFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.UserProfileFragment;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
+import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
 import hr.foi.vodickulturnihdogadanja.utils.LocalHelper;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
+import hr.foi.vodickulturnihdogadanja.utils.Utils;
 
 
 public class NavigationActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
+    TextView txtEmail;
+    TextView txtName;
+    ImageView imgUser;
+
+    @BindView(R.id.nav_view)
+    NavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+        ButterKnife.bind(this);
 
-        //ButterKnife.bind(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -45,8 +58,15 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         displaySelectedScreen(R.id.nav_event);
+
+        View headerLayout = navView.getHeaderView(0);
+        txtEmail = headerLayout.findViewById(R.id.email_d);
+        txtName = headerLayout.findViewById(R.id.name_surname_d);
+        imgUser= headerLayout.findViewById(R.id.img_user);
+        txtEmail.setText(LoggedUserData.getInstance().getEmail()+"");
+        txtName.setText(LoggedUserData.getInstance().getName()+" "+LoggedUserData.getInstance().getSurname());
+        if(LoggedUserData.getInstance().getImage()!=null) imgUser.setImageBitmap(Base64Coding.decodeBase64(LoggedUserData.getInstance().getImage()));
     }
 
     @Override

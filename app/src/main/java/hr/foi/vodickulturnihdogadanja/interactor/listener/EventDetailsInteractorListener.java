@@ -11,4 +11,6 @@ public interface EventDetailsInteractorListener {
     void ArrivedEventById(EventModel event);
     void successAddedEvaluation();
     void failedAddedEvaluation();
+    void onSuccessDeletedEvaluation();
+    void onFailedDeletedEvaluation();
 }

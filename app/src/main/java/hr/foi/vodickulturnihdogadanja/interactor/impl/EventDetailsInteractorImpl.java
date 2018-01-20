@@ -14,6 +14,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.RetrofitREST;
 import hr.foi.vodickulturnihdogadanja.interactor.listener.EventDetailsInteractorListener;
 import hr.foi.vodickulturnihdogadanja.model.CommentModel;
 import hr.foi.vodickulturnihdogadanja.model.EventModel;
+import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +35,12 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
     public void getEventById(int eventId) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
         Date currentDate=new Date();
-        Call<EventModel> call = calls.getEventById(eventId);
+        Call<EventModel> call;
+        if( LoggedUserData.getInstance().getTokenModel()!=null){
+            int userId=LoggedUserData.getInstance().getTokenModel().getUserId();
+            call=calls.getEventById(eventId,userId);
+        }
+        else call=calls.getEventById(eventId);
         call.enqueue(new Callback<EventModel>() {
             @Override
             public void onResponse(Call<EventModel> call, Response<EventModel> response) {
@@ -73,6 +79,39 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
                     eventDetailsInteractorListener.successAddedEvaluation();
                 } else {
                     eventDetailsInteractorListener.failedAddedEvaluation();
+                    Log.d("Api", "fail addEvaluation");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void deleteEvaluation(int userId, int eventId) {
+        JSONObject jObj = new JSONObject();
+        try {
+            jObj.put("userId", userId);
+            jObj.put("eventId", eventId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+        String data = jObj.toString();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=UTF-8"), data);
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        Call<String> call = calls.deleteEvaluation(body);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body();
+                    eventDetailsInteractorListener.onSuccessDeletedEvaluation();
+                } else {
+                    eventDetailsInteractorListener.onFailedDeletedEvaluation();
                     Log.d("Api", "fail addEvaluation");
                 }
             }

@@ -23,6 +23,48 @@ public class EventModel {
     private String location;
     @Expose
     private float price;
+    @Expose
+    private int numOfLikes;
+    @Expose
+    private int numOfDislikes;
+    @Expose
+    private int isFavorite;
+
+    public int getNumOfLikes() {
+        return numOfLikes;
+    }
+
+    public void setNumOfLikes(int numOfLikes) {
+        this.numOfLikes = numOfLikes;
+    }
+
+    public int getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(int isFavorite) {
+        this.isFavorite = isFavorite;
+    }
+
+    public int getUserEval() {
+        return userEval;
+    }
+
+    public void setUserEval(int userEval) {
+        this.userEval = userEval;
+    }
+
+    @Expose
+    private int userEval;
+
+    public int getNumOfDislikes() {
+        return numOfDislikes;
+    }
+
+    public void setNumOfDislikes(int numOfDislikes) {
+        this.numOfDislikes = numOfDislikes;
+    }
+
 
     public String getPicture() {
         return picture;

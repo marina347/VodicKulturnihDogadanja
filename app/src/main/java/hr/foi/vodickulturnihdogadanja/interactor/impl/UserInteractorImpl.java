@@ -2,9 +2,11 @@ package hr.foi.vodickulturnihdogadanja.interactor.impl;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.session.MediaSession;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.twitter.sdk.android.core.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,6 +21,7 @@ import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorRegistra
 import hr.foi.vodickulturnihdogadanja.interactor.listener.UserInteractorUserProfileListener;
 import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 import hr.foi.vodickulturnihdogadanja.model.UserModel;
+import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -220,6 +223,32 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                Log.d("Api", t.getMessage());
+            }
+        });
+    }
+    @Override
+    public void getDataForDrawer(int userId) {
+        CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
+        Call<UserModel> call = calls.getDataForDrawer(userId);
+        call.enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                if(response.isSuccessful()){
+                    UserModel user=response.body();
+                    LoggedUserData.getInstance().setName(user.getName());
+                    LoggedUserData.getInstance().setEmail(user.getEmail());
+                    LoggedUserData.getInstance().setSurname(user.getSurname());
+                    LoggedUserData.getInstance().setImage(user.getPicture());
+                    listenerLogin.onUserDataArrived();
+                }
+                else{
+                    Log.d("Api", "fail viewUserData");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
                 Log.d("Api", t.getMessage());
             }
         });

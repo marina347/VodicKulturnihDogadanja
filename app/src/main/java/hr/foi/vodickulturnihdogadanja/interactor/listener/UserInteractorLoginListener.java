@@ -9,4 +9,5 @@ import hr.foi.vodickulturnihdogadanja.model.TokenModel;
 public interface UserInteractorLoginListener {
     void onLoginSuccedded(TokenModel token);
     void onLoginFailed();//add error number later
+    void onUserDataArrived();
 }

@@ -23,6 +23,8 @@ import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterConfig;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,6 +43,7 @@ import hr.foi.vodickulturnihdogadanja.presenter.EventDetailsPresenter;
 import hr.foi.vodickulturnihdogadanja.presenter.impl.EventDetailsPresenterImpl;
 import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
+import hr.foi.vodickulturnihdogadanja.utils.Utils;
 import hr.foi.vodickulturnihdogadanja.view.EventDetailsView;
 import hr.foi.voidckulturnihdogadanja.FacebookSharingManager;
 
@@ -148,6 +151,31 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         if(LoggedUserData.getInstance().getTokenModel()==null || event.getBegin()>=System.currentTimeMillis() || event.getEnd()>=System.currentTimeMillis()){
             imgLike.setVisibility(View.INVISIBLE);
             imgDislike.setVisibility(View.INVISIBLE);
+
+        }
+        if(LoggedUserData.getInstance().getTokenModel()==null){
+            favoriteCheckBox.setVisibility(View.INVISIBLE);
+        }
+        if(event.getIsFavorite()==1){
+            favoriteCheckBox.setChecked(true);
+            favoriteCheckBox.setClickable(false);
+        }
+        setLikeDislikeButtonsAlpha();
+    }
+
+    private void setLikeDislikeButtonsAlpha(){
+
+        if(event.getUserEval()==Utils.DISLIKE){
+            imgLike.setAlpha(0.2f);
+            imgDislike.setAlpha(1f);
+        }
+        else if(event.getUserEval()==Utils.LIKE){
+            imgDislike.setAlpha(0.2f);
+            imgLike.setAlpha(1f);
+        }
+        else{
+            imgLike.setAlpha(1f);
+            imgDislike.setAlpha(1f);
         }
     }
 
@@ -188,13 +216,46 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         Toast.makeText(getActivity(),R.string.unsuccessfully_rated, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onSuccessDeletedEvaluation() {
+        //Toast.makeText(getActivity(),"Uspješno uklonjena ocjena!" Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onFailedDeletedEvaluation() {
+        //Toast.makeText(getActivity(),"Neuspješno uklonjena ocjena!" Toast.LENGTH_LONG).show();
+    }
+
     @OnClick(R.id.img_like)
     public void clickLike(){
-        dp.tryAddEvaluation(1,LoggedUserData.getInstance().getTokenModel().getUserId(),event.getEventId());
+        if(this.event.getUserEval()== Utils.LIKE){
+            dp.tryDeleteEvaluation(LoggedUserData.getInstance().getTokenModel().getUserId(),eventId);
+            this.event.setUserEval(Utils.NOR_LIKED_NOR_DISLIKED);
+        }
+        else {
+            this.event.setUserEval(Utils.LIKE);
+            dp.tryAddEvaluation(1, LoggedUserData.getInstance().getTokenModel().getUserId(), event.getEventId());
+        }
+        setLikeDislikeButtonsAlpha();
+        //dp.tryGetEventById(eventId);
+
+
     }
     @OnClick(R.id.img_dislike)
     public void clickDislike(){
-        dp.tryAddEvaluation(0,LoggedUserData.getInstance().getTokenModel().getUserId(),event.getEventId());
+
+        if(this.event.getUserEval()== Utils.DISLIKE){
+            dp.tryDeleteEvaluation(LoggedUserData.getInstance().getTokenModel().getUserId(),eventId);
+            this.event.setUserEval(Utils.NOR_LIKED_NOR_DISLIKED);
+        }
+        else{
+            this.event.setUserEval(Utils.DISLIKE);
+            dp.tryAddEvaluation(0,LoggedUserData.getInstance().getTokenModel().getUserId(),event.getEventId());
+        }
+        setLikeDislikeButtonsAlpha();
+        //dp.tryGetEventById(eventId);
+
+
     }
 
     @Override

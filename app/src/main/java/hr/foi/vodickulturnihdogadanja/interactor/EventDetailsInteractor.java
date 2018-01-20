@@ -11,4 +11,5 @@ public interface EventDetailsInteractor {
     void setEventDetailsListener(EventDetailsInteractorListener listener);
     void getEventById(int eventId);
     void addEvaluation(int mark,int userId,int eventId);
+    void deleteEvaluation(int userId,int eventId);
 }

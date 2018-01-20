@@ -18,4 +18,5 @@ public interface UserInteractor {
     void setUserProfileListener(UserInteractorUserProfileListener listener);
     void editUserData(UserModel userData);
     void updateDeviceId(String deviceId, int userId);
+    void getDataForDrawer(int userId);
 }
