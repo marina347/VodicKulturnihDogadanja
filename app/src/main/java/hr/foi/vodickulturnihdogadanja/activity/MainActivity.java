@@ -1,5 +1,6 @@
 package hr.foi.vodickulturnihdogadanja.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements EventView {
     private RecyclerView rv;
     private RecyclerView.LayoutManager lm;
     private RecyclerAdapter adapter;
+    ProgressDialog nDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements EventView {
         EventPresenter p=new EventPresenterImpl(new EventInteractorImpl(),this);
         this.ep=p;
         ep.tryGetEvents();
+        spinnerLoad();
     }
 
     @Override
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements EventView {
         rv.setHasFixedSize(true);
         adapter=new RecyclerAdapter(list,MainActivity.this);
         rv.setAdapter(adapter);
+        nDialog.dismiss();
     }
     private void showToastOnUI(final String msg){
         final Context ctx = this;
@@ -87,6 +91,14 @@ public class MainActivity extends AppCompatActivity implements EventView {
             }
         });
     }
+    private void spinnerLoad(){
+        nDialog = new ProgressDialog(this);
+        nDialog.setMessage(this.getResources().getString(R.string.loading_events));
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(true);
+        nDialog.show();
+    }
+
     @Override
     public void NoEvents(final String error) {
         showToastOnUI(error);

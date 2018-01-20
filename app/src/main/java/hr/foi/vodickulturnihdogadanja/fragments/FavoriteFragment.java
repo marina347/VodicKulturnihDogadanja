@@ -1,5 +1,6 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,7 +39,7 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
     private RecyclerView.LayoutManager layoutManager;
     private FavoriteEventsAdapter recyclerAdapter;
     private List<EventModel> eventList;
-
+    ProgressDialog nDialog;
 
 
     @Nullable
@@ -53,6 +54,7 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
         FavoritePresenter presenter = new FavoritePresenterImpl(new FavoriteInteractorImpl(), this);
         this.favoritePresenter = presenter;
         favoritePresenter.tryGetFavorites(userId);
+        spinnerLoad();
     }
 
     @Override
@@ -65,6 +67,7 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
         recyclerAdapter=new FavoriteEventsAdapter(list, getActivity(), this);
         //adapter=new RecyclerAdapter(list,MainActivity.this);
         recyclerView.setAdapter(recyclerAdapter);
+        nDialog.dismiss();
     }
 
     @Override
@@ -86,7 +89,13 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
             }
         });
     }
-
+    private void spinnerLoad(){
+        nDialog = new ProgressDialog( getActivity());
+        nDialog.setMessage(getContext().getResources().getString(R.string.loading_events));
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(true);
+        nDialog.show();
+    }
 
     public void onEventRemoveFavorite(EventModel eventModel, int clickedItemPosition){
         int eventId = eventModel.getEventId();
