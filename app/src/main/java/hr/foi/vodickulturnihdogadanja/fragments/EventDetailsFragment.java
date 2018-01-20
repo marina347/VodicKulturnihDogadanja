@@ -81,13 +81,12 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     int eventId=-1;
     SocialNetworkSharingManager shareManager;
     EventModel event;
-    TwitterAuthClient client;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_details, null);
-        FacebookSdk.sdkInitialize(this.getActivity());
         //getActivity().setContentView(R.layout.fragment_details); DA LI OVO TREBA?
         ButterKnife.bind(this, rootView);
         LoggedUserData.getInstance();
@@ -95,20 +94,9 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
         this.dp=edp;
 
-        TwitterConfig config = new TwitterConfig.Builder(getActivity())
-                .logger(new DefaultLogger(Log.DEBUG))
-                .twitterAuthConfig(new TwitterAuthConfig("v0POVP7nGnIkhBZIs3YAjt8Lr", "AakBcoLnYc4WMzEFyYihwvRZwGynP2R5PP0diMw62L4yP0nEkf"))
-                .debug(true)
-                .build();
-        Twitter.initialize(config);
-
-        client = new TwitterAuthClient();
-        //make the call to login
-
         shareManager = new FacebookSharingManager();
         shareManager.setListener(this);
         return rootView;
-
     }
 
     @Override

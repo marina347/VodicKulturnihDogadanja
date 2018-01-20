@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
@@ -36,8 +37,7 @@ public class FacebookSharingManager implements SocialNetworkSharingManager {
     }
     @Override
     public void share(Activity activity, int eventId) {
-
-
+            FacebookSdk.sdkInitialize(activity);
             ShareDialog sd;
             callbackManager = CallbackManager.Factory.create();
             ShareLinkContent content = new ShareLinkContent.Builder()
