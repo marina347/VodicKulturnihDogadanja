@@ -62,6 +62,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         ButterKnife.bind(this, view);
+        getActivity().setTheme(R.style.ColoredHandleCursorTheme);
         return view;
     }
 

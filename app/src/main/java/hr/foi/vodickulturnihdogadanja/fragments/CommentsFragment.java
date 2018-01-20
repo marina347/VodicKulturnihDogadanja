@@ -55,6 +55,7 @@ public class CommentsFragment extends Fragment implements CommentView {
             txtNewComment.setVisibility(View.VISIBLE);
             btnNewComment.setVisibility(View.VISIBLE);
         }
+        getActivity().setTheme(R.style.ColoredHandleCursorTheme);
         return rootView;
     }
 

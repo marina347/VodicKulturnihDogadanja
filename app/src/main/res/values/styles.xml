@@ -17,4 +17,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ColoredHandleCursorTheme">
+        <item name="colorAccent">@color/cursor_grey</item>
+    </style>
+
 </resources>

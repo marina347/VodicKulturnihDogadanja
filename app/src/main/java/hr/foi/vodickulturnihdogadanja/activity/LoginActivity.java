@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.ColoredHandleCursorTheme);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);

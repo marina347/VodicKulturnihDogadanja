@@ -47,6 +47,7 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.ColoredHandleCursorTheme);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
