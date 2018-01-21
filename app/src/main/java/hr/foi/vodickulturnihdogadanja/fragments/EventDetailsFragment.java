@@ -61,7 +61,6 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     TextView txtEventBegin;
     @BindView(R.id.event_details_end)
     TextView txtEventEnd;
-    TextView txtEventLink;
     @BindView(R.id.event_details_location)
     TextView txtEventLocation;
     @BindView(R.id.event_details_price)
@@ -80,12 +79,17 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     ImageButton imgDislike;
     @BindView(R.id.btn_link)
     Button btnLink;
+    @BindView(R.id.num_of_dislike)
+    TextView txtNumOfDislike;
+    @BindView(R.id.num_of_like)
+    TextView txtNumOfLike;
 
     EventDetailsPresenter dp;
     int eventId=-1;
     SocialNetworkSharingManager shareManager;
     EventModel event;
     ProgressDialog nDialog;
+    int provjera;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -152,6 +156,8 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         if(LoggedUserData.getInstance().getTokenModel()==null || event.getBegin()>=System.currentTimeMillis() || event.getEnd()>=System.currentTimeMillis()){
             imgLike.setVisibility(View.INVISIBLE);
             imgDislike.setVisibility(View.INVISIBLE);
+            txtNumOfDislike.setVisibility(View.INVISIBLE);
+            txtNumOfLike.setVisibility(View.INVISIBLE);
 
         }
         if(LoggedUserData.getInstance().getTokenModel()==null){
@@ -163,6 +169,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         }
         setLikeDislikeButtonsAlpha();
         nDialog.dismiss();
+        showNumberOfLikes();
     }
 
     private void setLikeDislikeButtonsAlpha(){
@@ -179,6 +186,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
             imgLike.setAlpha(1f);
             imgDislike.setAlpha(1f);
         }
+        showNumberOfLikes();
     }
 
     private String DateConverter(Long date) {
@@ -233,12 +241,18 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         if(this.event.getUserEval()== Utils.LIKE){
             dp.tryDeleteEvaluation(LoggedUserData.getInstance().getTokenModel().getUserId(),eventId);
             this.event.setUserEval(Utils.NOR_LIKED_NOR_DISLIKED);
+            event.setNumOfLikes(event.getNumOfLikes()-1);
         }
         else {
+            if(event.getUserEval()==Utils.DISLIKE){
+                event.setNumOfDislikes(event.getNumOfDislikes()-1);
+            }
             this.event.setUserEval(Utils.LIKE);
             dp.tryAddEvaluation(1, LoggedUserData.getInstance().getTokenModel().getUserId(), event.getEventId());
+            event.setNumOfLikes(event.getNumOfLikes()+1);
         }
         setLikeDislikeButtonsAlpha();
+        showNumberOfLikes();
         //dp.tryGetEventById(eventId);
 
 
@@ -249,12 +263,18 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         if(this.event.getUserEval()== Utils.DISLIKE){
             dp.tryDeleteEvaluation(LoggedUserData.getInstance().getTokenModel().getUserId(),eventId);
             this.event.setUserEval(Utils.NOR_LIKED_NOR_DISLIKED);
+            event.setNumOfDislikes(event.getNumOfDislikes()-1);
         }
         else{
+            if (event.getUserEval() == Utils.LIKE){
+                event.setNumOfLikes(event.getNumOfLikes()-1);
+            }
             this.event.setUserEval(Utils.DISLIKE);
             dp.tryAddEvaluation(0,LoggedUserData.getInstance().getTokenModel().getUserId(),event.getEventId());
+            event.setNumOfDislikes(event.getNumOfDislikes()+1);
         }
         setLikeDislikeButtonsAlpha();
+        showNumberOfLikes();
         //dp.tryGetEventById(eventId);
 
 
@@ -299,5 +319,9 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         nDialog.setIndeterminate(false);
         nDialog.setCancelable(true);
         nDialog.show();
+    }
+    private void showNumberOfLikes(){
+        txtNumOfDislike.setText(String.valueOf(event.getNumOfDislikes()));
+        txtNumOfLike.setText(String.valueOf(event.getNumOfLikes()));
     }
 }
