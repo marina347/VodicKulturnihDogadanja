@@ -32,7 +32,12 @@ public class MainActivity extends AppCompatActivity implements EventView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle(R.string.no_title);
+        //getSupportActionBar().setTitle(R.string.no_title);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         setContentView(R.layout.activity_main);
         EventPresenter p=new EventPresenterImpl(new EventInteractorImpl(),this);
         this.ep=p;
@@ -107,5 +112,11 @@ public class MainActivity extends AppCompatActivity implements EventView {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocalHelper.onAttach(base));
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

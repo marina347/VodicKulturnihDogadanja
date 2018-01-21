@@ -72,7 +72,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
     public void open_click (View view) {
         UserProfileEditFragment userProfileEditFragment = new UserProfileEditFragment();
         FragmentTransaction fragmentTransaction=getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container,userProfileEditFragment);
+        fragmentTransaction.replace(R.id.fragment_container,userProfileEditFragment, "edit_profile_fragment");
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
