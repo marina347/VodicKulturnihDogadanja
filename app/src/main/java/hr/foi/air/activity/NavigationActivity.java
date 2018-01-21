@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,7 +36,7 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
     TextView txtEmail;
     TextView txtName;
     ImageView imgUser;
-
+    Menu menu;
     @BindView(R.id.nav_view)
     NavigationView navView;
 
@@ -108,13 +109,16 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        this.menu=menu;
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     private void displaySelectedScreen(int itemId) {
         Fragment fragment = null;
-
+        if(menu != null) {
+            menu.findItem(R.id.search).setVisible(false);
+        }
         switch (itemId) {
             case R.id.nav_event:
                 fragment = new EventFragment();
