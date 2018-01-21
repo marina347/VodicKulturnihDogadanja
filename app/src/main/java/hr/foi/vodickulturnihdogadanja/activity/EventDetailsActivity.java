@@ -29,6 +29,11 @@ public class EventDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //getSupportActionBar().hide();
         setContentView(R.layout.activity_event_details);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         instance=this;
         fragmentComments=null;
         fragmentDetails=null;
@@ -37,6 +42,13 @@ public class EventDetailsActivity extends AppCompatActivity {
         bindWidgetsWithAnEvent();
         setupTabLayout();
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     private void getAllWidgets() {
         allTabs = (TabLayout) findViewById(R.id.tabs);
     }
