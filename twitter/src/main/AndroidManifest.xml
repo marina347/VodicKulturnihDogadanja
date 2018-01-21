@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hr.foi.vodickulturnihdogadanja.twitter" >
+    package="hr.foi.air.twitter" >
 
     <application>
         <activity android:name="com.twitter.sdk.android.core.identity.OAuthActivity" />
         <receiver
-            android:name="hr.foi.vodickulturnihdogadanja.TwitterSharingManager"
+            android:name="hr.foi.air.TwitterSharingManager"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.twitter.sdk.android.tweetcomposer.UPLOAD_SUCCESS"/>

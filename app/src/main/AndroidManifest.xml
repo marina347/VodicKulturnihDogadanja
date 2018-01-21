@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hr.foi.vodickulturnihdogadanja">
+    package="hr.foi.air">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -11,7 +11,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashScreenActivity" android:screenOrientation="portrait">
+        <activity android:name="hr.foi.air.activity.SplashScreenActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.NavigationActivity"
+            android:name="hr.foi.air.activity.NavigationActivity"
             android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait">
 
             <!-- android:label="@string/title_activity_navigation" -->
@@ -27,26 +27,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RegistrationActivity" android:screenOrientation="portrait" />
+        <activity android:name="hr.foi.air.activity.RegistrationActivity" android:screenOrientation="portrait" />
         <!-- <activity android:name=".activity.UserProfileActivity" /> -->
-        <activity android:name=".activity.MainActivity"
+        <activity android:name="hr.foi.air.activity.MainActivity"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait" />
-        <activity android:name=".activity.HomeActivity" android:screenOrientation="portrait" />
+        <activity android:name="hr.foi.air.activity.LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name="hr.foi.air.activity.HomeActivity" android:screenOrientation="portrait" />
 
-        <service android:name=".utils.firebase.MessagingService">
+        <service android:name="hr.foi.air.utils.firebase.MessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".utils.firebase.TokenManager">
+        <service android:name="hr.foi.air.utils.firebase.TokenManager">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <activity android:name=".activity.EventDetailsActivity"
+        <activity android:name="hr.foi.air.activity.EventDetailsActivity"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait" />
 

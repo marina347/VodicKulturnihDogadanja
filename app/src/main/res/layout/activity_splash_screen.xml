@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/colorOfBackGround"
-    tools:context="hr.foi.vodickulturnihdogadanja.activity.SplashScreenActivity">
+    tools:context="hr.foi.air.activity.SplashScreenActivity">
 
     <ImageView
         android:id="@+id/imageView2"
