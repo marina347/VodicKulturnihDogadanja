@@ -5,18 +5,23 @@
     android:layout_height="match_parent"
     android:id="@+id/fra_com"
     android:background="@drawable/vz1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/relativeLayout"
+        android:layout_marginBottom="10dp">
 
-    <android.support.v7.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_com"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         />
-
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/recycler_view_com"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:visibility="visible">
