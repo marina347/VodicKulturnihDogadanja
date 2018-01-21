@@ -1,12 +1,13 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
-import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -53,7 +54,7 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
 
 
     int userId = LoggedUserData.getInstance().getTokenModel().getUserId();
-
+    ProgressDialog nDialog;
     UserModel userModel = new UserModel();
     UserProfilePresenter userProfilePresenter;
     Bitmap bitmap;
@@ -74,7 +75,7 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         super.onViewCreated(view, savedInstanceState);
         UserProfilePresenter userProfilePresenter = new UserProfilePresenterImpl(new UserInteractorImpl(), this);
         this.userProfilePresenter = userProfilePresenter;
-
+        spinnerLoad();
         TryGetData();
         EnableEdit();
         TryAddPicture();
@@ -97,6 +98,7 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
 
         email = userModel.getEmail();
         password = userModel.getPassword();
+        nDialog.dismiss();
     }
 
     private void TryGetData() {
@@ -175,5 +177,12 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         outputSurname.setOnTouchListener(handleTouch);
         outputUsername.setOnTouchListener(handleTouch);
         outputPassword.setOnTouchListener(handleTouch);
+    }
+    private void spinnerLoad(){
+        nDialog = new ProgressDialog( getActivity());
+        nDialog.setMessage("Učitavam...");
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(true);
+        nDialog.show();
     }
 }

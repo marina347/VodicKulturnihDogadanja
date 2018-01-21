@@ -1,11 +1,11 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +48,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
     UserProfilePresenter userProfilePresenter;
     Bitmap bitmap;
     public static int RESULT_LOAD_IMAGE = 1;
-
+    ProgressDialog nDialog;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         super.onViewCreated(view, savedInstanceState);
         UserProfilePresenter userProfilePresenter = new UserProfilePresenterImpl(new UserInteractorImpl(), this);
         this.userProfilePresenter = userProfilePresenter;
-
+        spinnerLoad();
         TryGetData();
         outputImage.setEnabled(false);
     }
@@ -71,8 +71,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
     @OnClick(R.id.btn_edit_profile_data)
     public void open_click (View view) {
         UserProfileEditFragment userProfileEditFragment = new UserProfileEditFragment();
-        FragmentManager fragmentManager=getActivity().getFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction=getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container,userProfileEditFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -90,5 +89,13 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         outputEmail.setText(userModel.getEmail());
         bitmap= Base64Coding.decodeBase64(userModel.getPicture());
         outputImage.setImageBitmap(bitmap);
+        nDialog.dismiss();
+    }
+    private void spinnerLoad(){
+        nDialog = new ProgressDialog( getActivity());
+        nDialog.setMessage("Učitavam...");
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(true);
+        nDialog.show();
     }
 }

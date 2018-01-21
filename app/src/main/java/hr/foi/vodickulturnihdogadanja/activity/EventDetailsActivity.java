@@ -30,6 +30,9 @@ public class EventDetailsActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_event_details);
         instance=this;
+        fragmentComments=null;
+        fragmentDetails=null;
+        fragmentMap=null;
         getAllWidgets();
         bindWidgetsWithAnEvent();
         setupTabLayout();
@@ -43,6 +46,13 @@ public class EventDetailsActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putInt("eventId", eventId);
         bundle.putString("location", intent.getStringExtra("location"));
+        if(fragmentDetails==null)fragmentDetails = new EventDetailsFragment();
+        if(fragmentComments==null) {
+            fragmentComments = new CommentsFragment();
+        }
+        if(fragmentMap==null) {
+            fragmentMap = new MapFragment();
+        }
         fragmentDetails = new EventDetailsFragment();
         fragmentComments = new CommentsFragment();
         fragmentMap = new MapFragment();

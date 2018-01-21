@@ -1,5 +1,6 @@
 package hr.foi.vodickulturnihdogadanja.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -84,11 +85,11 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     int eventId=-1;
     SocialNetworkSharingManager shareManager;
     EventModel event;
-
+    ProgressDialog nDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        spinnerLoad();
         View rootView = inflater.inflate(R.layout.fragment_details, null);
         //getActivity().setContentView(R.layout.fragment_details); DA LI OVO TREBA?
         ButterKnife.bind(this, rootView);
@@ -161,6 +162,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
             favoriteCheckBox.setClickable(false);
         }
         setLikeDislikeButtonsAlpha();
+        nDialog.dismiss();
     }
 
     private void setLikeDislikeButtonsAlpha(){
@@ -290,5 +292,12 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     public void openLink(){
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getLink()));
         startActivity(intent);
+    }
+    private void spinnerLoad(){
+        nDialog = new ProgressDialog( getActivity());
+        nDialog.setMessage("Učitavam...");
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(true);
+        nDialog.show();
     }
 }
