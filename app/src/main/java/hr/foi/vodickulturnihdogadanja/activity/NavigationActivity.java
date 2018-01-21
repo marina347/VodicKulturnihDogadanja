@@ -23,6 +23,7 @@ import hr.foi.vodickulturnihdogadanja.R;
 import hr.foi.vodickulturnihdogadanja.fragments.EventFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.FavoriteFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.SettingsFragment;
+import hr.foi.vodickulturnihdogadanja.fragments.UserProfileEditFragment;
 import hr.foi.vodickulturnihdogadanja.fragments.UserProfileFragment;
 import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
@@ -71,14 +72,37 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
     @Override
     public void onBackPressed() {
 
+        EventFragment eventFragment = (EventFragment)getSupportFragmentManager().findFragmentByTag("event_fragment");
+        Fragment editProfileFragment = (UserProfileEditFragment)getSupportFragmentManager().findFragmentByTag("edit_profile_fragment");
+        //Fragment eventFragment = new EventFragment();
+        //Fragment editProfileFragment = new UserProfileEditFragment();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        // if drawer open, close it
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
-        else {
+        //if event fragment visible, got out from app
+        else if (eventFragment != null && eventFragment.isVisible()){
             finishAffinity();
         }
+        //go on event fragment
+        /*else {
+            Fragment someFragment = new EventFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, someFragment, "event");
+            transaction.addToBackStack("event");
+            transaction.commit();
+            super.onBackPressed();
+        }*/
+    }
 
+    private void f() {
+        Fragment someFragment = new EventFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, someFragment, "event");
+        transaction.addToBackStack("event");
+        transaction.commit();
     }
 
     @Override
@@ -94,6 +118,9 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         switch (itemId) {
             case R.id.nav_event:
                 fragment = new EventFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment, "event_fragment");
+                transaction.commit();
                 break;
             case R.id.nav_profile:
                 fragment = new UserProfileFragment();

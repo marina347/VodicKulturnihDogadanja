@@ -84,7 +84,9 @@ public class SettingsFragment extends Fragment implements SettingsView {
         if (state == 1) {switchNotification.setChecked(true);}
         else if (state == 0) {switchNotification.setChecked(false);}
 
-        if (stateLanguage == 1) {languageEng.setChecked(true);}
+        if (stateLanguage == 1) {
+            languageEng.setChecked(true);
+        }
         else if (stateLanguage == 2) {languageHr.setChecked(true);}
     }
 
