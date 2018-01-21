@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:text="@string/name"/>
 
@@ -34,7 +34,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="145dp"
         android:inputType="textPersonName"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@drawable/edit_text2_style"/>
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="190dp"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:text="@string/surname"/>
 
@@ -55,7 +55,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="215dp"
         android:inputType="textPersonName"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@drawable/edit_text2_style"/>
 
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="260dp"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:text="@string/email" />
 
@@ -76,7 +76,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="285dp"
         android:inputType="textPersonName"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@drawable/edit_text2_style"/>
 
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="330dp"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:text="@string/username" />
 
@@ -97,7 +97,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="355dp"
         android:inputType="textPersonName"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@drawable/edit_text2_style"/>
 
@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="400dp"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:text="@string/password"/>
 
@@ -118,7 +118,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="425dp"
         android:inputType="textPassword"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@drawable/edit_text2_style"/>
 
@@ -130,5 +130,5 @@
         android:layout_marginTop="495dp"
         android:background="@drawable/edit_button2_style"
         android:text="@string/signup"
-        android:textColor="@color/button_text_white" />
+        android:textColor="@color/white" />
 </RelativeLayout>

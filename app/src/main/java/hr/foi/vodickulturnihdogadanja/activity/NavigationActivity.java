@@ -28,7 +28,6 @@ import hr.foi.vodickulturnihdogadanja.interactor.impl.UserInteractorImpl;
 import hr.foi.vodickulturnihdogadanja.utils.Base64Coding;
 import hr.foi.vodickulturnihdogadanja.utils.LocalHelper;
 import hr.foi.vodickulturnihdogadanja.utils.LoggedUserData;
-import hr.foi.vodickulturnihdogadanja.utils.Utils;
 
 
 public class NavigationActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
@@ -71,14 +70,15 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
 
     @Override
     public void onBackPressed() {
-        /*
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
-        */
+        else {
+            finishAffinity();
+        }
+
     }
 
     @Override

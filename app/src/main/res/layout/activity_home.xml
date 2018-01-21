@@ -27,8 +27,8 @@
         android:layout_above="@+id/guest_tv"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
-        android:background="@color/button_blue"
-        android:textColor="@color/button_text_white"
+        android:background="@color/blue"
+        android:textColor="@color/white"
         android:text="@string/login" />
 
     <!--<ImageView

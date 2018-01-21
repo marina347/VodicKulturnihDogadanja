@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:text="@string/name" />
 
@@ -35,7 +35,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="225dp"
         android:focusable="false"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:background="@drawable/edit_text_style"
         android:textSize="@dimen/edit_text"
         android:textAlignment="center"/>
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="270dp"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:text="@string/surname" />
 
@@ -57,7 +57,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="295dp"
         android:focusable="false"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:background="@drawable/edit_text_style"
         android:textSize="@dimen/edit_text"
         android:textAlignment="center" />
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="340dp"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:text="@string/username" />
 
@@ -79,7 +79,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="365dp"
         android:focusable="false"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:background="@drawable/edit_text_style"
         android:textSize="@dimen/edit_text"
         android:gravity="center"/>
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="410dp"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:text="@string/password" />
 
@@ -101,7 +101,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="435dp"
         android:focusable="false"
-        android:textColor="@color/text_black"
+        android:textColor="@color/black"
         android:background="@drawable/edit_text_style"
         android:textSize="@dimen/edit_text"
         android:gravity="center" />
@@ -113,7 +113,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="500dp"
         android:background="@drawable/edit_button_style"
-        android:textColor="@color/button_text_white"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:text="@string/save"/>
 
