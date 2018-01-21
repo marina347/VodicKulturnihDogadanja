@@ -102,8 +102,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
         TextView eventDescription;
         @BindView(R.id.event_begin)
         TextView eventBegin;
-        @BindView(R.id.event_end)
-        TextView eventEnd;
         @BindView(R.id.event_image)
         ImageView eventImage;
 
@@ -122,7 +120,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
             eventName.setText(eventModel.getName());
             eventDescription.setText(eventModel.getDescription());
             eventBegin.setText(DateConverter(eventModel.getBegin()));
-            eventEnd.setText(DateConverter(eventModel.getEnd()));
+            if(eventModel.getEnd().longValue() != 0){
+                eventBegin.setText(DateConverter(eventModel.getBegin()) + " - " + DateConverter(eventModel.getEnd()));
+            }
             eventImage.setImageBitmap(Base64Coding.decodeBase64(eventModel.getPicture()));
         }
 

@@ -118,7 +118,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignEnd="@+id/event_details_img"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/num_of_dislike"
         android:layout_marginEnd="9dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/facebook_icon" />
@@ -127,9 +127,9 @@
         android:id="@+id/btn_twitter"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@id/btn_share"
         android:background="@android:color/transparent"
+        android:layout_above="@id/num_of_dislike"
         app:srcCompat="@drawable/twitter_icon" />
 
     <ImageButton
@@ -137,7 +137,6 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/event_details_img"
         android:layout_below="@id/btn_link"
         android:background="@android:color/transparent"
@@ -147,11 +146,33 @@
         android:id="@+id/img_like"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/num_of_dislike"
         android:layout_below="@id/btn_link"
         android:layout_toEndOf="@+id/img_dislike"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/like_icon" />
+
+        <TextView
+            android:id="@+id/num_of_dislike"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/img_dislike"
+            android:layout_marginLeft="20dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/num_of_like"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/img_like"
+            android:layout_toEndOf="@id/num_of_dislike"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
     </RelativeLayout>
 </ScrollView>
 <include layout="@layout/content_navigation" />
