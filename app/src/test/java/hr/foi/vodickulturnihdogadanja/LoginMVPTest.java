@@ -34,11 +34,14 @@ public class LoginMVPTest {
         String password="password";
 
         TokenModel token=mock(TokenModel.class);
-
+        token.setUserId(1);
         loginPresenter.tryLogin(username,password);
         verify(interactor).Login(username,password);
         loginPresenter.onLoginSuccedded(token);
+        loginPresenter.onUserDataArrived();
         verify(view).onSuccess(token);
+
+
 
     }
 }
