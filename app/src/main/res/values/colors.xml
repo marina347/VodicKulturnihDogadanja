@@ -4,7 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorOfBackGround">#336f95</color>
-<<<<<<< HEAD
 
     <color name="black">#000000</color>
     <color name="blue">#4799E8</color>
@@ -12,12 +11,6 @@
     <color name="dark_grey">#595959</color>
     <color name="light_grey">#D1D1D1</color>
     <color name="grey">#9C9C9C</color>
-</resources>
-=======
+
     <color name="end">#ea919191</color>
-    <color name="text_black">#000000</color>
-    <color name="button_blue">#4799E8</color>
-    <color name="button_text_white">#FFFFFF</color>
-    <color name="cursor_grey">#595959</color>
 </resources>
->>>>>>> 2653a72cfbe498336bd75d8d45451bf6a9826e4c

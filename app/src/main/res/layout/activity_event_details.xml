@@ -7,12 +7,11 @@
     android:orientation="vertical"
     tools:context="hr.foi.vodickulturnihdogadanja.activity.EventDetailsActivity">
 
-
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/light_grey"
         app:tabGravity="fill"
         app:tabMode="fixed" />
     <FrameLayout
