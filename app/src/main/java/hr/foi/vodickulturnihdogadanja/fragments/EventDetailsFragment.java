@@ -2,6 +2,7 @@ package hr.foi.vodickulturnihdogadanja.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -98,12 +99,8 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         //getActivity().setContentView(R.layout.fragment_details); DA LI OVO TREBA?
         ButterKnife.bind(this, rootView);
         LoggedUserData.getInstance();
-
         EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
         this.dp=edp;
-
-        shareManager = new FacebookSharingManager();
-        shareManager.setListener(this);
         return rootView;
     }
 
@@ -166,7 +163,9 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         if(event.getIsFavorite()==1){
             favoriteCheckBox.setChecked(true);
             favoriteCheckBox.setClickable(false);
+            favoriteCheckBox.setAlpha(1F);
         }
+        else favoriteCheckBox.setAlpha(0.5F);
         setLikeDislikeButtonsAlpha();
         nDialog.dismiss();
         showNumberOfLikes();
@@ -209,11 +208,13 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     @OnClick(R.id.favoriteCheckBox)
     public void favoriteCheckBoxClick(){
         this.dp.tryAddFavorite(this.event.getEventId());
+        favoriteCheckBox.setAlpha(1F);
     }
 
     @Override
     public void onSuccessAddedFavorite() {
         Toast.makeText(getActivity(),R.string.event_added_in_favorite, Toast.LENGTH_LONG).show();
+
     }
 
     @Override
