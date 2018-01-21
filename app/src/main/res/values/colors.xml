@@ -13,4 +13,5 @@
     <color name="grey">#9C9C9C</color>
 
     <color name="end">#ea919191</color>
+    <color name="comment_background">#9bffffff</color>
 </resources>

@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fra_com">
+    android:id="@+id/fra_com"
+    android:background="@drawable/vz1">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_com"
@@ -17,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/recycler_view_com"
         android:layout_alignParentBottom="true"
-        android:background="@color/cardview_shadow_start_color"
+        android:background="@color/white"
         android:visibility="visible">
 
         <Button

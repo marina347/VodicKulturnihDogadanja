@@ -6,83 +6,79 @@
     android:id="@+id/card_view"
     android:layout_gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="245dp"
     card_view:cardCornerRadius="0dp"
-    android:layout_marginTop="5dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:selectableItemBackground">
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/event_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
             android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/gradient"/>
 
         <TextView
             android:id="@+id/event_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="11dp"
-            android:layout_toEndOf="@+id/event_image"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_above="@id/event_description"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
             android:textIsSelectable="false"
-            tools:text="Event NAME" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="@string/event_name" />
 
         <TextView
             android:id="@+id/event_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@id/event_begin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
+            android:textColor="@android:color/black"
             android:textIsSelectable="false"
-            tools:text="Event description..."
-            android:layout_marginTop="2dp"
-            android:layout_below="@id/event_name"
-            android:layout_alignStart="@+id/event_name" />
+            android:textSize="18sp"
+            tools:text="@string/event_description" />
 
         <TextView
             android:id="@+id/event_begin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/event_description"
-            android:layout_marginTop="25dp"
-            android:layout_below="@id/event_description"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
+            android:textColor="@android:color/black"
             android:textIsSelectable="false"
-            tools:text="Begin" />
-        <TextView
-            android:id="@+id/event_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/event_begin"
-            android:layout_below="@id/event_description"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="5dp"
-            android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
-            android:textIsSelectable="false"
-            tools:text="Ends" />
+            android:textSize="18sp"
+            tools:text="@string/begin" />
 
         <TextView
             android:id="@+id/star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/event_name"
             android:layout_alignParentEnd="true"
-            android:layout_gravity="center_vertical"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:text="X"
             android:textSize="28sp"
-            android:text="X" />
-        <!--android:visibility="gone"-->
-
-
+            android:textStyle="bold" />
     </RelativeLayout>
-
 </android.support.v7.widget.CardView>

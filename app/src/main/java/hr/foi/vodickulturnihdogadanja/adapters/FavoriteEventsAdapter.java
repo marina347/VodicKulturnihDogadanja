@@ -110,8 +110,6 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
         TextView eventDescription;
         @BindView(R.id.event_begin)
         TextView eventBegin;
-        @BindView(R.id.event_end)
-        TextView eventEnd;
         @BindView(R.id.event_image)
         ImageView eventImage;
         @BindView(R.id.star)
@@ -133,7 +131,9 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
             eventName.setText(eventModel.getName());
             eventDescription.setText(eventModel.getDescription());
             eventBegin.setText(DateConverter(eventModel.getBegin()));
-            eventEnd.setText(DateConverter(eventModel.getEnd()));
+            if(eventModel.getEnd().longValue() != 0){
+                eventBegin.setText(DateConverter(eventModel.getBegin()) + " - " + DateConverter(eventModel.getEnd()));
+            }
             eventImage.setImageBitmap(Base64Coding.decodeBase64(eventModel.getPicture()));
             configureFavoriteRemoval(favoriteStarButton, eventModel);//
         }
@@ -142,7 +142,7 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
         public void selectedEvent() {
             Bundle args = new Bundle();
             args.putInt("id", mEvent.getEventId());
-
+            args.putString("location", mEvent.getLocation());
             Intent intent = new Intent(view.getContext(), EventDetailsActivity.class);
             intent.putExtras(args);
             view.getContext().startActivity(intent);

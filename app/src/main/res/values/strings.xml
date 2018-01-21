@@ -84,7 +84,7 @@
 
     <!-- CommentActivity.java -->
     <string name="successful_commenting">Successful commenting!</string>
-    <string name="no_text">You didn't type text!</string>
+    <string name="no_text">You didn\'t type text!</string>
 
     <!-- RegistrationActivity.java -->
     <string name="succesful_registration">Succesful registration!</string>
