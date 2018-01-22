@@ -46,7 +46,6 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         setContentView(R.layout.activity_navigation);
         ButterKnife.bind(this);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.no_title);
@@ -72,7 +71,6 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
 
     @Override
     public void onBackPressed() {
-
         EventFragment eventFragment = (EventFragment)getSupportFragmentManager().findFragmentByTag("event_fragment");
         Fragment editProfileFragment = (UserProfileEditFragment)getSupportFragmentManager().findFragmentByTag("edit_profile_fragment");
         //Fragment eventFragment = new EventFragment();
@@ -115,6 +113,9 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
     }
 
     private void displaySelectedScreen(int itemId) {
+        View headerLayout = navView.getHeaderView(0);
+        imgUser= headerLayout.findViewById(R.id.img_user);
+        imgUser.setImageBitmap(Base64Coding.decodeBase64(LoggedUserData.getInstance().getImage()));
         Fragment fragment = null;
         if(menu != null) {
             menu.findItem(R.id.search).setVisible(false);

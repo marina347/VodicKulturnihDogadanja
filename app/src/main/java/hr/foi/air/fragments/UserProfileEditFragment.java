@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -51,6 +53,8 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
 
     @BindView(R.id.edit_password)
     EditText outputPassword;
+
+
 
 
     int userId = LoggedUserData.getInstance().getTokenModel().getUserId();
@@ -94,8 +98,10 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         outputUsername.setText(userModel.getUsername());
         //outputPassword.setText(userModel.getPassword());
         bitmap=Base64Coding.decodeBase64(userModel.getPicture());
-        outputImage.setImageBitmap(bitmap);
-
+        if(bitmap!=null) {
+            outputImage.setImageBitmap(bitmap);
+            LoggedUserData.getInstance().setImage(Base64Coding.encodeToBase64(bitmap, Bitmap.CompressFormat.JPEG, 100));
+        }
         email = userModel.getEmail();
         password = userModel.getPassword();
         nDialog.dismiss();
@@ -121,7 +127,7 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         }
 
         if (bitmap != null) {
-            userModel.setPicture(Base64Coding.encodeToBase64(bitmap, Bitmap.CompressFormat.JPEG, 100));
+            userModel.setPicture(Base64Coding.encodeToBase64(bitmap, Bitmap.CompressFormat.JPEG, 50));
         }
         else {
             userModel.setPicture("");
