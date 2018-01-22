@@ -25,6 +25,7 @@ import hr.foi.air.utils.LoggedUserData;
 import hr.foi.air.view.UserProfileView;
 
 /**
+ * Klasa za prikazivanje profila korisnika
  * Created by Mateja on 15-Nov-17.
  */
 
@@ -68,6 +69,10 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         outputImage.setEnabled(false);
     }
 
+    /**
+     * Metoda za otvaranje fragmenta za uređivanje profila
+     * @param view
+     */
     @OnClick(R.id.btn_edit_profile_data)
     public void open_click (View view) {
         UserProfileEditFragment userProfileEditFragment = new UserProfileEditFragment();
@@ -77,11 +82,18 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Metoda za dohvacanje podataka
+     */
     private void TryGetData() {
         int userId = LoggedUserData.getInstance().getTokenModel().getUserId();
         userProfilePresenter.tryViewData(userId);
     }
 
+    /**
+     * Metoda za prikaz podataka na profilu korisnika
+     * @param userModel
+     */
     public void onSuccess (UserModel userModel) {
         outputName.setText(userModel.getName());
         outputSurname.setText(userModel.getSurname());
@@ -91,6 +103,10 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
         outputImage.setImageBitmap(bitmap);
         nDialog.dismiss();
     }
+
+    /**
+     * Metoda za ucitavanje dok se podaci ne prikazu
+     */
     private void spinnerLoad(){
         nDialog = new ProgressDialog( getActivity());
         nDialog.setMessage("Učitavam...");

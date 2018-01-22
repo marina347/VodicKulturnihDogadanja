@@ -34,6 +34,7 @@ import hr.foi.air.utils.LoggedUserData;
 import hr.foi.air.view.SettingsView;
 
 /**
+ * Klasa za prikaz postavki
  * Created by Mateja on 12-Jan-18.
  */
 
@@ -76,6 +77,10 @@ public class SettingsFragment extends Fragment implements SettingsView {
         settingsPresenter.tryGetSettings(userId);
     }
 
+    /**
+     * Metoda za prikaz postavki na ekranu
+     * @param settings
+     */
     @Override
     public void onSuccess(SettingsModel settings) {
         int state = settings.getPushUpNotification();
@@ -105,6 +110,10 @@ public class SettingsFragment extends Fragment implements SettingsView {
         });
     }
 
+    /**
+     * Metoda za promjenu postavki i vraćanje na listu događaja
+     * @param textView
+     */
     @OnClick(R.id.save_settings)
     public void save(TextView textView) {
         TryEditSettings();
@@ -119,6 +128,11 @@ public class SettingsFragment extends Fragment implements SettingsView {
         }, 1000); //1sec
     }
 
+    /**
+     * Metoda za uključivanje/iskjučivanje obavijesti
+     * @param button
+     * @param isChecked
+     */
     @OnCheckedChanged(R.id.switch_notification)
     void onGenderSelected(CompoundButton button, boolean isChecked){
         if (isChecked) {
@@ -131,6 +145,11 @@ public class SettingsFragment extends Fragment implements SettingsView {
         }
     }
 
+    /**
+     * Metoda za odabir jezika aplikacije
+     * @param button
+     * @param checked
+     */
     @OnCheckedChanged({R.id.language_eng, R.id.language_hr})
     public void onRadioButtonCheckChanged(CompoundButton button, boolean checked) {
         if(checked) {
@@ -147,6 +166,9 @@ public class SettingsFragment extends Fragment implements SettingsView {
         }
     }
 
+    /**
+     * Metoda za spremanje postavki
+     */
     private void TryEditSettings() {
         settingsModel.setUserId(userId);
         settingsModel.setPushUpNotification(notification);
@@ -160,7 +182,9 @@ public class SettingsFragment extends Fragment implements SettingsView {
         Resources resources = context.getResources();
     }
 
-    //refresh current fragment
+    /**
+     * Metoda za osvježenje trenutnog fragmenta (kako bi se jezik prikazao nakon odabira)
+     */
     private void refresh() {
         Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (currentFragment instanceof SettingsFragment) {
@@ -170,6 +194,9 @@ public class SettingsFragment extends Fragment implements SettingsView {
             fragTransaction.commit();}
     }
 
+    /**
+     * Metode za ciscenje stoga i povratak na popis dogadaja
+     */
     private void clearFragmentStack() {
         getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }

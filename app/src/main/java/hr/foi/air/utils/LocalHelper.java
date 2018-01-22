@@ -11,17 +11,30 @@ import android.preference.PreferenceManager;
 import java.util.Locale;
 
 /**
+ * Klasa za postavljanje i pamcenje odbaranog jezika
  * Created by Mateja on 18-Jan-18.
  */
 
 public class LocalHelper {
     private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
 
+    /**
+     * Metoda koja postavlja jezik uredaja kao jezik aplikacije
+     * @param context
+     * @return
+     */
     public static Context onAttach(Context context) {
         String lang = getPersistedData(context, Locale.getDefault().getLanguage());
         return setLocale(context, lang);
     }
 
+    /**
+     * Metoda koja prvi put vraca aplikacija na jeziku na kojem je i uredaj, ali nakon sto korisnik
+     * izabere u aplikaciji drugi jezik, vracat ce njega
+     * @param context
+     * @param defaultLanguage
+     * @return
+     */
     public static Context onAttach(Context context, String defaultLanguage) {
         String lang = getPersistedData(context, defaultLanguage);
         return setLocale(context, lang);

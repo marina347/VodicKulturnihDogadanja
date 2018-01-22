@@ -12,6 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
+ * Klasa za dohvaćanje podataka sa servera i slanje podatataka serveru za postavke
  * Created by Mateja on 13-Jan-18.
  */
 
@@ -19,11 +20,21 @@ public class SettingsInteractorImpl implements SettingsInteractor{
 
     SettingsInteractorListener listener;
 
+    /**
+     * Implementacija funkcije sučelja SettingsInteractor. Funkcija služi za postavljanje
+     * SettingsInteractorListener
+     * @param listener
+     */
     @Override
     public void setSettingsListener(SettingsInteractorListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Implementacija funkcije sučelja SettingsInteractor. Funkcija služi za dohvaćanje postavki
+     * po id-u korisnika sa servera.
+     * @param userId
+     */
     @Override
     public void getSettings(int userId) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -48,6 +59,11 @@ public class SettingsInteractorImpl implements SettingsInteractor{
         });
     }
 
+    /**
+     * Implementacija funkcije sučelja SettingsInteractor. Funkcija služi za uređivanje postavki
+     * po id-u korisnika sa servera
+     * @param settings
+     */
     @Override
     public void editSettings(SettingsModel settings) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);

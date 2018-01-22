@@ -104,4 +104,6 @@
     <!-- UserProfileFragment.java -->
     <string name="succesfully_editing_data">Uspješno uređivanja podataka!</string>
 
+    <string name="unsuccessful_registration">Neuspješna registracija. Pokušajte ponovno!</string>
+
 </resources>

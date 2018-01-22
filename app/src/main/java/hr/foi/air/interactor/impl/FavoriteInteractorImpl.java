@@ -26,11 +26,20 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
     FavoriteInteractorListener listener;
     AddFavoriteInteractorListener addListener;
 
+    /**
+     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za postavljanje AddFavoriteInteractorListener
+     * @param listener
+     */
     @Override
     public void setAddFavoriteListener(AddFavoriteInteractorListener listener) {
         this.addListener = listener;
     }
 
+    /**
+     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za dodavanje događaja u favorite
+     * @param userId
+     * @param eventId
+     */
     @Override
     public void addFavorite(int userId, int eventId) {
         JSONObject jObj = new JSONObject();
@@ -63,11 +72,19 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
         });
     }
 
+    /**
+     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za postavljanje FavoriteInteractorListener
+     * @param listener
+     */
     @Override
     public void setFavoriteListener(FavoriteInteractorListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za dohvaćanje favorita sa servera
+     * @param userId
+     */
     @Override
     public void getFavorite(int userId) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -98,6 +115,11 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
         });
     }
 
+    /**
+     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za brisanje događaja iz favorita
+     * @param userId
+     * @param eventId
+     */
     @Override
     public void deleteFavorite(final int userId, final int eventId) {
         JSONObject jObj = new JSONObject();

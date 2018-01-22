@@ -23,6 +23,10 @@ import hr.foi.air.presenter.impl.EventPresenterImpl;
 import hr.foi.air.utils.LocalHelper;
 import hr.foi.air.view.EventView;
 
+/**
+ * Klasa za prikaz događaja za neregistriranog korsnika
+ */
+
 public class MainActivity extends AppCompatActivity implements EventView {
     EventPresenter ep;
     private RecyclerView rv;
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements EventView {
     }
 
     /**
-     * Funkcija sljuži za pretraživanje Recycler adaptera.
+     * Funkcija služi za pretraživanje Recycler adaptera.
      * @param searchView
      */
     private void search(SearchView searchView) {

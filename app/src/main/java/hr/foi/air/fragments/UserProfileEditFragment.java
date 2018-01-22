@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -34,6 +32,7 @@ import static android.app.Activity.RESULT_OK;
 import static hr.foi.air.fragments.UserProfileFragment.RESULT_LOAD_IMAGE;
 
 /**
+ * Klasa koja služi za uređivanje osobnih podataka na profilu korisnika
  * Created by Mateja on 20-Jan-18.
  */
 
@@ -53,9 +52,6 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
 
     @BindView(R.id.edit_password)
     EditText outputPassword;
-
-
-
 
     int userId = LoggedUserData.getInstance().getTokenModel().getUserId();
     ProgressDialog nDialog;
@@ -91,6 +87,10 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         Toast.makeText(getActivity(),R.string.succesfully_editing_data,Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Metoda za prikaz podataka na profilu korisnika
+     * @param userModel
+     */
     @Override
     public void onSuccess(UserModel userModel) {
         outputName.setText(userModel.getName());
@@ -107,11 +107,17 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         nDialog.dismiss();
     }
 
+    /**
+     * Metoda za dohvacanje podataka korisnika
+     */
     private void TryGetData() {
         int userId = LoggedUserData.getInstance().getTokenModel().getUserId();
         userProfilePresenter.tryViewData(userId);
     }
 
+    /**
+     * Metoda za promjenu podataka korisnika
+     */
     private void TryEditData() {
         userModel.setUserId(userId);
         userModel.setName(outputName.getText().toString());
@@ -136,7 +142,9 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         userProfilePresenter.tryEditData(userModel);
     }
 
-    //select image from gallery
+    /**
+     * Metoda za odabir slike iz galerije
+     */
     private void TryAddPicture() {
         outputImage = (ImageButton) getView().findViewById(R.id.img_profile_photo);
         outputImage.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +157,12 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         });
     }
 
+    /**
+     * Metoda za prikaz odabrane slike na profilu
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -167,7 +181,9 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         }
     }
 
-    //for edit data task, enable on touch
+    /**
+     * Metoda za omogućavanje unosa na dodir EditView-a
+     */
     private View.OnTouchListener handleTouch = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -177,13 +193,16 @@ public class UserProfileEditFragment extends Fragment implements UserProfileView
         }
     };
 
-    //enable edit on touch editText
     private void EnableEdit() {
         outputName.setOnTouchListener(handleTouch);
         outputSurname.setOnTouchListener(handleTouch);
         outputUsername.setOnTouchListener(handleTouch);
         outputPassword.setOnTouchListener(handleTouch);
     }
+
+    /**
+     * Metoda za ucitavanje dok se podaci ne prikazu
+     */
     private void spinnerLoad(){
         nDialog = new ProgressDialog( getActivity());
         nDialog.setMessage("Učitavam...");

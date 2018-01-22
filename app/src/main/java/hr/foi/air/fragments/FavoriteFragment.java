@@ -24,6 +24,7 @@ import hr.foi.air.utils.LoggedUserData;
 import hr.foi.air.view.FavoriteView;
 
 /**
+ * Klasa za prikaz liste favorita
  * Created by Mateja on 22-Nov-17.
  */
 
@@ -55,6 +56,10 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
         spinnerLoad();
     }
 
+    /**
+     * Metoda za slanje liste događaja adapteru kako bi ih on ispisao
+     * @param list
+     */
     @Override
     public void onSuccess(List<EventModel> list) {
         eventList = list;
@@ -87,6 +92,10 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
             }
         });
     }
+
+    /**
+     * Metoda za učitavanje događaja
+     */
     private void spinnerLoad(){
         nDialog = new ProgressDialog( getActivity());
         nDialog.setMessage(getContext().getResources().getString(R.string.loading_events));
@@ -95,6 +104,11 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
         nDialog.show();
     }
 
+    /**
+     * Metoda za brisanje događaja iz favorita
+     * @param eventModel
+     * @param clickedItemPosition
+     */
     public void onEventRemoveFavorite(EventModel eventModel, int clickedItemPosition){
         int eventId = eventModel.getEventId();
         recyclerView.removeViewAt(clickedItemPosition);

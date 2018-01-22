@@ -12,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,13 +26,15 @@ import hr.foi.air.R;
 import hr.foi.air.fragments.EventFragment;
 import hr.foi.air.fragments.FavoriteFragment;
 import hr.foi.air.fragments.SettingsFragment;
-import hr.foi.air.fragments.UserProfileEditFragment;
 import hr.foi.air.fragments.UserProfileFragment;
 import hr.foi.air.interactor.impl.UserInteractorImpl;
 import hr.foi.air.utils.Base64Coding;
 import hr.foi.air.utils.LocalHelper;
 import hr.foi.air.utils.LoggedUserData;
 
+/**
+ * Glavna aktivnost aplikacije. Sadrži navigacijski izbornik.
+ */
 
 public class NavigationActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
     TextView txtEmail;
@@ -80,7 +81,9 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         lastFragmentId = R.id.nav_event;
     }
 
-
+    /**
+     * Metoda za rukovanje s tipkom za povratak
+     */
     @Override
     public void onBackPressed() {
 
@@ -101,6 +104,10 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         return true;
     }
 
+    /**
+     * Metoda za dodavanje fragmenta na stog
+     * @param id
+     */
     private void addFragmentToStack(int id){
         if(fragmentStack.contains(id)) {
             removeFromStack(id);//remove from "previous place"
@@ -108,6 +115,9 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         fragmentStack.add(id);//add to the last
     }
 
+    /**
+     * Metoda za prikaz posljednje odabranog fragmenta
+     */
     private void showLastFragment(){
         if(fragmentStack.size() != 0){
             //get last fragment
@@ -121,12 +131,19 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         }
     }
 
+    /**
+     * Metoda za micanja fragmenta sa stoga
+     * @param id
+     */
     private void removeFromStack(int id){
         int index = fragmentStack.indexOf(new Integer(id));
         fragmentStack.remove(index);//remove from "previous place"
     }
 
-
+    /**
+     * Metoda za odabir fragmenata iz navigacijskog izbornika
+     * @param itemId
+     */
     private void displaySelectedScreen(int itemId) {
         View headerLayout = navView.getHeaderView(0);
         imgUser= headerLayout.findViewById(R.id.img_user);
@@ -164,6 +181,10 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         showFragment(fragment);
     }
 
+    /**
+     * Metoda za prikaz fragmenta
+     * @param fragment
+     */
     private void showFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
@@ -172,6 +193,11 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         drawer.closeDrawer(GravityCompat.START);
     }
 
+    /**
+     * Metoda za rukovanje prikaza odabranog fragmenta
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -184,6 +210,10 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         return true;
     }
 
+    /**
+     * Metoda koja dohvaća lokalno stanje (jezik) koje je prethodno odabrano pomoću LocalHelper klase
+     * @param base
+     */
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocalHelper.onAttach(base));

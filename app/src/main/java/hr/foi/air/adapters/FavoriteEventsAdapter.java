@@ -26,7 +26,7 @@ import hr.foi.air.fragments.FavoriteFragment;
 import hr.foi.air.model.EventModel;
 import hr.foi.air.utils.Base64Coding;
 
-/**
+/**Klasa za prikaz favorita pomocu RecyclerView Adaptera
  * Created by marbulic on 12/10/2017.
  */
 
@@ -51,11 +51,6 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
 
     @Override
     public void onBindViewHolder(EventViewHolder holder, int position) {
-        /*holder.eventName.setText(eventList.get(position).getName());
-        holder.eventDescription.setText(eventList.get(position).getDescription());
-        holder.eventBegin.setText(DateConverter(eventList.get(position).getBegin()));
-        holder.eventEnd.setText(DateConverter(eventList.get(position).getEnd()));
-        */
         holder.bind(filtredEventList.get(position));
     }
 
@@ -63,6 +58,10 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
     public int getItemCount() { return filtredEventList.size();
     }
 
+    /**
+     * Metoda za pretraživanje događaja
+     * @return
+     */
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -125,6 +124,10 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
             this.favoriteFragment = favoriteFragment;//
         }
 
+        /**
+         * Metoda za prikaz primljenih podataka od događaju
+         * @param eventModel
+         */
         public void bind(EventModel eventModel) {
             mEvent = eventModel;
             eventName.setText(eventModel.getName());
@@ -137,6 +140,9 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
             configureFavoriteRemoval(favoriteStarButton, eventModel);//
         }
 
+        /**
+         * Metoda za otvaranje detalja odabranog događaja
+         */
         @OnClick
         public void selectedEvent() {
             Bundle args = new Bundle();
@@ -147,6 +153,11 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
             view.getContext().startActivity(intent);
         }
 
+        /**
+         * Metoda vraća datum oblika dd.mm.yyyy.
+         * @param date
+         * @return
+         */
         private String DateConverter(Long date) {
             if (date == 0) {
                 return "";
@@ -156,7 +167,12 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
                 return df.format(d);
             }
         };
-        ///////////////
+
+        /**
+         * Metoda za brisanje događaja iz popisa favorita
+         * @param star
+         * @param eventModel
+         */
         private void configureFavoriteRemoval(final TextView star, final EventModel eventModel){
             star.setOnClickListener(new View.OnClickListener() {
                 @Override

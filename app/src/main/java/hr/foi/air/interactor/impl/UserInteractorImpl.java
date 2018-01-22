@@ -24,6 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
+ * Klasa za dohvaćanje podataka sa servera i slanje podatataka serveru za profil korisnika
  * Created by marbulic on 10/21/2017.
  */
 
@@ -32,19 +33,41 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     UserInteractorLoginListener listenerLogin;
     UserInteractorUserProfileListener listenerProfile;
 
+    /**
+     * Implementacija metode sučelja UserInteractor. Metoda se koristi za postavljanje
+     * UserInteractorRegistrationListenera
+     * @param listener
+     */
     @Override
     public void setRegistrationListener(UserInteractorRegistrationListener listener){
         this.listener = listener;
     }
+
+    /**
+     * Implementacija metode sučelja UserInteractor. Metoda se koristi za postavljanje
+     * UserInteractorLoginListenera
+     * @param listener
+     */
     @Override
     public void setLoginListener(UserInteractorLoginListener listener) {
         this.listenerLogin = listener;
     }
+
+    /**
+     * Implementacija metode sučelja UserInteractor. Metoda se koristi za postavljanje
+     * UserInteractorUserProfileListenera
+     * @param listener
+     */
     @Override
     public void setUserProfileListener(UserInteractorUserProfileListener listener) {
         this.listenerProfile = listener;
     }
 
+    /**
+     * Implementacija metoda sučelja UserInteractor. Metoda služi za prijavu korisnika u aplikaciju
+     * @param username
+     * @param password
+     */
     @Override
     public void Login(String username, String password) {
         JSONObject jObj= new JSONObject();
@@ -83,12 +106,14 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
                 listenerLogin.onLoginFailed();
                 Log.d("Api", t.getMessage());
             }
-
         });
     }
 
-
-
+    /**
+     * Implementacija metoda sučelja UserInteractor. Metoda služi registraciju korisnika,
+     * šalje serveru podatke o korisniku
+     * @param userData
+     */
     @Override
     public void createUser(UserModel userData) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -108,13 +133,18 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
                 Log.d("Api", t.getMessage());
-                listener.onFailed("Neuspješna registracija! Pokušajte ponovno");
+                listener.onFailed("Unsuccessful registration. Try again!");
             }
         });
         //call.enqueue();
 
     }
 
+    /**
+     * Implementacija metoda sučelja UserInteractor. Metoda služi za dohvaćanje podataka o
+     * korisniku sa servera
+     * @param userId
+     */
     @Override
     public void viewUserData(int userId) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -138,6 +168,11 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
         });
     }
 
+    /**
+     * Implementacija metoda sučelja UserInteractor. Metoda služi za slanje promjenjenih
+     * podataka na server
+     * @param userData
+     */
     @Override
     public void editUserData(UserModel userData) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -161,6 +196,11 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
         });
     }
 
+    /**
+     * Implementacija metoda sučelja UserInteractor. Metoda služi osvježavanje tokena
+     * @param deviceId
+     * @param userId
+     */
     @Override
     public void updateDeviceId(String deviceId, int userId) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -193,6 +233,11 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
         });
     }
 
+    /**
+     * Implementacija metoda sučelja UserInteractor. Metoda služi za odjavu korisnika iz aplikacije.
+     * @param ac
+     * @param token
+     */
     @Override
     public void logOut(final Activity ac, String token) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -223,6 +268,12 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
             }
         });
     }
+
+    /**
+     * Implementacija metoda sučelja UserInteractor. Metoda služi za dohvaćanje podataka korisnika za prikaz
+     * na navigation draweru
+     * @param userId
+     */
     @Override
     public void getDataForDrawer(int userId) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);

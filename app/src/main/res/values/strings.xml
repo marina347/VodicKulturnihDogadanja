@@ -102,4 +102,6 @@
     <!-- UserProfileFragment.java -->
     <string name="succesfully_editing_data">Succesfully editing data</string>
 
+    <string name="unsuccessful_registration">Unsuccessful registration. Try again!</string>
+
 </resources>
