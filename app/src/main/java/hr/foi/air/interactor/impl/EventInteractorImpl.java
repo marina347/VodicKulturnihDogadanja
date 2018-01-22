@@ -21,16 +21,27 @@ import retrofit2.Response;
 public class EventInteractorImpl implements EventInteractor{
     EventInteractorListener eventInteractorListener;
 
+    /**
+     * Implementacija funkcije sučelja EventInteractor. Funkcija služi za postavljanje EventListener.
+     * @param listener
+     */
     @Override
     public void setEventListener(EventInteractorListener listener) {
         this.eventInteractorListener=listener;
     }
 
+    /**
+     * Implementacija funkcije sučelja EventInteractor. Funkcija služi za postavljanje AllEventListenera.
+     * @param listener
+     */
     @Override
     public void setAllEventListener(EventInteractorListener listener) {
         this.eventInteractorListener=listener;
     }
 
+    /**
+     * Implementacija funkcije sučelja EventInteractor. Funkcija služi za dohvaćanje budućih događaja sa servera.
+     */
     @Override
     public void getEvent() {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -55,6 +66,9 @@ public class EventInteractorImpl implements EventInteractor{
         });
     }
 
+    /**
+     * Implementacija funkcije sučelja EventInteractor. Funkcija služi za dohvaćanje svih događaja sa servera.
+     */
     @Override
     public void getAllEvents() {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);

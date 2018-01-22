@@ -51,6 +51,10 @@ public class EventFragment extends Fragment {
         arguments.clear();
         arguments.putAll(bundle);
     }
+
+    /**
+     * Funkcija postavlja tabove koji će biti prikazani.
+     */
     private void setupTabLayout() {
         Intent intent = this.getActivity().getIntent();
         eventId = intent.getIntExtra("id", -1);
@@ -66,6 +70,10 @@ public class EventFragment extends Fragment {
         allTabs.addTab(allTabs.newTab().setText(R.string.all_event));
     }
 
+    /**
+     * Funkcija zamjenjuje tabove/fragmente.
+     * @param fragment
+     */
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -74,6 +82,10 @@ public class EventFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Funkcija prikazuje odabrani tab.
+     * @param tabPosition
+     */
     private void setCurrentTabFragment (int tabPosition) {
         switch (tabPosition)
         {
@@ -88,6 +100,9 @@ public class EventFragment extends Fragment {
         }
     }
 
+    /**
+     * Funkcija ostvaruje interakciju s tabovima.
+     */
     private void bindWidgetsWithAnEvent() {
         allTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -31,13 +31,16 @@ public class CommentViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
+    /**
+     * Funkcija prikazuje pristige podatke o komenraru.
+     * @param comment
+     */
     public void bind(CommentModel comment){
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy. HH:mm");
         Date d = new Date(comment.getTime());
         commentDatetime.setText(df.format(d));
         commentText.setText(comment.getText());
         commentUser.setText(comment.getUsername());
-        //commentUser.setText(comment.getUserId());
     }
 }
 

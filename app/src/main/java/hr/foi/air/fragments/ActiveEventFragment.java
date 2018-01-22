@@ -81,6 +81,10 @@ public class ActiveEventFragment extends Fragment implements EventView {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Funkcija služi za pretraživanje aktivnih događaja.
+     * @param searchView
+     */
     private void search(SearchView searchView) {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -99,6 +103,10 @@ public class ActiveEventFragment extends Fragment implements EventView {
         });
     }
 
+    /**
+     * Funkcija šalje listu događaju Recycler Adapteru da ih prikaže.
+     * @param list
+     */
     public void setView(List<EventModel> list){
         rv = (RecyclerView) getView().findViewById(R.id.recycler_view);
         lm= new LinearLayoutManager(getActivity());
@@ -116,6 +124,10 @@ public class ActiveEventFragment extends Fragment implements EventView {
         nDialog.show();
     }
 
+    /**
+     * Funkcija prihvaća pristigle događaje.
+     * @param list
+     */
     @Override
     public void Arrived(List<EventModel> list) {
         nDialog.dismiss();
@@ -124,6 +136,11 @@ public class ActiveEventFragment extends Fragment implements EventView {
         dataArrived = true;
 
     }
+
+    /**
+     * Funkcija prikazuje unesenu poruku.
+     * @param msg
+     */
     private void showToastOnUI(final String msg){
         final Context ctx = getActivity();
         getActivity().runOnUiThread(new Runnable() {
@@ -133,6 +150,11 @@ public class ActiveEventFragment extends Fragment implements EventView {
             }
         });
     }
+
+    /**
+     * Funkcija ispisuje poruku o nepostojanju događaja.
+     * @param error
+     */
     @Override
     public void NoEvents(final String error) {
         showToastOnUI(error);

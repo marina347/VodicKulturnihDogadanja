@@ -62,12 +62,14 @@ public class CommentsFragment extends Fragment implements CommentView {
     @Override
     public void onStart() {
         super.onStart();
-        //Intent intent = getActivity().getIntent();
-        //eventId=intent.getIntExtra("eventId", -1);
         eventId=this.getArguments().getInt("eventId",-1);
         commentPresenter.tryGetComments(eventId);
     }
 
+    /**
+     * Funkcija šalje pistiglu listu komentara Recycler adapteru da ih prikaže.
+     * @param commenList
+     */
     @Override
     public void ArrivedComments(List<CommentModel> commenList) {
         comments=commenList;
@@ -79,11 +81,19 @@ public class CommentsFragment extends Fragment implements CommentView {
         recyclerView.setAdapter(commentAdapter);
     }
 
+    /**
+     * Funkcija ispisuje poruku o nepostojećim komentarima.
+     * @param s
+     */
     @Override
     public void NoComment(String s) {
         Toast.makeText(getActivity(),s,Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Funkcija služi za prikazivanje kreiranog komentara.
+     * @param comment
+     */
     @Override
     public void onSuccessCreateNewComment(CommentModel comment) {
         commentPresenter.tryGetComments(eventId);
@@ -91,12 +101,20 @@ public class CommentsFragment extends Fragment implements CommentView {
         txtNewComment.setText("");
     }
 
+    /**
+     * Funkcija služi za ispis poruke kada se komentar neuspije stvoriti.
+     * @param s
+     */
     @Override
     public void onFailedCreateNewComment(String s) {
         Toast.makeText(getActivity(),s,Toast.LENGTH_SHORT).show();
         txtNewComment.setText("");
     }
 
+    /**
+     * Funkcija služi za kreiranje novoga komentara.
+     * @param view
+     */
     @OnClick(R.id.btn_new_comment)
     public void NewCommentClick(View view){
         AddNewComment();

@@ -55,6 +55,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
     public int getItemCount() { return filtredEventList.size();
     }
 
+    /**
+     * Funkcija služi za filtriranje/pretraživanje događaja.
+     * @return
+     */
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -114,6 +118,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
             ButterKnife.bind(this, itemView);
         }
 
+        /**
+         * Funkcija prikazuje primljene podatke o događaju.
+         * @param eventModel
+         */
         public void bind(EventModel eventModel) {
             mEvent = eventModel;
             eventName.setText(eventModel.getName());
@@ -125,6 +133,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
             eventImage.setImageBitmap(Base64Coding.decodeBase64(eventModel.getPicture()));
         }
 
+        /**
+         * Funkcija otvara novu detalje o događaju za odabrani događaj.
+         */
         @OnClick
         public void selectedEvent() {
             Bundle args = new Bundle();
@@ -135,6 +146,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
             view.getContext().startActivity(intent);
         }
 
+        /**
+         * Funkcija vraća datum oblika dd.mm.yyyy.)
+         * @param date
+         * @return
+         */
         private String DateConverter(Long date) {
             if (date == 0) {
                 return "";

@@ -81,6 +81,10 @@ public class AllEventFragment extends Fragment implements AllEventView {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Funkcija služi za pretraživanje svih događaja.
+     * @param searchView
+     */
     private void search(SearchView searchView) {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -99,6 +103,10 @@ public class AllEventFragment extends Fragment implements AllEventView {
         });
     }
 
+    /**
+     * Funkcija prihvaća pristigle događaje.
+     * @param list
+     */
     @Override
     public void ArrivedAllEvents(List<EventModel> list) {
         this.eventsList= list;
@@ -107,6 +115,11 @@ public class AllEventFragment extends Fragment implements AllEventView {
         nDialog.dismiss();
 
     }
+
+    /**
+     * Funkcija šalje listu događaju Recycler Adapteru da ih prikaže.
+     * @param list
+     */
     public void setView(List<EventModel> list){
         rv = (RecyclerView) getView().findViewById(R.id.recycler_view);
         lm= new LinearLayoutManager(getActivity());
@@ -118,6 +131,11 @@ public class AllEventFragment extends Fragment implements AllEventView {
         dataArrived=true;
 
     }
+
+    /**
+     * Funkcija prikazuje unesenu poruku.
+     * @param msg
+     */
     private void showToastOnUI(final String msg){
         final Context ctx = getActivity();
         getActivity().runOnUiThread(new Runnable() {
@@ -134,6 +152,11 @@ public class AllEventFragment extends Fragment implements AllEventView {
         nDialog.setCancelable(true);
         nDialog.show();
     }
+
+    /**
+     * Funkcija ispisuje poruku o nepostojanju događaja.
+     * @param error
+     */
     @Override
     public void NoAllEvents(final String error) {
         showToastOnUI(error);

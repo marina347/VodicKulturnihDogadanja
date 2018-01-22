@@ -24,11 +24,20 @@ import retrofit2.Response;
 
 public class EventDetailsInteractorImpl implements EventDetailsInteractor {
     EventDetailsInteractorListener eventDetailsInteractorListener;
+
+    /**
+     * Implementacija funkcije sučelja EventDetailsInteractor.Funkcija služi za postavljanje EventDetailsListenera
+     * @param listener
+     */
     @Override
     public void setEventDetailsListener(EventDetailsInteractorListener listener) {
         this.eventDetailsInteractorListener=listener;
     }
 
+    /**
+     * Implementacija funkcije sučelja EventDetailsInteractor. Funkcija služi za dohvaćanje događaja po id-u sa servera.
+     * @param eventId
+     */
     @Override
     public void getEventById(int eventId) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -54,6 +63,12 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
 
     }
 
+    /**
+     * Implementacija funkcije sučelja EventDetailsInteractor. Funkcija služi za slanje ocjene događaja na server.
+     * @param mark
+     * @param userId
+     * @param eventId
+     */
     @Override
     public void addEvaluation(int mark, int userId, int eventId) {
         JSONObject jObj = new JSONObject();
@@ -88,6 +103,11 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
         });
     }
 
+    /**
+     * Implementacija funkcije sučelja EventDetailsInteractor. Funkcija služi za brisanja ocijene događaja sa servera
+     * @param userId
+     * @param eventId
+     */
     @Override
     public void deleteEvaluation(int userId, int eventId) {
         JSONObject jObj = new JSONObject();

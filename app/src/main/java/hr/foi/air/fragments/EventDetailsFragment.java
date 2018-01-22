@@ -85,7 +85,6 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         spinnerLoad();
         View rootView = inflater.inflate(R.layout.fragment_details, null);
-        //getActivity().setContentView(R.layout.fragment_details); DA LI OVO TREBA?
         ButterKnife.bind(this, rootView);
         LoggedUserData.getInstance();
         EventDetailsPresenter edp = new EventDetailsPresenterImpl(new EventDetailsInteractorImpl(),new FavoriteInteractorImpl(), this);
@@ -103,24 +102,38 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         }
     }
 
+    /**
+     * Funkcija služi za dijeljene događaja na facebook.
+     */
     @OnClick(R.id.btn_share)
     public void click(){
         shareManager = new FacebookSharingManager();
         initSharing(shareManager);
     }
 
+    /**
+     * Funkcija služi za inicijaliziranje SocialNetworkShareManager
+     * @param shareManager
+     */
     private void initSharing(SocialNetworkSharingManager shareManager){
         shareManager.setListener(this);
         shareManager.setContainer(this);
         shareManager.share(getActivity(), event.getEventId());
     }
 
+    /**
+     * Funkcija služi za dijeljene događaja na twitter.
+     */
     @OnClick(R.id.btn_twitter)
     public void clickTwitter(){
         shareManager = new TwitterSharingManager();
         initSharing(shareManager);
     }
 
+    /**
+     * Funkcija služi za prikazivanje detalja o događaju
+     * @param event
+     */
     @Override
     public void ArrivedEvent(EventModel event) {
         this.event=event;
@@ -160,6 +173,9 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         showNumberOfLikes();
     }
 
+    /**
+     * Funkcija služi za prikazivanje odabranog/neodabranog like/dislika.
+     */
     private void setLikeDislikeButtonsAlpha(){
 
         if(event.getUserEval()==Utils.DISLIKE){
@@ -177,6 +193,11 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         showNumberOfLikes();
     }
 
+    /**
+     * Funkcija služi za prikaz datuma u obliku dd.mm.yyyy.
+     * @param date
+     * @return
+     */
     private String DateConverter(Long date) {
         if (date == 0) {
             return "";
@@ -194,38 +215,59 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         shareManager.onActivityResult(requestCode, resultCode, data);
     }
 
+    /**
+     * Funkcija služi za dodavanje događaja u favorite.
+     */
     @OnClick(R.id.favoriteCheckBox)
     public void favoriteCheckBoxClick(){
         this.dp.tryAddFavorite(this.event.getEventId());
         favoriteCheckBox.setAlpha(1F);
     }
 
+    /**
+     * Funkcija ispisuje poruku o uspješnom dodavanju događaja u favorite.
+     */
     @Override
     public void onSuccessAddedFavorite() {
         Toast.makeText(getActivity(),R.string.event_added_in_favorite, Toast.LENGTH_LONG).show();
 
     }
 
+    /**
+     * Funkcija ispisuje poruku o uspješnom ocijenjivanju događaja.
+     */
     @Override
     public void onSuccessAddedEvaluation() {
         Toast.makeText(getActivity(),R.string.successfully_rated, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Funkcija ispisuje poruku o neuspješnom ocjenjivanju događaja.
+     */
     @Override
     public void onFailedAddedEvaluation() {
         Toast.makeText(getActivity(),R.string.unsuccessfully_rated, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Funkcija ispisuje poruku o uspješnom brisanju ocjene događaja.
+     */
     @Override
     public void onSuccessDeletedEvaluation() {
         //Toast.makeText(getActivity(),"Uspješno uklonjena ocjena!" Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Funkcija ispisuje poruku o neuspjelom brisanju događaja.
+     */
     @Override
     public void onFailedDeletedEvaluation() {
         //Toast.makeText(getActivity(),"Neuspješno uklonjena ocjena!" Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Funkcija služi za like-anje događaja.
+     */
     @OnClick(R.id.img_like)
     public void clickLike(){
         if(this.event.getUserEval()== Utils.LIKE){
@@ -247,6 +289,10 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
 
 
     }
+
+    /**
+     * Funkcija služi za dislike-anje događaja.
+     */
     @OnClick(R.id.img_dislike)
     public void clickDislike(){
 
@@ -270,16 +316,26 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
 
     }
 
+    /**
+     * Ispisuje poruku o uspješnom dijeljenju događaja na društvenu mrežu.
+     */
     @Override
     public void shared() {
         Toast.makeText(getActivity(),R.string.successfully_shared, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Funkcija služi za ispis poruke o otkazanom dijeljenju događaja na društvenu mrežu.
+     */
     @Override
     public void canceled() {
         Toast.makeText(getActivity(),R.string.unsuccessfully_shared, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Funkcija služi za prikazivanje fragmenta.
+     * @param fragment
+     */
     @Override
     public void showFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -289,6 +345,10 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         btnShare.setVisibility(View.GONE);
     }
 
+    /**
+     * Funkcija služi za skrivanje fragmenta.
+     * @param fragment
+     */
     @Override
     public void hideFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -297,7 +357,10 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         btnTwitter.setVisibility(View.VISIBLE);
         btnShare.setVisibility(View.VISIBLE);
     }
-    
+
+    /**
+     * Funkcija služi za otvaranje linka na kojem se mogu kupiti karte za događaj.
+     */
     @OnClick(R.id.btn_link)
     public void openLink(){
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getLink()));
@@ -310,6 +373,10 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
         nDialog.setCancelable(true);
         nDialog.show();
     }
+
+    /**
+     * Funkcija služi za prikaz broja like-ova i dislike-ova.
+     */
     private void showNumberOfLikes(){
         txtNumOfDislike.setText(String.valueOf(event.getNumOfDislikes()));
         txtNumOfLike.setText(String.valueOf(event.getNumOfLikes()));

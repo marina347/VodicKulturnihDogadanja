@@ -20,11 +20,19 @@ import retrofit2.Response;
 public class CommentInteractorImpl implements CommentInteractor {
     CommentInteractorListener commentInteractorListener;
 
+    /**
+     * Implementacija funkcije sučelja CommentInteractor. Funkcija služi za postavljanje CommenntListenera.
+     * @param commentListener
+     */
     @Override
     public void setCommentListener(CommentInteractorListener commentListener) {
         this.commentInteractorListener=commentListener;
     }
 
+    /**
+     * Implementacija funkcije sučelja CommentInteractor. Funkcija služi za dohvaćanje događaja sa servera.
+     * @param eventId
+     */
     @Override
     public void getComments(int eventId) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);
@@ -48,6 +56,10 @@ public class CommentInteractorImpl implements CommentInteractor {
 
     }
 
+    /**
+     * Implementacija funkcije sučelja CommentInteractor. Funkcija služi za slanje novog komentara na server.
+     * @param comment
+     */
     @Override
     public void CreateNewComment(CommentModel comment) {
         CallDefinitions calls = RetrofitREST.getRetrofit().create(CallDefinitions.class);

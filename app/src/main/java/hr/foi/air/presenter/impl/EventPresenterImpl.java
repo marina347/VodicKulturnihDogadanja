@@ -30,31 +30,51 @@ public class EventPresenterImpl implements EventPresenter,EventInteractorListene
         this.aev = aev;
     }
 
+    /**
+     * Implementacija funkcije sučelja EventPresenter. Funkcija pokušava dohvatiti buduće događaje.
+     */
     @Override
     public void tryGetEvents() {
         ei.getEvent();
     }
 
+    /**
+     * Implementacija funkcije sučelja EventPresenter. Funkcija pokušava dohvatiti sve događaje.
+     */
     @Override
     public void tryGetAllEvents() {
         ei.getAllEvents();
     }
 
+    /**
+     * Implementacija funkcije EventInteractorListener. Funkcija šalje pristigli događaj EventView-u.
+     * @param eventList
+     */
     @Override
     public void ArrivedEvents(List<EventModel> eventList) {
         ev.Arrived(eventList);
     }
 
+    /**
+     * Implementacija funkcije EventInteractorListener. Funkcija šalje poruku o nepostojanju događaja EventView.
+     */
     @Override
     public void NoEvents() {
         ev.NoEvents("Nema budućih događanja!");
     }
 
+    /**
+     * Implementacija funkcije EventInteractorListener. Funkcija šalje pristigli sve događaje EventView-u.
+     * @param allEventList
+     */
     @Override
     public void ArrivedAllEvents(List<EventModel> allEventList) {
         aev.ArrivedAllEvents(allEventList);
     }
 
+    /**
+     * Implementacija funkcije EventInteractorListener. Funkcija šalje poruku o nepostojanju događaja EventView.
+     */
     @Override
     public void NoAllEvents() {
         aev.NoAllEvents("U bazi nema zabilježenih događaja!");

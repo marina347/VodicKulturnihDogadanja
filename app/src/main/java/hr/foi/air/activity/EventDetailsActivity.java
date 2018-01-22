@@ -27,7 +27,6 @@ public class EventDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getSupportActionBar().hide();
         setContentView(R.layout.activity_event_details);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -52,6 +51,10 @@ public class EventDetailsActivity extends AppCompatActivity {
     private void getAllWidgets() {
         allTabs = (TabLayout) findViewById(R.id.tabs);
     }
+
+    /**
+     * Funkcija postavlja tabove koji će biti prikazani.
+     */
     private void setupTabLayout() {
         Intent intent = this.getIntent();
         eventId=intent.getIntExtra("id", -1);
@@ -76,6 +79,9 @@ public class EventDetailsActivity extends AppCompatActivity {
         fragmentMap.setArguments(bundle);
     }
 
+    /**
+     * Funkcija ostvaruje interakciju s tabovima.
+     */
     private void bindWidgetsWithAnEvent()
     {
         allTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -91,6 +97,11 @@ public class EventDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Funkcija prikazuje odabrani tab/fragment.
+     * @param tabPosition
+     */
     private void setCurrentTabFragment(int tabPosition)
     {
         switch (tabPosition)
@@ -106,6 +117,11 @@ public class EventDetailsActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    /**
+     * Funkcija zamjenjuje tabove/fragmente.
+     * @param fragment
+     */
     public void replaceFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -115,6 +131,12 @@ public class EventDetailsActivity extends AppCompatActivity {
         lastFragment = fragment;
     }
 
+    /**
+     * Funkcija postavlja zadnji fragment.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(lastFragment!=null&&lastFragment instanceof EventDetailsFragment && data!=null){
             lastFragment.onActivityResult(requestCode,resultCode,data);

@@ -24,17 +24,32 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentViewHolder> {
         this.context=context;
     }
 
+    /**
+     * Funkcija povezuje pogled s xml elementom.
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_list_item, parent,false);
         return new CommentViewHolder(view);
     }
 
+    /**
+     * Funkcija šalje komentar za ViewHolder.
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(CommentViewHolder holder, int position) {
         holder.bind(commentList.get(position));
     }
 
+    /**
+     * Funkcija vraća broj elemenata.
+     * @return
+     */
     @Override
     public int getItemCount() {
         return commentList.size();

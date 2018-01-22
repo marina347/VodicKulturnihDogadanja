@@ -46,6 +46,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         supportMapFragment.getMapAsync(this);
         location = getArguments().getString("location");
     }
+
+    /**
+     * Funkcija služi za prikaz lokacije događaja i lokacije korisnika na GoogleMap.
+     * @param googleMap
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;

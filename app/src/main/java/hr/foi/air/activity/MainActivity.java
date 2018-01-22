@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements EventView {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Funkcija sljuži za pretraživanje Recycler adaptera.
+     * @param searchView
+     */
     private void search(SearchView searchView) {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -77,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements EventView {
         });
     }
 
+    /**
+     * Funkcija šalje pristigle događaje Recycler adapteru da ih prikaže.
+     * @param list
+     */
     @Override
     public void Arrived(List<EventModel> list) {
         rv = (RecyclerView) findViewById(R.id.recycler_view);
@@ -87,6 +95,11 @@ public class MainActivity extends AppCompatActivity implements EventView {
         rv.setAdapter(adapter);
         nDialog.dismiss();
     }
+
+    /**
+     * Funkcija ispisuje unesenu poruku.
+     * @param msg
+     */
     private void showToastOnUI(final String msg){
         final Context ctx = this;
         this.runOnUiThread(new Runnable() {
@@ -96,6 +109,10 @@ public class MainActivity extends AppCompatActivity implements EventView {
             }
         });
     }
+
+    /**
+     * Funkcija prikazuje učitavanje.
+     */
     private void spinnerLoad(){
         nDialog = new ProgressDialog(this);
         nDialog.setMessage(this.getResources().getString(R.string.loading_events));
@@ -104,6 +121,10 @@ public class MainActivity extends AppCompatActivity implements EventView {
         nDialog.show();
     }
 
+    /**
+     * Funkcija ispisuje poruku kada o nepostojanju događaja.
+     * @param error
+     */
     @Override
     public void NoEvents(final String error) {
         showToastOnUI(error);

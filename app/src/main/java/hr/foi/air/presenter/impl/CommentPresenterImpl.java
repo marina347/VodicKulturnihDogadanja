@@ -22,32 +22,54 @@ public class CommentPresenterImpl implements CommentPresenter, CommentInteractor
         this.commentView = commentView;
     }
 
-
+    /**
+     *  Implementacija funkcije sučelja CommentPresenter. Funkcija pokušava dohvatiti komentare. Id događaja šalje se interactoru.
+     * @param eventId
+     */
     @Override
     public void tryGetComments(int eventId) {
         commentInteractor.getComments(eventId);
     }
 
+    /**
+     * Implementacija funkcije sučelja CommentPresenter. Funkcija pokušava kreirati novi komentar. Šalje komentar interactoru.
+     * @param comment
+     */
     @Override
     public void tryAddNewComment(CommentModel comment) {
         commentInteractor.CreateNewComment(comment);
     }
 
+    /**
+     * Implementacija funkcije sučelja CommentInteractorListener. Funkcija poziva funkciju NoComment sučelja CommentView.
+     */
     @Override
     public void NoComment() {
         commentView.NoComment("Nema postojećih komentar!");
     }
 
+    /**
+     * Implementacija funkcije sučelja CommentInteractorListener. Funkcija šalje sve komentare CommentView.
+     * @param list
+     */
     @Override
     public void ArrivedComments(List<CommentModel> list) {
         commentView.ArrivedComments(list);
     }
 
+    /**
+     * Implementacija funkcije sučelja CommentInteractorListener. Funkcija šalje uspješno krirani komentar CommentView
+     * @param comment
+     */
     @Override
     public void onSuccessCreateNewComment(CommentModel comment) {
         commentView.onSuccessCreateNewComment(comment);
     }
 
+    /**
+     *  Implementacija funkcije sučelja CommentInteractorListener. Funkcija šalje poruku o neuspjelom kreiranju komentara u CommentView.
+     * @param s
+     */
     @Override
     public void onFailedCreateNewComment(String s) {
         commentView.onFailedCreateNewComment(s);
