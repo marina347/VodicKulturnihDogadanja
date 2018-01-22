@@ -7,6 +7,7 @@ import java.io.IOException;
 import okhttp3.ResponseBody;
 
 /**
+ * Klasa za dekodiranje gresaka sa servera.
  * Created by marbulic on 10/22/2017.
  */
 
@@ -28,7 +29,11 @@ public class RESTErrorDecoderUtils {
     public static final int GET_RESURCE_NOT_FOUND=10013;
 
 
-
+    /**
+     * Klasa koja dekodira greske dobivene sa servera.
+     * @param body
+     * @return
+     */
     public static RESTError decodeError(ResponseBody body){
         Gson gson = new Gson();
         String json = null;

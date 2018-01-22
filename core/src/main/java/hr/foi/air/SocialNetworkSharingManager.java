@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 /**
+ * Glavno sucelje preko kojeg moduli facebook i twitter ostvaruju dijeljenje
  * Created by marbulic on 12/6/2017.
  */
 

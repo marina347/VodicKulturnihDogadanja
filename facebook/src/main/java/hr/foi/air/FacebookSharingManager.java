@@ -16,7 +16,8 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
 /**
- * Created by marbulic on 12/6/2017.
+ *Klasa za dijeljenje detalja o dogadaju
+ *Created by marbulic on 12/6/2017.
  */
 
 public class FacebookSharingManager implements SocialNetworkSharingManager {
@@ -31,6 +32,13 @@ public class FacebookSharingManager implements SocialNetworkSharingManager {
     public void setContainer(SocialNetworkSharingContainer container) {
         this.container = container;
     }
+
+    /**
+     * Metoda koja priprema sadrzaj za dijeljenje i obavjeztava
+     * EventDetailsFragment o uspjesnosti."
+     * @param activity
+     * @param eventId
+     */
     @Override
     public void share(Activity activity, int eventId) {
             FacebookSdk.sdkInitialize(activity);
@@ -74,10 +82,25 @@ public class FacebookSharingManager implements SocialNetworkSharingManager {
             }
         }
 }
+
+    /**
+     * Metoda koja prosljeduje rezultat callback manageru.
+     * @param requestCode
+     * @param resultCode
+     * @param intent
+     */
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         callbackManager.onActivityResult(requestCode,resultCode,intent);
     }
+
+    /**
+     * Metoda koja provjerava jel Facebook aplikacija instalirana na uredaju.
+     * @param activity
+     * @param eventId
+     * @return
+     */
     public boolean isAppInstalled(Activity activity, int eventId) {
         boolean faceBook=false;
         try {

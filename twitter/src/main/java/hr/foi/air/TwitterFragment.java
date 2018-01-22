@@ -64,6 +64,13 @@ public class TwitterFragment extends Fragment {
      * @return A new instance of fragment TwitterFragment.
      */
     // TODO: Rename and change types and number of parameters
+
+    /**
+     * Metoda koja instancira novi TwitterFragment
+     * @param param1
+     * @param param2
+     * @return
+     */
     public static TwitterFragment newInstance(String param1, String param2) {
         TwitterFragment fragment = new TwitterFragment();
         Bundle args = new Bundle();
@@ -141,7 +148,12 @@ public class TwitterFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-
+    /**
+     *  Metoda koja prosljeduje rezultat login gumbu.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 

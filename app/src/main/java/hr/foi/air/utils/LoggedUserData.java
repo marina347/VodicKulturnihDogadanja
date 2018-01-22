@@ -3,6 +3,7 @@ package hr.foi.air.utils;
 import hr.foi.air.model.TokenModel;
 
 /**
+ * Klasa koja sadrzi podatke o ulogiranom korisniku.
  * Created by marbulic on 10/24/2017.
  */
 

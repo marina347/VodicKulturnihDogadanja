@@ -14,6 +14,7 @@ import com.twitter.sdk.android.tweetcomposer.ComposerActivity;
 import com.twitter.sdk.android.tweetcomposer.TweetUploadService;
 
 /**
+ * Klasa za dijeljenje detalja o dogadaju preko Twittera.
  * Created by Mateja on 16-Dec-17.
  */
 
@@ -23,6 +24,11 @@ public class TwitterSharingManager extends BroadcastReceiver implements SocialNe
     static SocialNetworkSharingContainer container;
     int eventId;
 
+    /**
+     * Metoda koja provjerava je li Twitter aplikacija instalirana na uredaju.
+     * @param activity
+     * @return
+     */
     public boolean isTwitterInstalled(Activity activity) {
         boolean twitterInstalled = false;
         try {
@@ -49,6 +55,11 @@ public class TwitterSharingManager extends BroadcastReceiver implements SocialNe
         this.container = container;
     }
 
+    /**
+     * Metoda koja prikazuje Twitter fragment.
+     * @param activity
+     * @param eventId
+     */
     @Override
     public void share(Activity activity, int eventId) {
         this.eventId = eventId;
@@ -57,12 +68,21 @@ public class TwitterSharingManager extends BroadcastReceiver implements SocialNe
         container.showFragment(fragment);
     }
 
+    /**
+     * Metoda koja prosljeduje rezultat Twitter Fragmentu.
+     * @param requestCode
+     * @param resultCode
+     * @param intent
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         fragment.onActivityResult(requestCode,resultCode,intent);
     }
 
-    //authentication
+    /**
+     * Metoda koja dijeli sadrzaj ako je uspjela autentikacija.
+     * @param activity
+     */
     @Override
     public void twitterAuthenticateSuccess(Activity activity) {
         //if(isTwitterInstalled(activity)){
@@ -78,13 +98,20 @@ public class TwitterSharingManager extends BroadcastReceiver implements SocialNe
 
     }
 
+    /**
+     * Metoda koja se poziva ako autentikacija nije uspjela. Gasi se Twitter Fragment"
+     */
     @Override
     public void twitterAuthenticateFailure() {
         container.hideFragment(fragment);
         listener.canceled();
     }
 
-    //after tweeting:
+    /**
+     * Metoda koja se poziva ovisno o uspjesnosti dijeljenja sadrzaja na Twitter.
+     * @param context
+     * @param intent
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         if (TweetUploadService.UPLOAD_SUCCESS.equals(intent.getAction())) {

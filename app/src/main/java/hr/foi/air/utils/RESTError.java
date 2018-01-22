@@ -1,6 +1,7 @@
 package hr.foi.air.utils;
 
 /**
+ * Klasa koja sadrzi poruku i identifikator greske.
  * Created by marbulic on 10/30/2017.
  */
 
