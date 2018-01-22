@@ -18,6 +18,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hr.foi.air.R;
@@ -36,7 +39,9 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
     TextView txtEmail;
     TextView txtName;
     ImageView imgUser;
-    Menu menu;
+    List<Integer> fragmentStack;
+    int lastFragmentId;
+
     @BindView(R.id.nav_view)
     NavigationView navView;
 
@@ -46,6 +51,7 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         setContentView(R.layout.activity_navigation);
         ButterKnife.bind(this);
 
+        fragmentStack = new ArrayList<>(4);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.no_title);
@@ -56,9 +62,7 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        displaySelectedScreen(R.id.nav_event);
+        initDrawerAndFragments();
 
         View headerLayout = navView.getHeaderView(0);
         txtEmail = headerLayout.findViewById(R.id.email_d);
@@ -69,72 +73,84 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
         if(LoggedUserData.getInstance().getImage()!=null) imgUser.setImageBitmap(Base64Coding.decodeBase64(LoggedUserData.getInstance().getImage()));
     }
 
+    private void initDrawerAndFragments(){
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        displaySelectedScreen(R.id.nav_event);
+        lastFragmentId = R.id.nav_event;
+    }
+
+
     @Override
     public void onBackPressed() {
-        EventFragment eventFragment = (EventFragment)getSupportFragmentManager().findFragmentByTag("event_fragment");
-        Fragment editProfileFragment = (UserProfileEditFragment)getSupportFragmentManager().findFragmentByTag("edit_profile_fragment");
-        //Fragment eventFragment = new EventFragment();
-        //Fragment editProfileFragment = new UserProfileEditFragment();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        // if drawer open, close it
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
-        //if event fragment visible, got out from app
-        else if (eventFragment != null && eventFragment.isVisible()){
-            finishAffinity();
-        }
-        //go on event fragment
         else {
-            Fragment someFragment = new EventFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, someFragment, "event");
-            transaction.addToBackStack("event");
-            transaction.commit();
-            //super.onBackPressed();
+            showLastFragment();
         }
-    }
 
-    private void f() {
-        Fragment someFragment = new EventFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, someFragment, "event");
-        transaction.addToBackStack("event");
-        transaction.commit();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        this.menu=menu;
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
+
+    private void addFragmentToStack(int id){
+        if(fragmentStack.contains(id)) {
+            removeFromStack(id);//remove from "previous place"
+        }
+        fragmentStack.add(id);//add to the last
+    }
+
+    private void showLastFragment(){
+        if(fragmentStack.size() != 0){
+            //get last fragment
+            int fragmentId = fragmentStack.get(fragmentStack.size()-1);
+            //remove from list
+            fragmentStack.remove(fragmentStack.size()-1);
+            //show
+            displaySelectedScreen(fragmentId);
+            navView.setCheckedItem(fragmentId);
+
+        }
+    }
+
+    private void removeFromStack(int id){
+        int index = fragmentStack.indexOf(new Integer(id));
+        fragmentStack.remove(index);//remove from "previous place"
+    }
+
 
     private void displaySelectedScreen(int itemId) {
         View headerLayout = navView.getHeaderView(0);
         imgUser= headerLayout.findViewById(R.id.img_user);
         imgUser.setImageBitmap(Base64Coding.decodeBase64(LoggedUserData.getInstance().getImage()));
-        Fragment fragment = null;
-        if(menu != null) {
-            menu.findItem(R.id.search).setVisible(false);
+        if(fragmentStack.contains(itemId)) {
+            removeFromStack(itemId);
         }
+        Fragment fragment = null;
         switch (itemId) {
             case R.id.nav_event:
                 fragment = new EventFragment();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, fragment, "event_fragment");
-                transaction.commit();
+                lastFragmentId = R.id.nav_event;
                 break;
             case R.id.nav_profile:
                 fragment = new UserProfileFragment();
+                lastFragmentId = R.id.nav_profile;
                 break;
             case R.id.nav_favorite:
                 fragment = new FavoriteFragment();
+                lastFragmentId = R.id.nav_favorite;
                 break;
             case R.id.nav_settings:
                 fragment = new SettingsFragment();
+                lastFragmentId = R.id.nav_settings;
                 break;
             case R.id.nav_logout:
                 UserInteractorImpl inter=new UserInteractorImpl();
@@ -145,12 +161,13 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
                 return;
         }
 
-        if (fragment != null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, fragment);
-            transaction.commit();
-        }
+        showFragment(fragment);
+    }
 
+    private void showFragment(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
@@ -159,9 +176,11 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-
         int id = item.getItemId();
-        displaySelectedScreen(id);
+        if(id != lastFragmentId){
+            addFragmentToStack(lastFragmentId);
+            displaySelectedScreen(id);
+        }
         return true;
     }
 
