@@ -8,6 +8,7 @@ import hr.foi.air.utils.Utils;
 import hr.foi.air.view.RegistrationView;
 
 /**
+ * Klasa koja poziva interactora kako bi mu poslao podatke za registraciju i view kako bi mu javio rezultat.
  * Created by marbulic on 10/22/2017.
  */
 
@@ -21,6 +22,10 @@ public class RegistrationPresenterImpl implements RegistrationPresenter, UserInt
         this.rv = rv;
     }
 
+    /**
+     * Implementacija sucelja RegistrationPresenter. Provjeravaju se uneseni podaci za registraciju i prosljeduju interactoru.
+     * @param userModel
+     */
     @Override
     public void tryCreateUser(UserModel userModel) {
         if(userModel.getName().isEmpty()||userModel.getSurname().isEmpty() ||userModel.getUsername().isEmpty()
@@ -43,11 +48,19 @@ public class RegistrationPresenterImpl implements RegistrationPresenter, UserInt
 
     }
 
+    /**
+     * Implementacija UserInteractorListenera. View se obavjestava u uspjesnosti registracije.
+     * @param userModel
+     */
     @Override
     public void onSuccess(UserModel userModel) {
         rv.onSuccess(userModel);
     }
 
+    /**
+     * Implementacija UserInteractorListenera. View se obavjestava u neuspjesnosti registracije.
+     * @param text
+     */
     @Override
     public void onFailed(String text) {
         rv.onFailed(text);

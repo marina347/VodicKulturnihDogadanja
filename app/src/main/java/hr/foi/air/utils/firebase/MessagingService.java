@@ -14,6 +14,7 @@ import hr.foi.air.R;
 import hr.foi.air.activity.LoginActivity;
 
 /**
+ * Klasa za rukovanje push up notifikacijama.
  * Created by marbulic on 11/22/2017.
  */
 
@@ -21,6 +22,10 @@ public class MessagingService extends FirebaseMessagingService {
     private String title;
     private String body;
 
+    /**
+     * Metoda koja prima notifikaciju.
+     * @param remoteMessage
+     */
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
@@ -29,6 +34,11 @@ public class MessagingService extends FirebaseMessagingService {
         if(title!=null && body!=null) popNotification(title,body);
     }
 
+    /**
+     * Metoda koja prikazuje notifikaciju odnosno njen title i body.
+     * @param title
+     * @param body
+     */
     private void popNotification(String title,String body) {
 
         Intent i = new Intent(this, LoginActivity.class);

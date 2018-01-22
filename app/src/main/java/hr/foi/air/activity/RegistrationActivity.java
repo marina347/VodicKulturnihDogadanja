@@ -21,6 +21,9 @@ import hr.foi.air.presenter.impl.RegistrationPresenterImpl;
 import hr.foi.air.utils.LocalHelper;
 import hr.foi.air.view.RegistrationView;
 
+/**
+ * Aktivnost za registraciju korisnika.
+ */
 public class RegistrationActivity extends AppCompatActivity implements RegistrationView{
 
     @BindView(R.id.btnRegister)
@@ -55,6 +58,10 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
         this.presenter = presenter;
     }
 
+    /**
+     * Metoda koja pokusava stvoriti novog korisnika.
+     * @param view
+     */
     @OnClick(R.id.btnRegister)
     public void login_click(View view) {
         TryCreateUser();
@@ -75,6 +82,10 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
 
     }
 
+    /**
+     * Metoda koja se poziva nakon uspjesne prijave. Korisniku se ispisuje poruka i prebacuje se na aktivnost za prijavu.
+     * @param userModel
+     */
     public void onSuccess(UserModel userModel){
         Toast.makeText(this,R.string.succesful_registration,Toast.LENGTH_SHORT).show();
         final Context ctx= this;
@@ -88,6 +99,10 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
         },2000);
     }
 
+    /**
+     * U slucaju neuspjesne registracije ispisuje se greska.
+     * @param text
+     */
     @Override
     public void onFailed(String text) {
         Toast.makeText(this,text,Toast.LENGTH_SHORT).show();

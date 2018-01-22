@@ -19,6 +19,9 @@ import hr.foi.air.presenter.impl.LoginPresenterImpl;
 import hr.foi.air.utils.LocalHelper;
 import hr.foi.air.view.LoginView;
 
+/**
+ * Aktivnost za prijavu korisnika u aplikaciju.
+ */
 public class LoginActivity extends AppCompatActivity implements LoginView{
     LoginPresenter presenter;
     @BindView(R.id.log_username_et)
@@ -47,11 +50,18 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         super.onBackPressed();
     }
 
+    /**
+     * Metoda koja otvara aktivnost za registraciju.
+     */
     private void NavigateToRegistration(){
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Metoda koja dohvaca unesene podatke i prosljeduje ih presenteru.
+     * @param view
+     */
     @OnClick(R.id.btnLogin)
     public void login_click(View view) {
         TryLogIn();
@@ -63,6 +73,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
        presenter.tryLogin(name,pass);
    }
 
+    /**
+     * Metoda koja prikazuje tekst na Toastu.
+     * @param msg
+     */
    private void showToastOnUI(final String msg){
        final Context ctx = this;
        this.runOnUiThread(new Runnable() {
@@ -73,6 +87,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
        });
    }
 
+    /**
+     * Metoda koja otvara Navigation Activity nakon uspjesne prijave.
+     * @param model
+     */
     @Override
     public void onSuccess(final TokenModel model) {
         //showToastOnUI("Uspješna prijava");
@@ -81,6 +99,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         finish();
     }
 
+    /**
+     * Metoda koja ispisuje gresku o neuspjesnoj prijavi.
+     * @param error
+     */
     @Override
     public void onLoginFailed(final String error) {
         showToastOnUI(error);
