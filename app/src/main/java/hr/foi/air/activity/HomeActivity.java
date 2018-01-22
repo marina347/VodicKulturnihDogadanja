@@ -12,7 +12,7 @@ import hr.foi.air.utils.LocalHelper;
 import hr.foi.air.utils.LoggedUserData;
 
 /**
- * Klasa prikazuje početnu aktivnost aplikacije
+ * Klasa prikazuje pocetnu aktivnost aplikacije
  */
 
 public class HomeActivity extends AppCompatActivity {
@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     /**
-     * Metoda koja dohvaća lokalno stanje (jezik) koje je prethodno odabrano pomoću LocalHelper klase
+     * Metoda koja dohvaca lokalno stanje (jezik) koje je prethodno odabrano pomocu LocalHelper klase
      * @param base
      */
     @Override

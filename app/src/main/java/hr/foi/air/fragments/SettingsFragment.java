@@ -129,7 +129,7 @@ public class SettingsFragment extends Fragment implements SettingsView {
     }
 
     /**
-     * Metoda za uključivanje/iskjučivanje obavijesti
+     * Metoda za ukljucivanje/iskjucivanje obavijesti
      * @param button
      * @param isChecked
      */

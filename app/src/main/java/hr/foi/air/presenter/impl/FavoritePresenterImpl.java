@@ -56,7 +56,7 @@ public class FavoritePresenterImpl implements FavoritePresenter, FavoriteInterac
      */
     @Override
     public void noFavorites() {
-        view.noFavorites("Nemate događaja označenih kao favorit!");
+        view.noFavorites("Nemate dogadaja oznacenih kao favorit!");
     }
 
     /**

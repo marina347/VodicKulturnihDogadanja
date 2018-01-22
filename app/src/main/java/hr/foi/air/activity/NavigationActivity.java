@@ -33,7 +33,7 @@ import hr.foi.air.utils.LocalHelper;
 import hr.foi.air.utils.LoggedUserData;
 
 /**
- * Glavna aktivnost aplikacije. Sadrži navigacijski izbornik.
+ * Glavna aktivnost aplikacije. Sadrzi navigacijski izbornik.
  */
 
 public class NavigationActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
@@ -211,7 +211,7 @@ public class NavigationActivity extends AppCompatActivity implements  Navigation
     }
 
     /**
-     * Metoda koja dohvaća lokalno stanje (jezik) koje je prethodno odabrano pomoću LocalHelper klase
+     * Metoda koja dohvaca lokalno stanje (jezik) koje je prethodno odabrano pomocu LocalHelper klase
      * @param base
      */
     @Override

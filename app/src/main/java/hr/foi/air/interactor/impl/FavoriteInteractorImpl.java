@@ -27,7 +27,7 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
     AddFavoriteInteractorListener addListener;
 
     /**
-     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za postavljanje AddFavoriteInteractorListener
+     * Implementacija funkcije sucelja FavoriteInteractor. Funkcija sluzi za postavljanje AddFavoriteInteractorListener
      * @param listener
      */
     @Override
@@ -36,7 +36,7 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
     }
 
     /**
-     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za dodavanje događaja u favorite
+     * Implementacija funkcije sucelja FavoriteInteractor. Funkcija sluzi za dodavanje dogadaja u favorite
      * @param userId
      * @param eventId
      */
@@ -73,7 +73,7 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
     }
 
     /**
-     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za postavljanje FavoriteInteractorListener
+     * Implementacija funkcije sucelja FavoriteInteractor. Funkcija sluzi za postavljanje FavoriteInteractorListener
      * @param listener
      */
     @Override
@@ -82,7 +82,7 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
     }
 
     /**
-     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za dohvaćanje favorita sa servera
+     * Implementacija funkcije sucelja FavoriteInteractor. Funkcija sluzi za dohvacanje favorita sa servera
      * @param userId
      */
     @Override
@@ -116,7 +116,7 @@ public class FavoriteInteractorImpl implements FavoriteInteractor {
     }
 
     /**
-     * Implementacija funkcije sučelja FavoriteInteractor. Funkcija služi za brisanje događaja iz favorita
+     * Implementacija funkcije sucelja FavoriteInteractor. Funkcija sluzi za brisanje dogadaja iz favorita
      * @param userId
      * @param eventId
      */

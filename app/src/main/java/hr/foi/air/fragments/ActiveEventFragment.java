@@ -82,7 +82,7 @@ public class ActiveEventFragment extends Fragment implements EventView {
     }
 
     /**
-     * Funkcija služi za pretraživanje aktivnih događaja.
+     * Funkcija sluzi za pretrazivanje aktivnih dogadaja.
      * @param searchView
      */
     private void search(SearchView searchView) {
@@ -104,7 +104,7 @@ public class ActiveEventFragment extends Fragment implements EventView {
     }
 
     /**
-     * Funkcija šalje listu događaju Recycler Adapteru da ih prikaže.
+     * Funkcija salje listu dogadaju Recycler Adapteru da ih prikaze.
      * @param list
      */
     public void setView(List<EventModel> list){
@@ -125,7 +125,7 @@ public class ActiveEventFragment extends Fragment implements EventView {
     }
 
     /**
-     * Funkcija prihvaća pristigle događaje.
+     * Funkcija prihvaca pristigle dogadaje.
      * @param list
      */
     @Override
@@ -152,7 +152,7 @@ public class ActiveEventFragment extends Fragment implements EventView {
     }
 
     /**
-     * Funkcija ispisuje poruku o nepostojanju događaja.
+     * Funkcija ispisuje poruku o nepostojanju dogadaja.
      * @param error
      */
     @Override

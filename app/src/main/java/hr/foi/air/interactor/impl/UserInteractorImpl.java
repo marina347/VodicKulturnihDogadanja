@@ -34,7 +34,7 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     UserInteractorUserProfileListener listenerProfile;
 
     /**
-     * Implementacija metode sučelja UserInteractor. Metoda se koristi za postavljanje
+     * Implementacija metode sucelja UserInteractor. Metoda se koristi za postavljanje
      * UserInteractorRegistrationListenera
      * @param listener
      */
@@ -44,7 +44,7 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     /**
-     * Implementacija metode sučelja UserInteractor. Metoda se koristi za postavljanje
+     * Implementacija metode sucelja UserInteractor. Metoda se koristi za postavljanje
      * UserInteractorLoginListenera
      * @param listener
      */
@@ -54,7 +54,7 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     /**
-     * Implementacija metode sučelja UserInteractor. Metoda se koristi za postavljanje
+     * Implementacija metode sucelja UserInteractor. Metoda se koristi za postavljanje
      * UserInteractorUserProfileListenera
      * @param listener
      */
@@ -64,7 +64,7 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     /**
-     * Implementacija metoda sučelja UserInteractor. Metoda služi za prijavu korisnika u aplikaciju
+     * Implementacija metoda sucelja UserInteractor. Metoda sluzi za prijavu korisnika u aplikaciju
      * @param username
      * @param password
      */
@@ -110,8 +110,8 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     /**
-     * Implementacija metoda sučelja UserInteractor. Metoda služi registraciju korisnika,
-     * šalje serveru podatke o korisniku
+     * Implementacija metoda sucelja UserInteractor. Metoda sluzi registraciju korisnika,
+     * salje serveru podatke o korisniku
      * @param userData
      */
     @Override
@@ -141,7 +141,7 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     /**
-     * Implementacija metoda sučelja UserInteractor. Metoda služi za dohvaćanje podataka o
+     * Implementacija metoda sucelja UserInteractor. Metoda sluzi za dohvacanje podataka o
      * korisniku sa servera
      * @param userId
      */
@@ -169,7 +169,7 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     /**
-     * Implementacija metoda sučelja UserInteractor. Metoda služi za slanje promjenjenih
+     * Implementacija metoda sucelja UserInteractor. Metoda sluzi za slanje promjenjenih
      * podataka na server
      * @param userData
      */
@@ -197,7 +197,7 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     /**
-     * Implementacija metoda sučelja UserInteractor. Metoda služi osvježavanje tokena
+     * Implementacija metoda sucelja UserInteractor. Metoda sluzi osvjezavanje tokena
      * @param deviceId
      * @param userId
      */
@@ -234,7 +234,7 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     /**
-     * Implementacija metoda sučelja UserInteractor. Metoda služi za odjavu korisnika iz aplikacije.
+     * Implementacija metoda sucelja UserInteractor. Metoda sluzi za odjavu korisnika iz aplikacije.
      * @param ac
      * @param token
      */
@@ -270,7 +270,7 @@ public class UserInteractorImpl implements UserInteractor,LogoutListener {
     }
 
     /**
-     * Implementacija metoda sučelja UserInteractor. Metoda služi za dohvaćanje podataka korisnika za prikaz
+     * Implementacija metoda sucelja UserInteractor. Metoda sluzi za dohvacanje podataka korisnika za prikaz
      * na navigation draweru
      * @param userId
      */

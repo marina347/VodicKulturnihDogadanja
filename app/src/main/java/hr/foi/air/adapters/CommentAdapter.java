@@ -37,7 +37,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentViewHolder> {
     }
 
     /**
-     * Funkcija šalje komentar za ViewHolder.
+     * Funkcija salje komentar za ViewHolder.
      * @param holder
      * @param position
      */
@@ -47,7 +47,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentViewHolder> {
     }
 
     /**
-     * Funkcija vraća broj elemenata.
+     * Funkcija vraca broj elemenata.
      * @return
      */
     @Override

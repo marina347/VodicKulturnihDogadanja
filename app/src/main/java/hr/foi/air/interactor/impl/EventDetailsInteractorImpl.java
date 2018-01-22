@@ -26,7 +26,7 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
     EventDetailsInteractorListener eventDetailsInteractorListener;
 
     /**
-     * Implementacija funkcije sučelja EventDetailsInteractor.Funkcija služi za postavljanje EventDetailsListenera
+     * Implementacija funkcije sucelja EventDetailsInteractor. Funkcija sluzi za postavljanje EventDetailsListenera
      * @param listener
      */
     @Override
@@ -35,7 +35,7 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsInteractor. Funkcija služi za dohvaćanje događaja po id-u sa servera.
+     * Implementacija funkcije sucelja EventDetailsInteractor. Funkcija sluzi za dohvacanje dogadaja po id-u sa servera.
      * @param eventId
      */
     @Override
@@ -64,7 +64,7 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsInteractor. Funkcija služi za slanje ocjene događaja na server.
+     * Implementacija funkcije sucelja EventDetailsInteractor. Funkcija sluzi za slanje ocjene dogadaja na server.
      * @param mark
      * @param userId
      * @param eventId
@@ -104,7 +104,7 @@ public class EventDetailsInteractorImpl implements EventDetailsInteractor {
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsInteractor. Funkcija služi za brisanja ocijene događaja sa servera
+     * Implementacija funkcije sucelja EventDetailsInteractor. Funkcija sluzi za brisanja ocijene dogadaja sa servera
      * @param userId
      * @param eventId
      */

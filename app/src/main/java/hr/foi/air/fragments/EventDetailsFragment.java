@@ -103,7 +103,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za dijeljene događaja na facebook.
+     * Funkcija sluzi za dijeljene dogadaja na facebook.
      */
     @OnClick(R.id.btn_share)
     public void click(){
@@ -112,7 +112,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za inicijaliziranje SocialNetworkShareManager
+     * Funkcija sluzi za inicijaliziranje SocialNetworkShareManager
      * @param shareManager
      */
     private void initSharing(SocialNetworkSharingManager shareManager){
@@ -122,7 +122,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za dijeljene događaja na twitter.
+     * Funkcija sluzi za dijeljene dogadaja na twitter.
      */
     @OnClick(R.id.btn_twitter)
     public void clickTwitter(){
@@ -131,7 +131,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za prikazivanje detalja o događaju
+     * Funkcija sluzi za prikazivanje detalja o dogadaju
      * @param event
      */
     @Override
@@ -174,7 +174,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za prikazivanje odabranog/neodabranog like/dislika.
+     * Funkcija sluzi za prikazivanje odabranog/neodabranog like/dislika.
      */
     private void setLikeDislikeButtonsAlpha(){
 
@@ -194,7 +194,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za prikaz datuma u obliku dd.mm.yyyy.
+     * Funkcija sluzi za prikaz datuma u obliku dd.mm.yyyy.
      * @param date
      * @return
      */
@@ -216,7 +216,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za dodavanje događaja u favorite.
+     * Funkcija sluzi za dodavanje dogadaja u favorite.
      */
     @OnClick(R.id.favoriteCheckBox)
     public void favoriteCheckBoxClick(){
@@ -225,7 +225,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija ispisuje poruku o uspješnom dodavanju događaja u favorite.
+     * Funkcija ispisuje poruku o uspjesnom dodavanju dogadaja u favorite.
      */
     @Override
     public void onSuccessAddedFavorite() {
@@ -234,7 +234,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija ispisuje poruku o uspješnom ocijenjivanju događaja.
+     * Funkcija ispisuje poruku o uspjesnom ocijenjivanju dogadaja.
      */
     @Override
     public void onSuccessAddedEvaluation() {
@@ -242,7 +242,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija ispisuje poruku o neuspješnom ocjenjivanju događaja.
+     * Funkcija ispisuje poruku o neuspjesnom ocjenjivanju dogadaja.
      */
     @Override
     public void onFailedAddedEvaluation() {
@@ -250,23 +250,23 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija ispisuje poruku o uspješnom brisanju ocjene događaja.
+     * Funkcija ispisuje poruku o uspjesnom brisanju ocjene dogadaja.
      */
     @Override
     public void onSuccessDeletedEvaluation() {
-        //Toast.makeText(getActivity(),"Uspješno uklonjena ocjena!" Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(),"Uspjesno uklonjena ocjena!" Toast.LENGTH_LONG).show();
     }
 
     /**
-     * Funkcija ispisuje poruku o neuspjelom brisanju događaja.
+     * Funkcija ispisuje poruku o neuspjelom brisanju dogadaja.
      */
     @Override
     public void onFailedDeletedEvaluation() {
-        //Toast.makeText(getActivity(),"Neuspješno uklonjena ocjena!" Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(),"Neuspjesno uklonjena ocjena!" Toast.LENGTH_LONG).show();
     }
 
     /**
-     * Funkcija služi za like-anje događaja.
+     * Funkcija sluzi za like-anje dogadaja.
      */
     @OnClick(R.id.img_like)
     public void clickLike(){
@@ -291,7 +291,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za dislike-anje događaja.
+     * Funkcija sluzi za dislike-anje dogadaja.
      */
     @OnClick(R.id.img_dislike)
     public void clickDislike(){
@@ -317,7 +317,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Ispisuje poruku o uspješnom dijeljenju događaja na društvenu mrežu.
+     * Ispisuje poruku o uspjesnom dijeljenju dogadaja na drustvenu mrezu.
      */
     @Override
     public void shared() {
@@ -325,7 +325,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za ispis poruke o otkazanom dijeljenju događaja na društvenu mrežu.
+     * Funkcija sluzi za ispis poruke o otkazanom dijeljenju dogadaja na drustvenu mrezu.
      */
     @Override
     public void canceled() {
@@ -333,7 +333,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za prikazivanje fragmenta.
+     * Funkcija sluzi za prikazivanje fragmenta.
      * @param fragment
      */
     @Override
@@ -346,7 +346,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za skrivanje fragmenta.
+     * Funkcija sluzi za skrivanje fragmenta.
      * @param fragment
      */
     @Override
@@ -359,7 +359,7 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
 
     /**
-     * Funkcija služi za otvaranje linka na kojem se mogu kupiti karte za događaj.
+     * Funkcija sluzi za otvaranje linka na kojem se mogu kupiti karte za dogadaj.
      */
     @OnClick(R.id.btn_link)
     public void openLink(){
@@ -368,14 +368,14 @@ public class EventDetailsFragment extends Fragment implements EventDetailsView,S
     }
     private void spinnerLoad(){
         nDialog = new ProgressDialog( getActivity());
-        nDialog.setMessage("Učitavam...");
+        nDialog.setMessage("Ucitavam...");
         nDialog.setIndeterminate(false);
         nDialog.setCancelable(true);
         nDialog.show();
     }
 
     /**
-     * Funkcija služi za prikaz broja like-ova i dislike-ova.
+     * Funkcija sluzi za prikaz broja like-ova i dislike-ova.
      */
     private void showNumberOfLikes(){
         txtNumOfDislike.setText(String.valueOf(event.getNumOfDislikes()));

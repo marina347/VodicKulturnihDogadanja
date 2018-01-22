@@ -53,7 +53,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     }
 
     /**
-     * Funkcija postavlja tabove koji će biti prikazani.
+     * Funkcija postavlja tabove koji ce biti prikazani.
      */
     private void setupTabLayout() {
         Intent intent = this.getIntent();

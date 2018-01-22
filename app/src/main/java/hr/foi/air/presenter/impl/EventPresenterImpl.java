@@ -31,7 +31,7 @@ public class EventPresenterImpl implements EventPresenter,EventInteractorListene
     }
 
     /**
-     * Implementacija funkcije sučelja EventPresenter. Funkcija pokušava dohvatiti buduće događaje.
+     * Implementacija funkcije sucelja EventPresenter. Funkcija pokusava dohvatiti buduce dogadaje.
      */
     @Override
     public void tryGetEvents() {
@@ -39,7 +39,7 @@ public class EventPresenterImpl implements EventPresenter,EventInteractorListene
     }
 
     /**
-     * Implementacija funkcije sučelja EventPresenter. Funkcija pokušava dohvatiti sve događaje.
+     * Implementacija funkcije sucelja EventPresenter. Funkcija pokusava dohvatiti sve dogadaje.
      */
     @Override
     public void tryGetAllEvents() {

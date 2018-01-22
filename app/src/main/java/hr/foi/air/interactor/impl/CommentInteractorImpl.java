@@ -21,7 +21,7 @@ public class CommentInteractorImpl implements CommentInteractor {
     CommentInteractorListener commentInteractorListener;
 
     /**
-     * Implementacija funkcije sučelja CommentInteractor. Funkcija služi za postavljanje CommenntListenera.
+     * Implementacija funkcije sucelja CommentInteractor. Funkcija sluzi za postavljanje CommenntListenera.
      * @param commentListener
      */
     @Override
@@ -30,7 +30,7 @@ public class CommentInteractorImpl implements CommentInteractor {
     }
 
     /**
-     * Implementacija funkcije sučelja CommentInteractor. Funkcija služi za dohvaćanje događaja sa servera.
+     * Implementacija funkcije sucelja CommentInteractor. Funkcija sluzi za dohvacanje dogadaja sa servera.
      * @param eventId
      */
     @Override
@@ -57,7 +57,7 @@ public class CommentInteractorImpl implements CommentInteractor {
     }
 
     /**
-     * Implementacija funkcije sučelja CommentInteractor. Funkcija služi za slanje novog komentara na server.
+     * Implementacija funkcije sucelja CommentInteractor. Funkcija sluzi za slanje novog komentara na server.
      * @param comment
      */
     @Override

@@ -21,7 +21,7 @@ public class SettingsInteractorImpl implements SettingsInteractor{
     SettingsInteractorListener listener;
 
     /**
-     * Implementacija funkcije sučelja SettingsInteractor. Funkcija služi za postavljanje
+     * Implementacija funkcije sucelja SettingsInteractor. Funkcija sluzi za postavljanje
      * SettingsInteractorListener
      * @param listener
      */
@@ -31,7 +31,7 @@ public class SettingsInteractorImpl implements SettingsInteractor{
     }
 
     /**
-     * Implementacija funkcije sučelja SettingsInteractor. Funkcija služi za dohvaćanje postavki
+     * Implementacija funkcije sucelja SettingsInteractor. Funkcija sluzi za dohvacanje postavki
      * po id-u korisnika sa servera.
      * @param userId
      */
@@ -60,7 +60,7 @@ public class SettingsInteractorImpl implements SettingsInteractor{
     }
 
     /**
-     * Implementacija funkcije sučelja SettingsInteractor. Funkcija služi za uređivanje postavki
+     * Implementacija funkcije sucelja SettingsInteractor. Funkcija sluzi za uredivanje postavki
      * po id-u korisnika sa servera
      * @param settings
      */

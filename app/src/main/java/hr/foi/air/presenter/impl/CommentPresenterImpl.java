@@ -23,7 +23,7 @@ public class CommentPresenterImpl implements CommentPresenter, CommentInteractor
     }
 
     /**
-     *  Implementacija funkcije sučelja CommentPresenter. Funkcija pokušava dohvatiti komentare. Id događaja šalje se interactoru.
+     *  Implementacija funkcije sucelja CommentPresenter. Funkcija pokusava dohvatiti komentare. Id dogadaja salje se interactoru.
      * @param eventId
      */
     @Override
@@ -32,7 +32,7 @@ public class CommentPresenterImpl implements CommentPresenter, CommentInteractor
     }
 
     /**
-     * Implementacija funkcije sučelja CommentPresenter. Funkcija pokušava kreirati novi komentar. Šalje komentar interactoru.
+     * Implementacija funkcije sucelja CommentPresenter. Funkcija pokusava kreirati novi komentar. Šalje komentar interactoru.
      * @param comment
      */
     @Override
@@ -41,7 +41,7 @@ public class CommentPresenterImpl implements CommentPresenter, CommentInteractor
     }
 
     /**
-     * Implementacija funkcije sučelja CommentInteractorListener. Funkcija poziva funkciju NoComment sučelja CommentView.
+     * Implementacija funkcije sucelja CommentInteractorListener. Funkcija poziva funkciju NoComment sucelja CommentView.
      */
     @Override
     public void NoComment() {
@@ -49,7 +49,7 @@ public class CommentPresenterImpl implements CommentPresenter, CommentInteractor
     }
 
     /**
-     * Implementacija funkcije sučelja CommentInteractorListener. Funkcija šalje sve komentare CommentView.
+     * Implementacija funkcije sucelja CommentInteractorListener. Funkcija salje sve komentare CommentView.
      * @param list
      */
     @Override
@@ -58,7 +58,7 @@ public class CommentPresenterImpl implements CommentPresenter, CommentInteractor
     }
 
     /**
-     * Implementacija funkcije sučelja CommentInteractorListener. Funkcija šalje uspješno krirani komentar CommentView
+     * Implementacija funkcije sucelja CommentInteractorListener. Funkcija salje uspjesno krirani komentar CommentView
      * @param comment
      */
     @Override
@@ -67,7 +67,7 @@ public class CommentPresenterImpl implements CommentPresenter, CommentInteractor
     }
 
     /**
-     *  Implementacija funkcije sučelja CommentInteractorListener. Funkcija šalje poruku o neuspjelom kreiranju komentara u CommentView.
+     *  Implementacija funkcije sucelja CommentInteractorListener. Funkcija salje poruku o neuspjelom kreiranju komentara u CommentView.
      * @param s
      */
     @Override

@@ -22,7 +22,7 @@ public class EventInteractorImpl implements EventInteractor{
     EventInteractorListener eventInteractorListener;
 
     /**
-     * Implementacija funkcije sučelja EventInteractor. Funkcija služi za postavljanje EventListener.
+     * Implementacija funkcije sucelja EventInteractor. Funkcija sluzi za postavljanje EventListener.
      * @param listener
      */
     @Override
@@ -31,7 +31,7 @@ public class EventInteractorImpl implements EventInteractor{
     }
 
     /**
-     * Implementacija funkcije sučelja EventInteractor. Funkcija služi za postavljanje AllEventListenera.
+     * Implementacija funkcije sucelja EventInteractor. Funkcija sluzi za postavljanje AllEventListenera.
      * @param listener
      */
     @Override
@@ -40,7 +40,7 @@ public class EventInteractorImpl implements EventInteractor{
     }
 
     /**
-     * Implementacija funkcije sučelja EventInteractor. Funkcija služi za dohvaćanje budućih događaja sa servera.
+     * Implementacija funkcije sucelja EventInteractor. Funkcija sluzi za dohvacanje buducih dogadaja sa servera.
      */
     @Override
     public void getEvent() {
@@ -67,7 +67,7 @@ public class EventInteractorImpl implements EventInteractor{
     }
 
     /**
-     * Implementacija funkcije sučelja EventInteractor. Funkcija služi za dohvaćanje svih događaja sa servera.
+     * Implementacija funkcije sucelja EventInteractor. Funkcija sluzi za dohvacanje svih dogadaja sa servera.
      */
     @Override
     public void getAllEvents() {

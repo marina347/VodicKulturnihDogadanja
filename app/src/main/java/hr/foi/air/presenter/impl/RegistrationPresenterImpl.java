@@ -34,7 +34,7 @@ public class RegistrationPresenterImpl implements RegistrationPresenter, UserInt
             return;
         }
         else if(userModel.getUsername().length()<6){
-            rv.onFailed("Korisničko ime mora imati najmanje 6 znakova!");
+            rv.onFailed("Korisnicko ime mora imati najmanje 6 znakova!");
         }
         else if(userModel.getPassword().length()<6){
             rv.onFailed("Lozinka mora imati najmanje 6 znakova!");

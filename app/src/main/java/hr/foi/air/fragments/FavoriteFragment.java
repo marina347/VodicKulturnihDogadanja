@@ -94,7 +94,7 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
     }
 
     /**
-     * Metoda za učitavanje događaja
+     * Metoda za ucitavanje dogadaja
      */
     private void spinnerLoad(){
         nDialog = new ProgressDialog( getActivity());

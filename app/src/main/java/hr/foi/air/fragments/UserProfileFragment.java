@@ -109,7 +109,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
      */
     private void spinnerLoad(){
         nDialog = new ProgressDialog( getActivity());
-        nDialog.setMessage("Učitavam...");
+        nDialog.setMessage("Ucitavam...");
         nDialog.setIndeterminate(false);
         nDialog.setCancelable(true);
         nDialog.show();

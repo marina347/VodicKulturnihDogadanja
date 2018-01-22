@@ -24,7 +24,7 @@ import hr.foi.air.utils.LocalHelper;
 import hr.foi.air.view.EventView;
 
 /**
- * Klasa za prikaz događaja za neregistriranog korsnika
+ * Klasa za prikaz dogadaja za neregistriranog korsnika
  */
 
 public class MainActivity extends AppCompatActivity implements EventView {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements EventView {
     }
 
     /**
-     * Funkcija služi za pretraživanje Recycler adaptera.
+     * Funkcija sluzi za pretrazivanje Recycler adaptera.
      * @param searchView
      */
     private void search(SearchView searchView) {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements EventView {
     }
 
     /**
-     * Funkcija šalje pristigle događaje Recycler adapteru da ih prikaže.
+     * Funkcija salje pristigle dogadaje Recycler adapteru da ih prikaze.
      * @param list
      */
     @Override
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements EventView {
     }
 
     /**
-     * Funkcija prikazuje učitavanje.
+     * Funkcija prikazuje ucitavanje.
      */
     private void spinnerLoad(){
         nDialog = new ProgressDialog(this);
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements EventView {
     }
 
     /**
-     * Funkcija ispisuje poruku kada o nepostojanju događaja.
+     * Funkcija ispisuje poruku kada o nepostojanju dogadaja.
      * @param error
      */
     @Override

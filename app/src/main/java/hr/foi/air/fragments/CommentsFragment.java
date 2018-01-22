@@ -67,7 +67,7 @@ public class CommentsFragment extends Fragment implements CommentView {
     }
 
     /**
-     * Funkcija šalje pistiglu listu komentara Recycler adapteru da ih prikaže.
+     * Funkcija salje pistiglu listu komentara Recycler adapteru da ih prikaze.
      * @param commenList
      */
     @Override
@@ -82,7 +82,7 @@ public class CommentsFragment extends Fragment implements CommentView {
     }
 
     /**
-     * Funkcija ispisuje poruku o nepostojećim komentarima.
+     * Funkcija ispisuje poruku o nepostojecim komentarima.
      * @param s
      */
     @Override
@@ -91,7 +91,7 @@ public class CommentsFragment extends Fragment implements CommentView {
     }
 
     /**
-     * Funkcija služi za prikazivanje kreiranog komentara.
+     * Funkcija sluzi za prikazivanje kreiranog komentara.
      * @param comment
      */
     @Override
@@ -102,7 +102,7 @@ public class CommentsFragment extends Fragment implements CommentView {
     }
 
     /**
-     * Funkcija služi za ispis poruke kada se komentar neuspije stvoriti.
+     * Funkcija sluzi za ispis poruke kada se komentar neuspije stvoriti.
      * @param s
      */
     @Override
@@ -112,7 +112,7 @@ public class CommentsFragment extends Fragment implements CommentView {
     }
 
     /**
-     * Funkcija služi za kreiranje novoga komentara.
+     * Funkcija sluzi za kreiranje novoga komentara.
      * @param view
      */
     @OnClick(R.id.btn_new_comment)

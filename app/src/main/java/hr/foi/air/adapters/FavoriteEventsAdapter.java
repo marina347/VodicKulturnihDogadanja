@@ -59,7 +59,7 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
     }
 
     /**
-     * Metoda za pretraživanje događaja
+     * Metoda za pretrazivanje dogadaja
      * @return
      */
     @Override
@@ -125,7 +125,7 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
         }
 
         /**
-         * Metoda za prikaz primljenih podataka od događaju
+         * Metoda za prikaz primljenih podataka od dogadaju
          * @param eventModel
          */
         public void bind(EventModel eventModel) {
@@ -141,7 +141,7 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
         }
 
         /**
-         * Metoda za otvaranje detalja odabranog događaja
+         * Metoda za otvaranje detalja odabranog dogadaja
          */
         @OnClick
         public void selectedEvent() {
@@ -154,7 +154,7 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
         }
 
         /**
-         * Metoda vraća datum oblika dd.mm.yyyy.
+         * Metoda vraca datum oblika dd.mm.yyyy.
          * @param date
          * @return
          */
@@ -169,7 +169,7 @@ public class FavoriteEventsAdapter extends RecyclerView.Adapter<FavoriteEventsAd
         };
 
         /**
-         * Metoda za brisanje događaja iz popisa favorita
+         * Metoda za brisanje dogaddobro aja iz popisa favorita
          * @param star
          * @param eventModel
          */

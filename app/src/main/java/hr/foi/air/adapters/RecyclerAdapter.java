@@ -56,7 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
     }
 
     /**
-     * Funkcija služi za filtriranje/pretraživanje događaja.
+     * Funkcija sluzi za filtriranje/pretrazivanje dogadaja.
      * @return
      */
     @Override
@@ -119,7 +119,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
         }
 
         /**
-         * Funkcija prikazuje primljene podatke o događaju.
+         * Funkcija prikazuje primljene podatke o dogadaju.
          * @param eventModel
          */
         public void bind(EventModel eventModel) {
@@ -134,7 +134,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
         }
 
         /**
-         * Funkcija otvara novu detalje o događaju za odabrani događaj.
+         * Funkcija otvara novu detalje o dogadaju za odabrani dogadaj.
          */
         @OnClick
         public void selectedEvent() {
@@ -147,7 +147,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.EventV
         }
 
         /**
-         * Funkcija vraća datum oblika dd.mm.yyyy.)
+         * Funkcija vraca datum oblika dd.mm.yyyy.)
          * @param date
          * @return
          */

@@ -27,7 +27,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsPresenter. Funkcija pokušava dohvatiti događaj pomoću id-a. Šalje id događaja interactoru.
+     * Implementacija funkcije sucelja EventDetailsPresenter. Funkcija pokusava dohvatiti dogadaj pomocu id-a. Šalje id dogadaja interactoru.
      * @param eventId
      */
     @Override
@@ -36,7 +36,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsInteractoListener. Funkcija šalje pristigli događaj EventView-u.
+     * Implementacija funkcije sucelja EventDetailsInteractoListener. Funkcija salje pristigli dogadaj EventView-u.
      * @param event
      */
     @Override
@@ -45,7 +45,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsInteractoListener. Funkcija šalje poruku o uspješnom ocjenjivanju događaja EventView.
+     * Implementacija funkcije sucelja EventDetailsInteractoListener. Funkcija salje poruku o uspjesnom ocjenjivanju dogadaja EventView.
      */
     @Override
     public void successAddedEvaluation() {
@@ -53,7 +53,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsInteractoListener. Funkcija šalje poruku o neuspješnom ocjenjivanju događaja EventView.
+     * Implementacija funkcije sucelja EventDetailsInteractoListener. Funkcija salje poruku o neuspjesnom ocjenjivanju dogadaja EventView.
      */
     @Override
     public void failedAddedEvaluation() {
@@ -61,7 +61,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsInteractoListener. Funkcija šalje poruku o uspješnom brisnju ocjene događaja EventView.
+     * Implementacija funkcije sucelja EventDetailsInteractoListener. Funkcija salje poruku o uspjesnom brisnju ocjene dogadaja EventView.
      */
     @Override
     public void onSuccessDeletedEvaluation() {
@@ -69,7 +69,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsInteractoListener. Funkcija šalje poruku o neuspješnom brisanju ocjene događaja EventView.
+     * Implementacija funkcije sucelja EventDetailsInteractoListener. Funkcija salje poruku o neuspjesnom brisanju ocjene dogadaja EventView.
      */
     @Override
     public void onFailedDeletedEvaluation() {
@@ -77,7 +77,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja AddFavoriteLinteractoListener Funkcija javlja EventView da je događaj uspješno dodan u favorite.
+     * Implementacija funkcije sucelja AddFavoriteLinteractoListener Funkcija javlja EventView da je dogadaj uspjesno dodan u favorite.
      */
     @Override
     public void onAddSuccess() {
@@ -85,7 +85,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja AddFavoriteLinteractoListener Funkcija javlja EventView da je događaj neuspješno dodan u favorite.
+     * Implementacija funkcije sucelja AddFavoriteLinteractoListener Funkcija javlja EventView da je dogadaj neuspješno dodan u favorite.
      */
     @Override
     public void onAddFailure() {
@@ -93,7 +93,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsPresenter. Funkcija pokušava dodati događaj u favorite, te ga šalje interactoru.
+     * Implementacija funkcije sucelja EventDetailsPresenter. Funkcija pokusava dodati dogadaj u favorite, te ga salje interactoru.
      * @param eventId
      */
     @Override
@@ -102,7 +102,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsPresenter. Funkcija pokušava ocjeniti događaj, te ocjenu šalje interactoru.
+     * Implementacija funkcije sucelja EventDetailsPresenter. Funkcija pokusava ocjeniti dogadaj, te ocjenu salje interactoru.
      * @param mark
      * @param userId
      * @param eventId
@@ -113,7 +113,7 @@ public class EventDetailsPresenterImpl implements EventDetailsPresenter, EventDe
     }
 
     /**
-     * Implementacija funkcije sučelja EventDetailsPresenter. Funkcija pokušava  obrisati ocjenu događaj, te zahtjev šalje interactoru.
+     * Implementacija funkcije sucelja EventDetailsPresenter. Funkcija pokusava  obrisati ocjenu dogadaj, te zahtjev salje interactoru.
      * @param userId
      * @param eventId
      */

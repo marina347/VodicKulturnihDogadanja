@@ -82,7 +82,7 @@ public class AllEventFragment extends Fragment implements AllEventView {
     }
 
     /**
-     * Funkcija služi za pretraživanje svih događaja.
+     * Funkcija sluzi za pretrazivanje svih dogadaja.
      * @param searchView
      */
     private void search(SearchView searchView) {
@@ -104,7 +104,7 @@ public class AllEventFragment extends Fragment implements AllEventView {
     }
 
     /**
-     * Funkcija prihvaća pristigle događaje.
+     * Funkcija prihvaca pristigle dogadaje.
      * @param list
      */
     @Override
@@ -117,7 +117,7 @@ public class AllEventFragment extends Fragment implements AllEventView {
     }
 
     /**
-     * Funkcija šalje listu događaju Recycler Adapteru da ih prikaže.
+     * Funkcija salje listu dogadaju Recycler Adapteru da ih prikaze.
      * @param list
      */
     public void setView(List<EventModel> list){
@@ -154,7 +154,7 @@ public class AllEventFragment extends Fragment implements AllEventView {
     }
 
     /**
-     * Funkcija ispisuje poruku o nepostojanju događaja.
+     * Funkcija ispisuje poruku o nepostojanju dogadaja.
      * @param error
      */
     @Override
